@@ -40,6 +40,27 @@
         body { font-family: 'Inter', sans-serif; }
         details summary::-webkit-details-marker { display: none; }
     </style>
+
+    <!-- Mobile-only utility bar: show just the centered call link; desktop/tablet unchanged. -->
+    <style>
+        @media (max-width: 767px) {
+            .pronto-site-utility > div {
+                flex-direction: row;
+                justify-content: center;
+                gap: 0;
+            }
+            .pronto-site-utility > div > div:first-child {
+                display: none;
+            }
+            .pronto-site-utility > div > div:last-child {
+                justify-content: center;
+                gap: 0;
+            }
+            .pronto-site-utility a[href^="mailto:"] {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 antialiased flex flex-col min-h-screen">

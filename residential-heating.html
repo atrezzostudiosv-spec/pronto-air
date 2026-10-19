@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residential Heating Services in Denton, TX | Pronto Air</title>
+    <meta name="description" content="Pronto Air provides residential heating maintenance, repairs, and installation in Denton, TX. Learn about our heating systems and services.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { DEFAULT: '#0B2545', dark: '#06162B', light: '#134074' },
+                        brandRed: { DEFAULT: '#D90429', hover: '#EF233C' },
+                        brandBlue: '#134074',
+                        lightBlue: '#EEF4F8',
+                        brandLightBlue: '#EEF4F8',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .pronto-site-utility, .pronto-site-header, .pronto-site-footer { font-family: 'Inter', system-ui, sans-serif; }
+        .pronto-site-header a:focus-visible, .pronto-site-header button:focus-visible {
+            outline: 2px solid #D90429;
+            outline-offset: 2px;
+        }
+        /* Custom scrollbar and animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #111827;
+        }
+        .transition-all-300 {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
+    <div class="pronto-site-utility bg-navy-dark text-white text-xs sm:text-sm py-2 px-4 border-b border-navy-light/30">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 text-xs">
+                <span><i class="fa-solid fa-shield-halved text-brandRed mr-1.5" aria-hidden="true"></i> License: <strong>TACLB28582E</strong></span>
+                <span class="hidden md:inline"><i class="fa-solid fa-location-dot text-blue-300 mr-1.5" aria-hidden="true"></i> Serving Denton County & Surrounding Areas</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="tel:+19403123081" class="hover:text-brandRed transition-colors font-medium flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-brandRed" aria-hidden="true"></i> (940) 312-3081
+                </a>
+                <a href="mailto:prontoairdenton@hotmail.com" class="hover:text-brandRed transition-colors hidden sm:flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope text-blue-300" aria-hidden="true"></i> prontoairdenton@hotmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER / NAVIGATION -->
+    <header class="pronto-site-header bg-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- LOGO -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-left focus:outline-none" aria-label="Pronto Air Home">
+                        <img class="h-12 w-auto object-contain" 
+                             src="https://irp.cdn-website.com/b34a80cb/dms3rep/multi/opt/Pronto+Air+Services+Denton+Texas+Logos+%281%29-1920w.png" 
+                             alt="Pronto Air Services Logo">
+                    </a>
+                </div>
+
+                <!-- DESKTOP NAVIGATION -->
+                <nav class="hidden lg:flex space-x-1 xl:space-x-2" aria-label="Main Navigation">
+                    <a href="index.html" id="nav-home" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Home</a>
+                    <a href="residential-cooling.html" id="nav-cooling" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Residential Cooling</a>
+                    <a href="residential-heating.html" id="nav-heating" class="px-3 py-2 rounded-md text-sm font-bold bg-navy text-white shadow-sm" aria-current="page">Residential Heating</a>
+                    <a href="mobile-homes.html" id="nav-mobile-homes" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Mobile Homes</a>
+                    <a href="light-commercial.html" id="nav-commercial" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Light Commercial</a>
+                    <a href="contact-us.html" id="nav-contact" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Contact us</a>
+                </nav>
+
+                <!-- HEADER CALL CTA -->
+                <div class="hidden md:flex items-center">
+                    <a href="tel:+19403123081" class="bg-brandRed hover:bg-brandRed-hover text-white font-bold py-2.5 px-5 rounded-lg text-sm transition-all transform hover:-translate-y-0.5 shadow-md flex items-center gap-2">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <span>(940) 312-3081</span>
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <div class="flex lg:hidden items-center">
+                    <button id="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-navy hover:text-brandRed hover:bg-brandLightBlue focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle Navigation Menu">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU PANELS -->
+        <div class="hidden lg:hidden bg-white border-t border-gray-200" id="mobile-menu">
+            <nav class="px-4 pt-3 pb-6 space-y-2" aria-label="Mobile Navigation">
+                <a href="index.html" id="mob-nav-home" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Home</a>
+                <a href="residential-cooling.html" id="mob-nav-cooling" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Residential Cooling</a>
+                <a href="residential-heating.html" id="mob-nav-heating" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-bold bg-navy text-white" aria-current="page">Residential Heating</a>
+                <a href="mobile-homes.html" id="mob-nav-mobile-homes" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Mobile Homes</a>
+                <a href="light-commercial.html" id="mob-nav-commercial" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Light Commercial</a>
+                <a href="contact-us.html" id="mob-nav-contact" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Contact us</a>
+                <div class="pt-4 border-t border-gray-100">
+                    <a href="tel:+19403123081" class="w-full bg-brandRed text-white font-bold py-3 px-4 rounded-lg text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> Call (940) 312-3081
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- SECTION 01 — HERO -->
+        <section class="bg-navy text-white relative py-16 md:py-24 bg-cover bg-center overflow-hidden" style="background-image: linear-gradient(rgba(11, 37, 69, 0.88), rgba(11, 37, 69, 0.94)), url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=80');">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-7">
+                        <span class="inline-flex items-center gap-2 bg-brandRed/90 text-white text-xs uppercase font-bold tracking-wider px-3.5 py-1.5 rounded-full mb-4">
+                            <i class="fa-solid fa-fire text-amber-300"></i> Residential Heating Specialist
+                        </span>
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-white">
+                            Residential Heating Services
+                        </h1>
+                        <p class="text-lg md:text-xl font-medium text-brandRed bg-white/10 backdrop-blur-sm inline-block px-3 py-1 rounded mb-4">
+                            Heating Maintenance, Repair & Installation in Denton, TX
+                        </p>
+                        <p class="text-gray-200 text-base md:text-lg mb-8 leading-relaxed max-w-2xl">
+                            Pronto Air provides residential heating repairs, maintenance, and installation of new heating systems in Denton, Texas. With over 20 years of experience, the company performs heating system inspections to identify problems and carry out necessary repairs.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="tel:+19403123081" class="bg-brandRed hover:bg-red-700 text-white font-bold py-3.5 px-7 rounded-md text-center transition-all shadow-lg flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-phone"></i> Call (940) 312-3081
+                            </a>
+                            <a href="#heating-services-grid" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold py-3.5 px-6 rounded-md text-center transition-all backdrop-blur-sm flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-list-check"></i> Explore Heating Services
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:col-span-5 hidden md:block">
+                        <div class="relative mx-auto max-w-md rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                            <!-- Illustrative image of residential heating equipment -->
+                            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Illustrative Residential Heating System Equipment" class="w-full h-80 object-cover" onerror="this.src='https://placehold.co/600x400/134074/ffffff?text=Residential+Heating+System'">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy via-navy/80 to-transparent p-4 text-xs text-gray-300">
+                                <p class="font-semibold text-white">Residential Heating Expertise</p>
+                                <p>Licensed HVAC Services • TACLB28582E</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 02 — HEATING MAINTENANCE, REPAIR & INSTALLATION -->
+        <section id="heating-services-grid" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4">
+                        Heating Maintenance, Repair & Installation
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed text-base md:text-lg">
+                        Pronto Air provides heating repairs and installations of new heating systems. Its technicians carry out inspections to assess heating problems and determine the repairs needed. The company reports over 20 years of experience and ongoing staff training.
+                    </p>
+                </div>
+
+                <!-- 8 Confirmed Heating Categories Grid -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- 01 -->
+                    <div onclick="selectCategory(1)" id="cat-card-1" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-temperature-arrow-up"></i>
+                        </div>
+                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 01</span>
+                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Central Air and Ductless Systems</h3>
+                        <p class="text-xs text-gray-500">Comprehensive options for both duct-based central heating and targeted ductless solutions.</p>
+                    </div>
+
+                    <!-- 02 -->
+                    <div onclick="selectCategory(2)" id="cat-card-2" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-fire text-brandRed"></i>
+                        </div>
+                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 02</span>
+                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Furnaces</h3>
+                        <p class="text-xs text-gray-500">Central furnaces distributing warm air using electric power or natural gas sources.</p>
+                    </div>
+
+                    <!-- 03 -->
+                    <div onclick="selectCategory(3)" id="cat-card-3" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-wind"></i>
+                        </div>
+                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 03</span>
+                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Forced Hot Air</h3>
+                        <p class="text-xs text-gray-500">Forced air circulation systems designed for prompt distribution across ductwork.</p>
+                    </div>
+
+                    <!-- 04 -->
+                    <div onclick="selectCategory(4)" id="cat-card-4" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 04</span>
+                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Gas and Electric Package Units</h3>
+                        <p class="text-xs text-gray-500">All-in-one outdoor combination heating and cooling packaged mechanical equipment.</p>
+                    </div>
+
+                    <!-- 05 -->
+                    <div onclick="selectCategory(5)" id="cat-card-5" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 05</span>
+                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Humidifiers, Air Quality, Air Cleaners & Filters</h3>
+                        <p class="text-xs text-gray-500">System integrations focused on humidity balance, air filtration, and indoor quality.</p>
+                    </div>
+
+                    <!-- 06 -->
+                    <div onclick="selectCategory(6)" id="cat-card-6" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 06</span>
+                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">New Equipment Installation</h3>
+                        <p class="text-xs text-gray-500">Complete replacement and new installation of modern residential heating hardware.</p>
+                    </div>
+
+                    <!-- 07 -->
+                    <div onclick="selectCategory(7)" id="cat-card-7" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-fan"></i>
+                        </div>
+                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 07</span>
+                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Air Handlers</h3>
+                        <p class="text-xs text-gray-500">Essential components moving air through ductwork in both winter and summer.</p>
+                    </div>
+
+                    <!-- 08 -->
+                    <div onclick="selectCategory(8)" id="cat-card-8" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-arrows-spin"></i>
+                        </div>
+                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 08</span>
+                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Heat Pumps</h3>
+                        <p class="text-xs text-gray-500">Dual-function systems offering efficient heating during winter and cooling in summer.</p>
+                    </div>
+
+                </div>
+
+                <!-- Interactive Category Detail Display Panel -->
+                <div id="category-detail-panel" class="mt-8 bg-navy text-white p-6 md:p-8 rounded-2xl shadow-md border border-navy">
+                    <div class="flex items-start gap-4">
+                        <div id="detail-icon" class="text-3xl text-brandRed bg-white/10 p-3 rounded-lg">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-lightBlue font-bold uppercase tracking-wider">Selected Category Overview</span>
+                            <h3 id="detail-title" class="text-xl md:text-2xl font-bold mt-1 mb-2">Furnaces</h3>
+                            <p id="detail-text" class="text-gray-200 text-sm md:text-base leading-relaxed">
+                                Central furnaces distribute warm air through a home's ductwork. According to the original website, these systems can operate using electricity or natural gas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 03 — UNDERSTANDING YOUR HOME HEATING SYSTEM -->
+        <section class="py-16 bg-lightBlue/40 border-y border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brandRed font-bold text-xs uppercase tracking-wider">Technical Knowledge</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mt-1 mb-4">
+                        Understanding Your Home Heating System
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                        Pronto Air's original website explains several common residential heating systems and how they provide comfort throughout the home.
+                    </p>
+                </div>
+
+                <!-- Editorial 3-Block Educational Grid -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    
+                    <!-- 01 Furnaces -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <!-- Illustrative image for Furnaces -->
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1585338107529-13afc5f02586?auto=format&fit=crop&w=800&q=80" alt="Furnace System Equipment Illustration" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/0B2545/ffffff?text=Furnace+System'">
+                                <div class="absolute top-3 left-3 bg-navy text-white text-xs font-bold px-2.5 py-1 rounded">
+                                    01 — Furnaces
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-navy mb-3">Furnaces</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Central furnaces distribute warm air through a home's ductwork. According to the original website, these systems can operate using electricity or natural gas.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 text-xs text-gray-500 border-t border-gray-100 pt-4">
+                            <i class="fa-solid fa-circle-info text-brandBlue mr-1"></i> Electric or Natural Gas fuel options available in central setups.
+                        </div>
+                    </div>
+
+                    <!-- 02 Heat Pumps -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <!-- Illustrative image for Heat Pumps -->
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Heat Pump Unit Illustration" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/0B2545/ffffff?text=Heat+Pump+Unit'">
+                                <div class="absolute top-3 left-3 bg-navy text-white text-xs font-bold px-2.5 py-1 rounded">
+                                    02 — Heat Pumps
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-navy mb-3">Heat Pumps</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Heat pumps provide both heating and cooling. They transfer heat to help maintain indoor temperatures.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 text-xs text-gray-500 border-t border-gray-100 pt-4">
+                            <i class="fa-solid fa-circle-info text-brandBlue mr-1"></i> Versatile dual-season operation for year-round indoor climate balance.
+                        </div>
+                    </div>
+
+                    <!-- 03 Air Handlers -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <!-- Illustrative image for Air Handlers -->
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1631545806606-d0a1b666a7f3?auto=format&fit=crop&w=800&q=80" alt="Air Handler Ductwork System Illustration" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/0B2545/ffffff?text=Air+Handler'">
+                                <div class="absolute top-3 left-3 bg-navy text-white text-xs font-bold px-2.5 py-1 rounded">
+                                    03 — Air Handlers
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-navy mb-3">Air Handlers</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Air handlers contain components that move air through a home's duct system, supporting heating in winter and cooling during summer.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 text-xs text-gray-500 border-t border-gray-100 pt-4">
+                            <i class="fa-solid fa-circle-info text-brandBlue mr-1"></i> Essential for moving conditioned air efficiently through home ductwork.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 04 — HEATING SYSTEM INSPECTIONS & REPAIRS -->
+        <section class="py-16 bg-navy text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-7">
+                        <span class="inline-block text-brandRed font-bold text-xs uppercase tracking-widest mb-2">Technical Assessments</span>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 text-white">
+                            Heating System Inspections & Repairs
+                        </h2>
+                        <p class="text-gray-200 text-base md:text-lg mb-4 leading-relaxed">
+                            When a residential heating system stops working correctly, Pronto Air's technicians perform inspections to assess the problem and identify necessary repairs.
+                        </p>
+                        <p class="text-gray-300 text-sm md:text-base mb-8 leading-relaxed">
+                            The company states that its team receives ongoing training and stays informed about developments in heating systems.
+                        </p>
+                        <div>
+                            <a href="tel:+19403123081" class="inline-flex items-center gap-2 bg-brandRed hover:bg-red-700 text-white font-bold py-3.5 px-7 rounded-md transition-all shadow-lg">
+                                <i class="fa-solid fa-phone"></i> Call to Discuss Your Heating System
+                            </a>
+                        </div>
+                    </div>
+                    <div class="md:col-span-5">
+                        <div class="rounded-xl overflow-hidden border-2 border-white/20 shadow-2xl">
+                            <!-- Illustrative image of residential heating inspection -->
+                            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Residential Heating Assessment Illustration" class="w-full h-72 object-cover" onerror="this.src='https://placehold.co/600x400/134074/ffffff?text=Heating+Inspection'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 05 — SERVICE AREA -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="text-brandBlue font-bold text-xs uppercase tracking-wider">Coverage Map</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-navy mt-1 mb-4">
+                        Residential Heating Services in Denton and Surrounding Areas
+                    </h2>
+                    <p class="text-gray-600">
+                        Pronto Air lists Denton County and the following communities among its service areas:
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
+                    <div class="p-4 border border-gray-200 rounded-lg text-center bg-lightBlue/30 hover:border-brandRed transition-colors">
+                        <i class="fa-solid fa-location-dot text-brandRed mb-2 text-xl"></i>
+                        <p class="font-bold text-navy text-sm">Denton</p>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg text-center bg-lightBlue/30 hover:border-brandRed transition-colors">
+                        <i class="fa-solid fa-location-dot text-brandRed mb-2 text-xl"></i>
+                        <p class="font-bold text-navy text-sm">Lewisville</p>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg text-center bg-lightBlue/30 hover:border-brandRed transition-colors">
+                        <i class="fa-solid fa-location-dot text-brandRed mb-2 text-xl"></i>
+                        <p class="font-bold text-navy text-sm">Flower Mound</p>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg text-center bg-lightBlue/30 hover:border-brandRed transition-colors">
+                        <i class="fa-solid fa-location-dot text-brandRed mb-2 text-xl"></i>
+                        <p class="font-bold text-navy text-sm">Gainesville</p>
+                    </div>
+                    <div class="p-4 border border-gray-200 rounded-lg text-center bg-lightBlue/30 hover:border-brandRed transition-colors col-span-2 sm:col-span-1">
+                        <i class="fa-solid fa-location-dot text-brandRed mb-2 text-xl"></i>
+                        <p class="font-bold text-navy text-sm">Grapevine</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 06 — CONTACT CTA -->
+        <section class="py-16 bg-lightBlue">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-extrabold text-navy mb-4">
+                    Need Residential Heating Service?
+                </h2>
+                <p class="text-gray-700 max-w-2xl mx-auto mb-8 text-base md:text-lg">
+                    Contact Pronto Air to discuss your residential heating maintenance, repair, or installation needs.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="tel:+19403123081" class="w-full sm:w-auto bg-brandRed hover:bg-red-700 text-white font-bold py-3.5 px-8 rounded-md transition-all shadow-md flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone"></i> Call Pronto Air
+                    </a>
+                    <a href="mailto:prontoairdenton@hotmail.com" class="w-full sm:w-auto bg-navy hover:bg-brandBlue text-white font-bold py-3.5 px-8 rounded-md transition-all shadow-md flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-envelope"></i> Email Pronto Air
+                    </a>
+                </div>
+                <div class="mt-8 text-sm text-gray-600 flex flex-wrap justify-center gap-6">
+                    <span><strong class="text-navy">Phone:</strong> (940) 312-3081</span>
+                    <span><strong class="text-navy">Email:</strong> prontoairdenton@hotmail.com</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- SHARED FOOTER -->
+    <footer class="pronto-site-footer bg-navy text-white pt-12 pb-8 border-t-4 border-brandRed mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                
+                <!-- BRAND COL -->
+                <div class="space-y-4">
+                    <a href="index.html" class="inline-flex items-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandRed" aria-label="Pronto Air Home">
+                        <span class="inline-flex items-center bg-white rounded-lg p-2">
+                            <img src="https://irp.cdn-website.com/b34a80cb/dms3rep/multi/opt/Pronto+Air+Services+Denton+Texas+Logos+%281%29-1920w.png" alt="Pronto Air Services Logo" class="h-12 w-auto max-w-full object-contain" loading="lazy">
+                        </span>
+                    </a>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Reliable heating, cooling, and air quality services across Denton, TX and surrounding areas.
+                    </p>
+                    <div class="inline-block bg-white/10 text-xs px-3 py-1.5 rounded text-blue-200 font-mono">
+                        License: TACLB28582E
+                    </div>
+                </div>
+
+                <!-- MAIN PAGES -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Navigation</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="index.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Home</a></li>
+                        <li><a href="residential-cooling.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Residential Cooling</a></li>
+                        <li><a href="residential-heating.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Residential Heating</a></li>
+                        <li><a href="mobile-homes.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Mobile Homes</a></li>
+                        <li><a href="light-commercial.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Light Commercial</a></li>
+                        <li><a href="contact-us.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Contact us</a></li>
+                    </ul>
+                </div>
+
+                <!-- SECONDARY / MAINTENANCE LINK -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Customer Info</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>
+                            <a href="service-agreement-faqs.html" class="hover:text-brandRed transition flex items-center gap-2 font-medium text-blue-200">
+                                <i class="fa-solid fa-shield-heart text-brandRed"></i> Service Agreement & FAQs
+                            </a>
+                        </li>
+                        <li><span class="text-gray-400 text-xs block mt-2 mb-4">Annual HVAC preventative maintenance programs and answers to common heating and cooling questions.</span></li>
+                        <li>
+                            <a href="privacy-policy.html" class="hover:text-brandRed transition flex items-center gap-2 font-medium text-blue-200">
+                                <i class="fa-solid fa-shield-halved text-brandRed" aria-hidden="true"></i> Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CONTACT INFO -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Direct Contact</h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Call Us Directly:</span>
+                                <a href="tel:+19403123081" class="font-bold text-white hover:text-brandRed">(940) 312-3081</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Email Us:</span>
+                                <a href="mailto:prontoairdenton@hotmail.com" class="hover:text-brandRed break-all">prontoairdenton@hotmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-map-pin text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Service Coverage:</span>
+                                <span class="text-gray-200">Denton County, Lewisville, Flower Mound, Gainesville, Grapevine</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-blue-900/50 text-center text-xs text-gray-400 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Pronto Air. All rights reserved. Professional HVAC Services in Denton, Texas.</p>
+                <p>License TACLB28582E | Heating & Air Conditioning Maintenance</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Shared mobile navigation: real HTML links
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const button = document.getElementById('mobile-menu-btn');
+            const isOpening = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', !isOpening);
+            menuIcon.className = isOpening ? 'fa-solid fa-xmark text-2xl' : 'fa-solid fa-bars text-2xl';
+            button.setAttribute('aria-expanded', String(isOpening));
+        }
+
+        // Residential Heating: original interactive category selector
+        const categoriesData = {
+            1: {
+                title: "Central Air and Ductless Systems",
+                text: "Pronto Air offers diagnostics, repair, and replacement for central air and ductless heating configurations tailored for residential homes in Denton.",
+                icon: "fa-temperature-arrow-up"
+            },
+            2: {
+                title: "Furnaces",
+                text: "Central furnaces distribute warm air through a home's ductwork. According to the original website, these systems can operate using electricity or natural gas.",
+                icon: "fa-fire"
+            },
+            3: {
+                title: "Forced Hot Air",
+                text: "Forced hot air systems rely on ductwork and blower fans to circulate warm air evenly throughout living spaces.",
+                icon: "fa-wind"
+            },
+            4: {
+                title: "Gas and Electric Package Units",
+                text: "Gas and electric package units combine heating and cooling components into a single outdoor cabinet for efficient space utilization.",
+                icon: "fa-box-open"
+            },
+            5: {
+                title: "Humidifiers, Air Quality, Air Cleaners and Filters",
+                text: "Indoor air quality solutions help maintain humidity levels and filter airborne particles to enhance overall home comfort during heating season.",
+                icon: "fa-droplet"
+            },
+            6: {
+                title: "New Equipment Installation",
+                text: "Pronto Air installs new residential heating systems, helping homeowners upgrade outdated or failing heating equipment.",
+                icon: "fa-gears"
+            },
+            7: {
+                title: "Air Handlers",
+                text: "Air handlers contain components that move air through a home's duct system, supporting heating in winter and cooling during summer.",
+                icon: "fa-fan"
+            },
+            8: {
+                title: "Heat Pumps",
+                text: "Heat pumps provide both heating and cooling. They transfer heat to help maintain indoor temperatures throughout the year.",
+                icon: "fa-arrows-spin"
+            }
+        };
+
+        function selectCategory(id) {
+            const data = categoriesData[id];
+            if (!data) return;
+
+            // Highlight chosen card visually
+            for (let i = 1; i <= 8; i++) {
+                const card = document.getElementById(`cat-card-${i}`);
+                if (card) {
+                    if (i === id) {
+                        card.classList.add('ring-2', 'ring-brandRed', 'bg-white');
+                        card.classList.remove('bg-lightBlue/30');
+                    } else {
+                        card.classList.remove('ring-2', 'ring-brandRed', 'bg-white');
+                        card.classList.add('bg-lightBlue/30');
+                    }
+                }
+            }
+
+            // Update details panel
+            document.getElementById('detail-title').textContent = data.title;
+            document.getElementById('detail-text').textContent = data.text;
+            document.getElementById('detail-icon').innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+        }
+
+        // Initialize Phase 3 category detail
+        window.onload = function() {
+            selectCategory(2); // Default selected category: Furnaces
+        };
+    </script>
+
+</body>
+</html>

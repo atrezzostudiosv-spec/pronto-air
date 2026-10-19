@@ -77,6 +77,27 @@
             border-color: #D90429;
         }
     </style>
+
+    <!-- Mobile-only utility bar: show just the centered call link; desktop/tablet unchanged. -->
+    <style>
+        @media (max-width: 767px) {
+            .pronto-site-utility > div {
+                flex-direction: row;
+                justify-content: center;
+                gap: 0;
+            }
+            .pronto-site-utility > div > div:first-child {
+                display: none;
+            }
+            .pronto-site-utility > div > div:last-child {
+                justify-content: center;
+                gap: 0;
+            }
+            .pronto-site-utility a[href^="mailto:"] {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body class="min-h-screen flex flex-col antialiased selection:bg-brandRed selection:text-white">

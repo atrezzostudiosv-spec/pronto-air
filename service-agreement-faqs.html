@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVAC Service Agreement & FAQs in Denton, TX | Pronto Air</title>
+    <meta name="description" content="Learn about Pronto Air's HVAC service agreement with two annual tune-ups and find answers to common heating, cooling, and air quality questions in Denton, TX.">
+    <meta name="keywords" content="HVAC Service Agreement, Air Conditioning Maintenance, Heating Maintenance, HVAC FAQs, SEER Rating, Indoor Air Quality, Denton, TX">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { DEFAULT: '#0B2545', dark: '#06162B', light: '#134074' },
+                        brandRed: { DEFAULT: '#D90429', hover: '#EF233C' },
+                        brandBlue: '#134074',
+                        brandLightBlue: '#EEF4F8',
+                        lightBlue: '#EEF4F8',
+                        darkNavy: '#07182D'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .pronto-site-utility, .pronto-site-header, .pronto-site-footer { font-family: 'Inter', system-ui, sans-serif; }
+        .pronto-site-header a:focus-visible, .pronto-site-header button:focus-visible { outline: 2px solid #D90429; outline-offset: 2px; }
+
+        body { font-family: 'Inter', sans-serif; }
+        .tab-active { color: #D90429; border-bottom: 2px solid #D90429; }
+        details summary::-webkit-details-marker { display: none; }
+        details[open] .faq-icon { transform: rotate(180deg); }
+        .faq-icon { transition: transform 0.25s ease-in-out; }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
+    <div class="pronto-site-utility bg-navy-dark text-white text-xs sm:text-sm py-2 px-4 border-b border-navy-light/30">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 text-xs">
+                <span><i class="fa-solid fa-shield-halved text-brandRed mr-1.5" aria-hidden="true"></i> License: <strong>TACLB28582E</strong></span>
+                <span class="hidden md:inline"><i class="fa-solid fa-location-dot text-blue-300 mr-1.5" aria-hidden="true"></i> Serving Denton County & Surrounding Areas</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="tel:+19403123081" class="hover:text-brandRed transition-colors font-medium flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-brandRed" aria-hidden="true"></i> (940) 312-3081
+                </a>
+                <a href="mailto:prontoairdenton@hotmail.com" class="hover:text-brandRed transition-colors hidden sm:flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope text-blue-300" aria-hidden="true"></i> prontoairdenton@hotmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER / NAVIGATION -->
+    <header class="pronto-site-header bg-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- LOGO -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-left focus:outline-none" aria-label="Pronto Air Home">
+                        <img class="h-12 w-auto object-contain" 
+                             src="https://irp.cdn-website.com/b34a80cb/dms3rep/multi/opt/Pronto+Air+Services+Denton+Texas+Logos+%281%29-1920w.png" 
+                             alt="Pronto Air Services Logo">
+                    </a>
+                </div>
+
+                <!-- DESKTOP NAVIGATION -->
+                <nav class="hidden lg:flex space-x-1 xl:space-x-2" aria-label="Main Navigation">
+                    <a href="index.html" id="nav-home" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Home</a>
+                    <a href="residential-cooling.html" id="nav-cooling" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Residential Cooling</a>
+                    <a href="residential-heating.html" id="nav-heating" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Residential Heating</a>
+                    <a href="mobile-homes.html" id="nav-mobile-homes" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Mobile Homes</a>
+                    <a href="light-commercial.html" id="nav-commercial" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Light Commercial</a>
+                    <a href="contact-us.html" id="nav-contact" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Contact us</a>
+                </nav>
+
+                <!-- HEADER CALL CTA -->
+                <div class="hidden md:flex items-center">
+                    <a href="tel:+19403123081" class="bg-brandRed hover:bg-brandRed-hover text-white font-bold py-2.5 px-5 rounded-lg text-sm transition-all transform hover:-translate-y-0.5 shadow-md flex items-center gap-2">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <span>(940) 312-3081</span>
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <div class="flex lg:hidden items-center">
+                    <button id="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-navy hover:text-brandRed hover:bg-brandLightBlue focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle Navigation Menu">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU PANELS -->
+        <div class="hidden lg:hidden bg-white border-t border-gray-200" id="mobile-menu">
+            <nav class="px-4 pt-3 pb-6 space-y-2" aria-label="Mobile Navigation">
+                <a href="index.html" id="mob-nav-home" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Home</a>
+                <a href="residential-cooling.html" id="mob-nav-cooling" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Residential Cooling</a>
+                <a href="residential-heating.html" id="mob-nav-heating" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Residential Heating</a>
+                <a href="mobile-homes.html" id="mob-nav-mobile-homes" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Mobile Homes</a>
+                <a href="light-commercial.html" id="mob-nav-commercial" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Light Commercial</a>
+                <a href="contact-us.html" id="mob-nav-contact" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Contact us</a>
+                <div class="pt-4 border-t border-gray-100">
+                    <a href="tel:+19403123081" class="w-full bg-brandRed text-white font-bold py-3 px-4 rounded-lg text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> Call (940) 312-3081
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="flex-grow">
+                <!-- SECTION 01 — HERO -->
+                <section class="relative bg-gradient-to-br from-navy via-brandBlue to-navy text-white py-16 lg:py-24 overflow-hidden">
+                    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div class="max-w-3xl">
+                            <span class="inline-block bg-brandRed/20 border border-brandRed/40 text-red-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+                                Reliable Maintenance & Honest Answers
+                            </span>
+                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+                                Service Agreement & FAQs
+                            </h1>
+                            <p class="text-lg sm:text-xl text-blue-100 font-medium mb-4">
+                                Professional Air-Conditioning & Heating Services in Denton, Texas
+                            </p>
+                            <p class="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed max-w-2xl">
+                                Learn about Pronto Air's heating and cooling service agreement and find answers to common questions about air conditioning, energy efficiency, equipment lifespan, and indoor air quality.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="tel:+19403123081" class="bg-brandRed hover:bg-red-700 text-white font-bold px-6 py-3.5 rounded-xl text-center shadow-lg transition flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-phone"></i> Ask About Our Service Agreement
+                                </a>
+                                <a href="#faqs-section" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-6 py-3.5 rounded-xl text-center transition flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-circle-question"></i> Explore Frequently Asked Questions
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 02 — OUR SERVICE AGREEMENT -->
+                <section class="py-16 bg-white border-b border-gray-100">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                            
+                            <!-- Content Column -->
+                            <div class="lg:col-span-7 space-y-6">
+                                <div class="inline-flex items-center gap-2 text-brandRed font-bold text-sm tracking-wide uppercase">
+                                    <i class="fa-solid fa-calendar-check text-lg"></i> Maintenance Coverage
+                                </div>
+                                <h2 class="text-2xl sm:text-3xl font-extrabold text-navy tracking-tight">
+                                    Our Service Agreement
+                                </h2>
+                                <p class="text-gray-700 text-lg leading-relaxed">
+                                    Pronto Air offers a service agreement designed to help homeowners stay on top of their heating and air conditioning maintenance throughout the year.
+                                </p>
+
+                                <!-- Visual Key Highlight Box -->
+                                <div class="bg-lightBlue border-l-4 border-brandRed p-6 rounded-r-2xl my-6 flex items-start gap-5">
+                                    <div class="bg-brandRed text-white p-4 rounded-2xl shadow-sm text-center min-w-[70px]">
+                                        <span class="block text-3xl font-black leading-none">2</span>
+                                        <span class="text-[10px] font-bold uppercase tracking-wider block mt-1">Tune-ups</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-navy mb-1">Two Tune-Ups Per Year</h3>
+                                        <p class="text-gray-600 text-sm leading-relaxed">
+                                            The agreement includes two tune-ups per year for heating and air conditioning systems to ensure proper system maintenance.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <p class="text-gray-600 text-base">
+                                    Contact Pronto Air to learn more about its service agreement and how it fits your household needs.
+                                </p>
+
+                                <div>
+                                    <a href="tel:+19403123081" class="inline-flex items-center gap-2 bg-brandRed hover:bg-red-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition">
+                                        <i class="fa-solid fa-phone"></i> Call to Learn More
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Visual Asset / Graphic Column -->
+                            <div class="lg:col-span-5">
+                                <div class="bg-navy rounded-3xl p-8 text-white relative overflow-hidden shadow-xl border border-blue-900">
+                                    <div class="absolute -right-10 -bottom-10 opacity-10 text-white">
+                                        <i class="fa-solid fa-temperature-arrow-up text-9xl"></i>
+                                    </div>
+                                    <div class="relative z-10 space-y-6">
+                                        <div class="w-14 h-14 bg-brandRed rounded-2xl flex items-center justify-center text-white text-2xl shadow-md">
+                                            <i class="fa-solid fa-toolbox"></i>
+                                        </div>
+                                        <h3 class="text-2xl font-bold text-white">Regular System Care</h3>
+                                        <p class="text-gray-300 text-sm leading-relaxed">
+                                            Heating and cooling systems require consistent attention to keep running smoothly. Our bi-annual service inspections focus on both your heating and A/C units.
+                                        </p>
+                                        <div class="pt-4 border-t border-blue-800/80 space-y-3">
+                                            <div class="flex items-center gap-3 text-sm text-blue-100">
+                                                <i class="fa-solid fa-circle-check text-brandRed"></i> Heating Maintenance Inspection
+                                            </div>
+                                            <div class="flex items-center gap-3 text-sm text-blue-100">
+                                                <i class="fa-solid fa-circle-check text-brandRed"></i> Air Conditioning Maintenance Inspection
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 03 — FREQUENTLY ASKED QUESTIONS -->
+                <section id="faqs-section" class="py-16 bg-gray-50">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center mb-12">
+                            <span class="text-brandRed font-bold text-sm tracking-wide uppercase block mb-2">Clear Answers</span>
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy">
+                                Our Frequently Asked Questions
+                            </h2>
+                            <p class="text-gray-600 mt-3 max-w-2xl mx-auto text-base sm:text-lg">
+                                Find answers to common questions about air conditioning, heating systems, energy efficiency, and indoor air quality.
+                            </p>
+                        </div>
+
+                        <!-- ACCORDION CONTAINERS (5 STRICT FAQs) -->
+                        <div class="space-y-4">
+                            
+                            <!-- FAQ 1 -->
+                            <details class="group bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-200">
+                                <summary class="flex justify-between items-center p-5 sm:p-6 cursor-pointer list-none select-none font-bold text-navy text-lg hover:text-brandRed transition">
+                                    <span class="flex items-start gap-3 pr-4">
+                                        <span class="text-brandRed font-extrabold text-base sm:text-lg">01.</span>
+                                        <span>What's the difference between a new air conditioner and my older one?</span>
+                                    </span>
+                                    <span class="faq-icon text-navy group-open:text-brandRed text-xl ml-2 flex-shrink-0">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </span>
+                                </summary>
+                                <div class="px-5 pb-6 sm:px-6 text-gray-700 leading-relaxed border-t border-gray-100 pt-4 text-base bg-white">
+                                    Pronto Air explains that newer air conditioning systems are generally more energy-efficient than older systems and can use less energy, helping homeowners reduce energy costs.
+                                </div>
+                            </details>
+
+                            <!-- FAQ 2 -->
+                            <details class="group bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-200">
+                                <summary class="flex justify-between items-center p-5 sm:p-6 cursor-pointer list-none select-none font-bold text-navy text-lg hover:text-brandRed transition">
+                                    <span class="flex items-start gap-3 pr-4">
+                                        <span class="text-brandRed font-extrabold text-base sm:text-lg">02.</span>
+                                        <span>What is Seasonal Energy Efficiency Ratio and how does it affect my power usage?</span>
+                                    </span>
+                                    <span class="faq-icon text-navy group-open:text-brandRed text-xl ml-2 flex-shrink-0">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </span>
+                                </summary>
+                                <div class="px-5 pb-6 sm:px-6 text-gray-700 leading-relaxed border-t border-gray-100 pt-4 text-base bg-white">
+                                    Seasonal Energy Efficiency Ratio, or SEER, measures seasonal cooling efficiency. Pronto Air explains that higher SEER ratings indicate greater efficiency and can help reduce energy usage.
+                                </div>
+                            </details>
+
+                            <!-- FAQ 3 -->
+                            <details class="group bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-200">
+                                <summary class="flex justify-between items-center p-5 sm:p-6 cursor-pointer list-none select-none font-bold text-navy text-lg hover:text-brandRed transition">
+                                    <span class="flex items-start gap-3 pr-4">
+                                        <span class="text-brandRed font-extrabold text-base sm:text-lg">03.</span>
+                                        <span>How long should my A/C and heating unit last?</span>
+                                    </span>
+                                    <span class="faq-icon text-navy group-open:text-brandRed text-xl ml-2 flex-shrink-0">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </span>
+                                </summary>
+                                <div class="px-5 pb-6 sm:px-6 text-gray-700 leading-relaxed border-t border-gray-100 pt-4 text-base bg-white">
+                                    The lifespan depends on the equipment and its maintenance. According to Pronto Air, units that are properly maintained and regularly serviced can last up to 15 years.
+                                </div>
+                            </details>
+
+                            <!-- FAQ 4 -->
+                            <details class="group bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-200">
+                                <summary class="flex justify-between items-center p-5 sm:p-6 cursor-pointer list-none select-none font-bold text-navy text-lg hover:text-brandRed transition">
+                                    <span class="flex items-start gap-3 pr-4">
+                                        <span class="text-brandRed font-extrabold text-base sm:text-lg">04.</span>
+                                        <span>How does Indoor Air Quality help me?</span>
+                                    </span>
+                                    <span class="faq-icon text-navy group-open:text-brandRed text-xl ml-2 flex-shrink-0">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </span>
+                                </summary>
+                                <div class="px-5 pb-6 sm:px-6 text-gray-700 leading-relaxed border-t border-gray-100 pt-4 text-base bg-white">
+                                    Pronto Air highlights the importance of indoor air quality for households concerned about airborne irritants, allergies, asthma, and irritation affecting the skin, eyes, nose, or throat. The company also mentions air quality products intended to help improve indoor air conditions.
+                                </div>
+                            </details>
+
+                            <!-- FAQ 5 -->
+                            <details class="group bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-200">
+                                <summary class="flex justify-between items-center p-5 sm:p-6 cursor-pointer list-none select-none font-bold text-navy text-lg hover:text-brandRed transition">
+                                    <span class="flex items-start gap-3 pr-4">
+                                        <span class="text-brandRed font-extrabold text-base sm:text-lg">05.</span>
+                                        <span>What can an air filtration system do?</span>
+                                    </span>
+                                    <span class="faq-icon text-navy group-open:text-brandRed text-xl ml-2 flex-shrink-0">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </span>
+                                </summary>
+                                <div class="px-5 pb-6 sm:px-6 text-gray-700 leading-relaxed border-t border-gray-100 pt-4 text-base bg-white">
+                                    Pronto Air describes air filtration systems as helping remove unwanted particles and contaminants from indoor air, including pollen, dust, odors, and tobacco smoke. The company highlights air filtration as a consideration for households concerned about asthma or severe allergies.
+                                </div>
+                            </details>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 04 — SERVICE AREA -->
+                <section class="py-12 bg-white border-t border-b border-gray-200">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="text-center max-w-3xl mx-auto">
+                            <h2 class="text-xl sm:text-2xl font-bold text-navy mb-3">Serving Denton and Surrounding Areas</h2>
+                            <p class="text-gray-600 text-sm sm:text-base mb-6">
+                                Pronto Air serves Denton County and lists the following communities among its service areas:
+                            </p>
+                            <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+                                <span class="bg-lightBlue text-navy font-semibold px-4 py-2 rounded-full text-sm border border-blue-100"><i class="fa-solid fa-location-dot text-brandRed mr-1.5"></i> Denton</span>
+                                <span class="bg-lightBlue text-navy font-semibold px-4 py-2 rounded-full text-sm border border-blue-100"><i class="fa-solid fa-location-dot text-brandRed mr-1.5"></i> Lewisville</span>
+                                <span class="bg-lightBlue text-navy font-semibold px-4 py-2 rounded-full text-sm border border-blue-100"><i class="fa-solid fa-location-dot text-brandRed mr-1.5"></i> Flower Mound</span>
+                                <span class="bg-lightBlue text-navy font-semibold px-4 py-2 rounded-full text-sm border border-blue-100"><i class="fa-solid fa-location-dot text-brandRed mr-1.5"></i> Gainesville</span>
+                                <span class="bg-lightBlue text-navy font-semibold px-4 py-2 rounded-full text-sm border border-blue-100"><i class="fa-solid fa-location-dot text-brandRed mr-1.5"></i> Grapevine</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 05 — CONTACT CTA -->
+                <section class="py-16 bg-navy text-white relative overflow-hidden">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-4">
+                            Have More Questions About Your HVAC System?
+                        </h2>
+                        <p class="text-blue-100 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+                            Contact Pronto Air to ask about its service agreement or discuss your heating and air conditioning needs.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
+                            <a href="tel:+19403123081" class="w-full sm:w-auto bg-brandRed hover:bg-red-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-3 text-lg">
+                                <i class="fa-solid fa-phone"></i> Call Pronto Air: (940) 312-3081
+                            </a>
+                            <a href="contact-us.html" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-8 py-4 rounded-xl transition flex items-center justify-center gap-2 text-lg">
+                                <i class="fa-solid fa-envelope"></i> Contact Us
+                            </a>
+                        </div>
+
+                        <p class="text-xs text-blue-300">
+                            Direct Email: <a href="mailto:prontoairdenton@hotmail.com" class="underline hover:text-white">prontoairdenton@hotmail.com</a>
+                        </p>
+                    </div>
+                </section>
+            
+    </main>
+
+    <!-- SHARED FOOTER -->
+    <footer class="pronto-site-footer bg-navy text-white pt-12 pb-8 border-t-4 border-brandRed mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                
+                <!-- BRAND COL -->
+                <div class="space-y-4">
+                    <a href="index.html" class="inline-flex items-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandRed" aria-label="Pronto Air Home">
+                        <span class="inline-flex items-center bg-white rounded-lg p-2">
+                            <img src="https://irp.cdn-website.com/b34a80cb/dms3rep/multi/opt/Pronto+Air+Services+Denton+Texas+Logos+%281%29-1920w.png" alt="Pronto Air Services Logo" class="h-12 w-auto max-w-full object-contain" loading="lazy">
+                        </span>
+                    </a>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Reliable heating, cooling, and air quality services across Denton, TX and surrounding areas.
+                    </p>
+                    <div class="inline-block bg-white/10 text-xs px-3 py-1.5 rounded text-blue-200 font-mono">
+                        License: TACLB28582E
+                    </div>
+                </div>
+
+                <!-- MAIN PAGES -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Navigation</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="index.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Home</a></li>
+                        <li><a href="residential-cooling.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Residential Cooling</a></li>
+                        <li><a href="residential-heating.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Residential Heating</a></li>
+                        <li><a href="mobile-homes.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Mobile Homes</a></li>
+                        <li><a href="light-commercial.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Light Commercial</a></li>
+                        <li><a href="contact-us.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Contact us</a></li>
+                    </ul>
+                </div>
+
+                <!-- SECONDARY / MAINTENANCE LINK -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Customer Info</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>
+                            <a href="service-agreement-faqs.html" aria-current="page" class="hover:text-brandRed transition flex items-center gap-2 font-medium text-blue-200">
+                                <i class="fa-solid fa-shield-heart text-brandRed"></i> Service Agreement & FAQs
+                            </a>
+                        </li>
+                        <li><span class="text-gray-400 text-xs block mt-2 mb-4">Annual HVAC preventative maintenance programs and answers to common heating and cooling questions.</span></li>
+                        <li>
+                            <a href="privacy-policy.html" class="hover:text-brandRed transition flex items-center gap-2 font-medium text-blue-200">
+                                <i class="fa-solid fa-shield-halved text-brandRed" aria-hidden="true"></i> Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CONTACT INFO -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Direct Contact</h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Call Us Directly:</span>
+                                <a href="tel:+19403123081" class="font-bold text-white hover:text-brandRed">(940) 312-3081</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Email Us:</span>
+                                <a href="mailto:prontoairdenton@hotmail.com" class="hover:text-brandRed break-all">prontoairdenton@hotmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-map-pin text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Service Coverage:</span>
+                                <span class="text-gray-200">Denton County, Lewisville, Flower Mound, Gainesville, Grapevine</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-blue-900/50 text-center text-xs text-gray-400 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Pronto Air. All rights reserved. Professional HVAC Services in Denton, Texas.</p>
+                <p>License TACLB28582E | Heating & Air Conditioning Maintenance</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Only shared responsive menu needs JavaScript; FAQs use native HTML details.
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const button = document.getElementById('mobile-menu-btn');
+            const isOpening = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', !isOpening);
+            menuIcon.className = isOpening ? 'fa-solid fa-xmark text-2xl' : 'fa-solid fa-bars text-2xl';
+            button.setAttribute('aria-expanded', String(isOpening));
+        }
+    </script>
+
+</body>
+</html>

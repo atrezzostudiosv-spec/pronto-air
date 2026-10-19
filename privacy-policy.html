@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy (Draft) | Pronto Air</title>
+    <meta name="description" content="Draft privacy policy proposed for Pronto Air. Operational details require business review and confirmation before publication.">
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-navy': '#0B2545',
+                        'brand-red': '#D90429',
+                        'brand-blue': '#134074',
+                        'brand-light': '#EEF4F8',
+                        navy: { DEFAULT: '#0B2545', dark: '#06162B', light: '#134074' },
+                        brandRed: { DEFAULT: '#D90429', hover: '#EF233C' },
+                        brandLightBlue: '#EEF4F8',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .pronto-site-utility, .pronto-site-header, .pronto-site-footer { font-family: 'Inter', system-ui, sans-serif; }
+        .pronto-site-header a:focus-visible, .pronto-site-header button:focus-visible { outline: 2px solid #D90429; outline-offset: 2px; }
+
+        body { font-family: 'Inter', sans-serif; }
+        details summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
+    <div class="pronto-site-utility bg-navy-dark text-white text-xs sm:text-sm py-2 px-4 border-b border-navy-light/30">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 text-xs">
+                <span><i class="fa-solid fa-shield-halved text-brandRed mr-1.5" aria-hidden="true"></i> License: <strong>TACLB28582E</strong></span>
+                <span class="hidden md:inline"><i class="fa-solid fa-location-dot text-blue-300 mr-1.5" aria-hidden="true"></i> Serving Denton County & Surrounding Areas</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="tel:+19403123081" class="hover:text-brandRed transition-colors font-medium flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-brandRed" aria-hidden="true"></i> (940) 312-3081
+                </a>
+                <a href="mailto:prontoairdenton@hotmail.com" class="hover:text-brandRed transition-colors hidden sm:flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope text-blue-300" aria-hidden="true"></i> prontoairdenton@hotmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER / NAVIGATION -->
+    <header class="pronto-site-header bg-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- LOGO -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-left focus:outline-none" aria-label="Pronto Air Home">
+                        <img class="h-12 w-auto object-contain" 
+                             src="https://irp.cdn-website.com/b34a80cb/dms3rep/multi/opt/Pronto+Air+Services+Denton+Texas+Logos+%281%29-1920w.png" 
+                             alt="Pronto Air Services Logo">
+                    </a>
+                </div>
+
+                <!-- DESKTOP NAVIGATION -->
+                <nav class="hidden lg:flex space-x-1 xl:space-x-2" aria-label="Main Navigation">
+                    <a href="index.html" id="nav-home" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Home</a>
+                    <a href="residential-cooling.html" id="nav-cooling" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Residential Cooling</a>
+                    <a href="residential-heating.html" id="nav-heating" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Residential Heating</a>
+                    <a href="mobile-homes.html" id="nav-mobile-homes" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Mobile Homes</a>
+                    <a href="light-commercial.html" id="nav-commercial" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Light Commercial</a>
+                    <a href="contact-us.html" id="nav-contact" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Contact us</a>
+                </nav>
+
+                <!-- HEADER CALL CTA -->
+                <div class="hidden md:flex items-center">
+                    <a href="tel:+19403123081" class="bg-brandRed hover:bg-brandRed-hover text-white font-bold py-2.5 px-5 rounded-lg text-sm transition-all transform hover:-translate-y-0.5 shadow-md flex items-center gap-2">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <span>(940) 312-3081</span>
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <div class="flex lg:hidden items-center">
+                    <button id="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-navy hover:text-brandRed hover:bg-brandLightBlue focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle Navigation Menu">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU PANELS -->
+        <div class="hidden lg:hidden bg-white border-t border-gray-200" id="mobile-menu">
+            <nav class="px-4 pt-3 pb-6 space-y-2" aria-label="Mobile Navigation">
+                <a href="index.html" id="mob-nav-home" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Home</a>
+                <a href="residential-cooling.html" id="mob-nav-cooling" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Residential Cooling</a>
+                <a href="residential-heating.html" id="mob-nav-heating" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Residential Heating</a>
+                <a href="mobile-homes.html" id="mob-nav-mobile-homes" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Mobile Homes</a>
+                <a href="light-commercial.html" id="mob-nav-commercial" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Light Commercial</a>
+                <a href="contact-us.html" id="mob-nav-contact" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Contact us</a>
+                <div class="pt-4 border-t border-gray-100">
+                    <a href="tel:+19403123081" class="w-full bg-brandRed text-white font-bold py-3 px-4 rounded-lg text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> Call (940) 312-3081
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="flex-grow">
+        <div class="bg-gray-50 py-10 md:py-16 min-h-screen">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- PROMINENT DRAFT BANNER NOTICE -->
+                <div class="mb-8 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-md shadow-sm">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 text-amber-500 mt-0.5">
+                            <i class="fas fa-exclamation-triangle text-lg"></i>
+                        </div>
+                        <div class="ml-3">
+                            <span class="inline-block bg-amber-200 text-amber-900 font-extrabold text-xs px-2.5 py-0.5 rounded uppercase tracking-wider mb-1">
+                                Draft — Pending Business Review
+                            </span>
+                            <p class="text-xs sm:text-sm text-amber-800 leading-relaxed">
+                                This Privacy Policy page is a demonstration draft presented by <strong>Atrezzo</strong> as a proposed informative improvement for the Pronto Air website redesign. Operational details marked with <span class="font-bold text-amber-900">[PENDING CONFIRMATION]</span> must be verified and approved prior to public publication.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Minimalist Editorial Header -->
+                <div class="bg-white rounded-xl shadow-sm p-6 sm:p-10 mb-8 border border-gray-200">
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight mb-3">
+                        Privacy Policy
+                    </h1>
+                    <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
+                        Information about how personal information may be collected and handled through this website.
+                    </p>
+                </div>
+
+                <!-- Clean Document Body -->
+                <article class="bg-white rounded-xl shadow-sm p-6 sm:p-10 border border-gray-200 space-y-8 text-gray-700 leading-relaxed text-sm sm:text-base">
+                    
+                    <!-- Section 1 -->
+                    <section class="border-b border-gray-150 pb-6">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-navy mb-3 flex items-center">
+                            <span class="text-brand-red font-mono mr-2">1.</span> Information Collected
+                        </h2>
+                        <p class="mb-3">
+                            When visitors choose to interact with Pronto Air through this website, personal information may be voluntarily submitted via our online contact form.
+                        </p>
+                        <div class="bg-gray-50 border-l-2 border-brand-blue p-3.5 rounded text-xs sm:text-sm mb-3">
+                            <p class="font-bold text-brand-navy mb-1.5">Submitted Contact Form Fields Include:</p>
+                            <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                <li>First Name & Last Name</li>
+                                <li>Phone Number</li>
+                                <li>Email Address</li>
+                                <li>Service You Are Interested In</li>
+                                <li>Message Details</li>
+                            </ul>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-500 italic bg-amber-50/60 p-2.5 rounded border border-amber-200">
+                            <strong>Note:</strong> Technical procedures regarding the backend database storage, processing, or automated routing of these form submissions are <span class="font-bold text-amber-900">[PENDING CONFIRMATION]</span>.
+                        </p>
+                    </section>
+
+                    <!-- Section 2 -->
+                    <section class="border-b border-gray-150 pb-6">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-navy mb-3 flex items-center">
+                            <span class="text-brand-red font-mono mr-2">2.</span> How Information Is Used
+                        </h2>
+                        <p class="mb-3">
+                            Information submitted through the website is intended to be used primarily to communicate with customers regarding their HVAC service inquiries, schedule appointments, or respond to specific heating and cooling requests.
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-500 italic bg-amber-50/60 p-2.5 rounded border border-amber-200">
+                            <strong>Note:</strong> Operational policies regarding promotional email distributions, SMS service alerts, or direct marketing lists are <span class="font-bold text-amber-900">[PENDING CONFIRMATION]</span>.
+                        </p>
+                    </section>
+
+                    <!-- Section 3 -->
+                    <section class="border-b border-gray-150 pb-6">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-navy mb-3 flex items-center">
+                            <span class="text-brand-red font-mono mr-2">3.</span> Cookies and Website Analytics
+                        </h2>
+                        <p class="mb-3">
+                            This website may utilize basic technical cookies or session storage to ensure proper site navigation, layout responsiveness across mobile and desktop devices, and functional usability.
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-500 italic bg-amber-50/60 p-2.5 rounded border border-amber-200">
+                            <strong>Note:</strong> Third-party tracking scripts, remarketing tags, or analytics platforms deployed on the site are <span class="font-bold text-amber-900">[PENDING CONFIRMATION]</span>.
+                        </p>
+                    </section>
+
+                    <!-- Section 4 -->
+                    <section class="border-b border-gray-150 pb-6">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-navy mb-3 flex items-center">
+                            <span class="text-brand-red font-mono mr-2">4.</span> Third-Party Services
+                        </h2>
+                        <p class="mb-3">
+                            Pronto Air does not sell or lease personal information to third-party data brokers. Submitted information may be handled by essential technical service providers operating website hosting, domain management, or email delivery systems.
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-500 italic bg-amber-50/60 p-2.5 rounded border border-amber-200">
+                            <strong>Note:</strong> Specific agreements with third-party software vendors or service management tools are <span class="font-bold text-amber-900">[PENDING CONFIRMATION]</span>.
+                        </p>
+                    </section>
+
+                    <!-- Section 5 -->
+                    <section class="border-b border-gray-150 pb-6">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-navy mb-3 flex items-center">
+                            <span class="text-brand-red font-mono mr-2">5.</span> Data Retention and Security
+                        </h2>
+                        <p class="mb-3">
+                            We take reasonable measures to protect customer information submitted through this website against unauthorized access or disclosure.
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-500 italic bg-amber-50/60 p-2.5 rounded border border-amber-200">
+                            <strong>Note:</strong> Specific data retention schedules, archival timelines, and encryption specifications are <span class="font-bold text-amber-900">[PENDING CONFIRMATION]</span>.
+                        </p>
+                    </section>
+
+                    <!-- Section 6 -->
+                    <section class="border-b border-gray-150 pb-6">
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-navy mb-3 flex items-center">
+                            <span class="text-brand-red font-mono mr-2">6.</span> Privacy Questions and Requests
+                        </h2>
+                        <p class="mb-3">
+                            Visitors or customers wishing to inquire about information submitted to Pronto Air may contact us directly:
+                        </p>
+                        <div class="bg-brand-light p-4 rounded-lg border border-blue-100 text-xs sm:text-sm space-y-1 text-brand-navy">
+                            <p class="font-bold">Pronto Air</p>
+                            <p><i class="fas fa-phone-alt mr-1 text-brand-red"></i> Phone: <a href="tel:+19403123081" class="underline font-semibold">(940) 312-3081</a></p>
+                            <p><i class="fas fa-envelope mr-1 text-brand-red"></i> Email: <a href="mailto:prontoairdenton@hotmail.com" class="underline font-semibold">prontoairdenton@hotmail.com</a></p>
+                            <p><i class="fas fa-map-marker-alt mr-1 text-brand-red"></i> Location: Denton, Texas (Serving Denton County)</p>
+                        </div>
+                    </section>
+
+                    <!-- Section 7 -->
+                    <section>
+                        <h2 class="text-lg sm:text-xl font-bold text-brand-navy mb-3 flex items-center">
+                            <span class="text-brand-red font-mono mr-2">7.</span> Updates to This Policy
+                        </h2>
+                        <p class="mb-3">
+                            This Privacy Policy may be updated as website features evolve or operational procedures are formalized.
+                        </p>
+                        <p class="text-xs sm:text-sm text-gray-500 italic bg-amber-50/60 p-2.5 rounded border border-amber-200">
+                            <strong>Note:</strong> Effective dates and revision histories are <span class="font-bold text-amber-900">[PENDING CONFIRMATION]</span> upon official business approval.
+                        </p>
+                    </section>
+
+                </article>
+
+                <!-- Navigation Return Action -->
+                <div class="mt-8 text-center">
+                    <a href="index.html" class="inline-flex items-center text-sm font-semibold text-brand-navy hover:text-brand-red transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i> Return to Homepage
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    
+    </main>
+
+    <!-- SHARED FOOTER -->
+    <footer class="pronto-site-footer bg-navy text-white pt-12 pb-8 border-t-4 border-brandRed mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                
+                <!-- BRAND COL -->
+                <div class="space-y-4">
+                    <a href="index.html" class="inline-flex items-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandRed" aria-label="Pronto Air Home">
+                        <span class="inline-flex items-center bg-white rounded-lg p-2">
+                            <img src="https://irp.cdn-website.com/b34a80cb/dms3rep/multi/opt/Pronto+Air+Services+Denton+Texas+Logos+%281%29-1920w.png" alt="Pronto Air Services Logo" class="h-12 w-auto max-w-full object-contain" loading="lazy">
+                        </span>
+                    </a>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Reliable heating, cooling, and air quality services across Denton, TX and surrounding areas.
+                    </p>
+                    <div class="inline-block bg-white/10 text-xs px-3 py-1.5 rounded text-blue-200 font-mono">
+                        License: TACLB28582E
+                    </div>
+                </div>
+
+                <!-- MAIN PAGES -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Navigation</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="index.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Home</a></li>
+                        <li><a href="residential-cooling.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Residential Cooling</a></li>
+                        <li><a href="residential-heating.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Residential Heating</a></li>
+                        <li><a href="mobile-homes.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Mobile Homes</a></li>
+                        <li><a href="light-commercial.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Light Commercial</a></li>
+                        <li><a href="contact-us.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Contact us</a></li>
+                    </ul>
+                </div>
+
+                <!-- SECONDARY / MAINTENANCE LINK -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Customer Info</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>
+                            <a href="service-agreement-faqs.html" class="hover:text-brandRed transition flex items-center gap-2 font-medium text-blue-200">
+                                <i class="fa-solid fa-shield-heart text-brandRed"></i> Service Agreement & FAQs
+                            </a>
+                        </li>
+                        <li><span class="text-gray-400 text-xs block mt-2 mb-4">Annual HVAC preventative maintenance programs and answers to common heating and cooling questions.</span></li>
+                        <li>
+                            <a href="privacy-policy.html" aria-current="page" class="hover:text-brandRed transition flex items-center gap-2 font-medium text-blue-200">
+                                <i class="fa-solid fa-shield-halved text-brandRed" aria-hidden="true"></i> Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CONTACT INFO -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Direct Contact</h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Call Us Directly:</span>
+                                <a href="tel:+19403123081" class="font-bold text-white hover:text-brandRed">(940) 312-3081</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Email Us:</span>
+                                <a href="mailto:prontoairdenton@hotmail.com" class="hover:text-brandRed break-all">prontoairdenton@hotmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-map-pin text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Service Coverage:</span>
+                                <span class="text-gray-200">Denton County, Lewisville, Flower Mound, Gainesville, Grapevine</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-blue-900/50 text-center text-xs text-gray-400 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Pronto Air. All rights reserved. Professional HVAC Services in Denton, Texas.</p>
+                <p>License TACLB28582E | Heating & Air Conditioning Maintenance</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Shared header responsive navigation; the legal document is static.
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const button = document.getElementById('mobile-menu-btn');
+            const isOpening = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', !isOpening);
+            menuIcon.className = isOpening ? 'fa-solid fa-xmark text-2xl' : 'fa-solid fa-bars text-2xl';
+            button.setAttribute('aria-expanded', String(isOpening));
+        }
+    </script>
+
+</body>
+</html>

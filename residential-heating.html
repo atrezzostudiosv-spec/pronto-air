@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Working redesign preview: do not index as an official business website. -->
+    <meta name="robots" content="noindex, nofollow">
     <title>Residential Heating Services in Denton, TX | Pronto Air</title>
     <meta name="description" content="Pronto Air provides residential heating maintenance, repairs, and installation in Denton, TX. Learn about our heating systems and services.">
     
@@ -187,7 +189,7 @@
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     
                     <!-- 01 -->
-                    <div onclick="selectCategory(1)" id="cat-card-1" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div onclick="selectCategory(1)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(1); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-1" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-temperature-arrow-up"></i>
                         </div>
@@ -197,7 +199,7 @@
                     </div>
 
                     <!-- 02 -->
-                    <div onclick="selectCategory(2)" id="cat-card-2" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div onclick="selectCategory(2)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(2); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="true" id="cat-card-2" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-fire text-brandRed"></i>
                         </div>
@@ -207,7 +209,7 @@
                     </div>
 
                     <!-- 03 -->
-                    <div onclick="selectCategory(3)" id="cat-card-3" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div onclick="selectCategory(3)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(3); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-3" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-wind"></i>
                         </div>
@@ -217,7 +219,7 @@
                     </div>
 
                     <!-- 04 -->
-                    <div onclick="selectCategory(4)" id="cat-card-4" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div onclick="selectCategory(4)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(4); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-4" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-box-open"></i>
                         </div>
@@ -227,7 +229,7 @@
                     </div>
 
                     <!-- 05 -->
-                    <div onclick="selectCategory(5)" id="cat-card-5" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div onclick="selectCategory(5)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(5); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-5" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-droplet"></i>
                         </div>
@@ -237,7 +239,7 @@
                     </div>
 
                     <!-- 06 -->
-                    <div onclick="selectCategory(6)" id="cat-card-6" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div onclick="selectCategory(6)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(6); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-6" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-gears"></i>
                         </div>
@@ -247,7 +249,7 @@
                     </div>
 
                     <!-- 07 -->
-                    <div onclick="selectCategory(7)" id="cat-card-7" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div onclick="selectCategory(7)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(7); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-7" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-fan"></i>
                         </div>
@@ -257,7 +259,7 @@
                     </div>
 
                     <!-- 08 -->
-                    <div onclick="selectCategory(8)" id="cat-card-8" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div onclick="selectCategory(8)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(8); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-8" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-arrows-spin"></i>
                         </div>
@@ -620,6 +622,7 @@
             for (let i = 1; i <= 8; i++) {
                 const card = document.getElementById(`cat-card-${i}`);
                 if (card) {
+                    card.setAttribute('aria-pressed', String(i === id));
                     if (i === id) {
                         card.classList.add('ring-2', 'ring-brandRed', 'bg-white');
                         card.classList.remove('bg-lightBlue/30');

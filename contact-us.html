@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Pronto Air | HVAC Services in Denton, TX</title>
+    <meta name="description" content="Contact Pronto Air in Denton, TX, for heating and air conditioning services. Find our phone number, email, business hours, and contact form.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#0B2545',
+                            dark: '#06172D',
+                            light: '#133966',
+                        },
+                        brandRed: {
+                            DEFAULT: '#D90429',
+                            hover: '#EF233C',
+                            dark: '#B00020'
+                        },
+                        brandBlue: {
+                            DEFAULT: '#134074',
+                            light: '#1D5A9E'
+                        },
+                        brandLightBlue: '#EEF4F8',
+                        lightBlue: {
+                            DEFAULT: '#EEF4F8',
+                            hover: '#E1EDF5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .pronto-site-utility, .pronto-site-header, .pronto-site-footer {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        .pronto-site-header a:focus-visible, .pronto-site-header button:focus-visible {
+            outline: 2px solid #D90429;
+            outline-offset: 2px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAFA;
+            color: #1A202C;
+        }
+        .page-view {
+            display: none;
+        }
+        .page-view.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .focus-ring {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+        }
+        .focus-ring:focus-within, .focus-ring:focus {
+            outline-color: #D90429;
+            border-color: #D90429;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col antialiased selection:bg-brandRed selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
+    <div class="pronto-site-utility bg-[#06162B] text-white text-xs sm:text-sm py-2 px-4 border-b border-[#134074]/30">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 text-xs">
+                <span><i class="fa-solid fa-shield-halved text-brandRed mr-1.5" aria-hidden="true"></i> License: <strong>TACLB28582E</strong></span>
+                <span class="hidden md:inline"><i class="fa-solid fa-location-dot text-blue-300 mr-1.5" aria-hidden="true"></i> Serving Denton County & Surrounding Areas</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="tel:+19403123081" class="hover:text-brandRed transition-colors font-medium flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-brandRed" aria-hidden="true"></i> (940) 312-3081
+                </a>
+                <a href="mailto:prontoairdenton@hotmail.com" class="hover:text-brandRed transition-colors hidden sm:flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope text-blue-300" aria-hidden="true"></i> prontoairdenton@hotmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER / NAVIGATION -->
+    <header class="pronto-site-header bg-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- LOGO -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-left focus:outline-none" aria-label="Pronto Air Home">
+                        <img class="h-12 w-auto object-contain" 
+                             src="https://irp.cdn-website.com/b34a80cb/dms3rep/multi/opt/Pronto+Air+Services+Denton+Texas+Logos+%281%29-1920w.png" 
+                             alt="Pronto Air Services Logo">
+                    </a>
+                </div>
+
+                <!-- DESKTOP NAVIGATION -->
+                <nav class="hidden lg:flex space-x-1 xl:space-x-2" aria-label="Main Navigation">
+                    <a href="index.html" id="nav-home" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Home</a>
+                    <a href="residential-cooling.html" id="nav-cooling" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Residential Cooling</a>
+                    <a href="residential-heating.html" id="nav-heating" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Residential Heating</a>
+                    <a href="mobile-homes.html" id="nav-mobile-homes" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Mobile Homes</a>
+                    <a href="light-commercial.html" id="nav-commercial" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Light Commercial</a>
+                    <a href="contact-us.html" id="nav-contact" class="px-3 py-2 rounded-md text-sm font-bold bg-navy text-white shadow-sm" aria-current="page">Contact us</a>
+                </nav>
+
+                <!-- HEADER CALL CTA -->
+                <div class="hidden md:flex items-center">
+                    <a href="tel:+19403123081" class="bg-brandRed hover:bg-brandRed-hover text-white font-bold py-2.5 px-5 rounded-lg text-sm transition-all transform hover:-translate-y-0.5 shadow-md flex items-center gap-2">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <span>(940) 312-3081</span>
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <div class="flex lg:hidden items-center">
+                    <button id="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-navy hover:text-brandRed hover:bg-brandLightBlue focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle Navigation Menu">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU PANELS -->
+        <div class="hidden lg:hidden bg-white border-t border-gray-200" id="mobile-menu">
+            <nav class="px-4 pt-3 pb-6 space-y-2" aria-label="Mobile Navigation">
+                <a href="index.html" id="mob-nav-home" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Home</a>
+                <a href="residential-cooling.html" id="mob-nav-cooling" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Residential Cooling</a>
+                <a href="residential-heating.html" id="mob-nav-heating" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Residential Heating</a>
+                <a href="mobile-homes.html" id="mob-nav-mobile-homes" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Mobile Homes</a>
+                <a href="light-commercial.html" id="mob-nav-commercial" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Light Commercial</a>
+                <a href="contact-us.html" id="mob-nav-contact" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-bold bg-navy text-white" aria-current="page">Contact us</a>
+                <div class="pt-4 border-t border-gray-100">
+                    <a href="tel:+19403123081" class="w-full bg-brandRed text-white font-bold py-3 px-4 rounded-lg text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> Call (940) 312-3081
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <div id="page-contact-us" class="page-view active">
+            
+            <!-- SECCIÓN 01 — HERO -->
+            <section class="bg-gradient-to-br from-navy via-navy-light to-navy text-white py-14 sm:py-20 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="max-w-3xl">
+                        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-blue-100 text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
+                            <i class="fa-solid fa-headset text-brandRed"></i> Direct Communication
+                        </div>
+                        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-3">
+                            Contact Pronto Air
+                        </h1>
+                        <p class="text-lg sm:text-xl text-brandRed font-semibold mb-4">
+                            Professional Air-Conditioning & Heating Services in Denton, Texas
+                        </p>
+                        <p class="text-base sm:text-lg text-gray-200 mb-8 leading-relaxed max-w-2xl">
+                            Need heating or air conditioning service? Contact Pronto Air to discuss your needs, schedule an appointment, or speak with our technicians.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="tel:+19403123081" class="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-white bg-brandRed hover:bg-brandRed-hover shadow-lg hover:shadow-brandRed/30 transition-all text-center group">
+                                <i class="fa-solid fa-phone mr-2.5 group-hover:animate-pulse"></i> Call (940) 312-3081
+                            </a>
+                            <a href="#contact-form-section" onclick="scrollToForm(event)" class="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-all text-center">
+                                <i class="fa-solid fa-paper-plane mr-2 text-brandRed"></i> Send Us a Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MAIN CONTENT GRID (INFO + FORM) -->
+            <div class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                    
+                    <!-- SECCIÓN 02 — CONTACT INFORMATION (LEFT COLUMN ON DESKTOP) -->
+                    <div class="lg:col-span-5 space-y-6">
+                        
+                        <div class="bg-white p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm">
+                            <h2 class="text-2xl font-bold text-navy mb-2">
+                                Get in Touch With Pronto Air
+                            </h2>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                                Contact Pronto Air by phone or email for heating and air conditioning service inquiries in Denton, Texas.
+                            </p>
+
+                            <div class="space-y-6">
+                                <!-- PHONE CARD -->
+                                <div class="flex items-start gap-4 p-4 rounded-xl bg-lightBlue/60 border border-blue-100/80 transition-all hover:bg-lightBlue">
+                                    <div class="w-12 h-12 rounded-xl bg-brandRed text-white flex items-center justify-center text-xl shrink-0 shadow-sm">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-xs font-bold uppercase tracking-wider text-gray-500 block">Phone</span>
+                                        <a href="tel:+19403123081" class="text-lg font-extrabold text-navy hover:text-brandRed transition-colors mt-0.5 inline-block">
+                                            (940) 312-3081
+                                        </a>
+                                        <p class="text-xs text-gray-500 mt-1">Tap to call our service line</p>
+                                    </div>
+                                </div>
+
+                                <!-- EMAIL CARD -->
+                                <div class="flex items-start gap-4 p-4 rounded-xl bg-lightBlue/60 border border-blue-100/80 transition-all hover:bg-lightBlue">
+                                    <div class="w-12 h-12 rounded-xl bg-brandBlue text-white flex items-center justify-center text-xl shrink-0 shadow-sm">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <div class="break-all">
+                                        <span class="text-xs font-bold uppercase tracking-wider text-gray-500 block">Email</span>
+                                        <a href="mailto:prontoairdenton@hotmail.com" class="text-base font-bold text-navy hover:text-brandRed transition-colors mt-0.5 inline-block">
+                                            prontoairdenton@hotmail.com
+                                        </a>
+                                        <p class="text-xs text-gray-500 mt-1">Direct message inbox</p>
+                                    </div>
+                                </div>
+
+                                <!-- HOURS OF OPERATION CARD -->
+                                <div class="p-5 rounded-xl bg-white border border-gray-200">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-10 h-10 rounded-lg bg-navy text-white flex items-center justify-center text-lg">
+                                            <i class="fa-solid fa-clock"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-navy leading-none">Hours of Operation</h3>
+                                            <span class="text-xs text-gray-500">Standard & Appointment Schedule</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-3 text-sm">
+                                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                                            <span class="font-semibold text-gray-700">Monday - Friday</span>
+                                            <span class="font-bold text-navy bg-lightBlue px-2.5 py-1 rounded text-xs">8:00 AM - 6:00 PM</span>
+                                        </div>
+                                        <div class="flex justify-between items-center py-2">
+                                            <span class="font-semibold text-gray-700">Saturday & Sunday</span>
+                                            <span class="font-bold text-brandRed bg-red-50 px-2.5 py-1 rounded text-xs">By Appointment Only</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- LICENSE BADGE -->
+                                <div class="p-4 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <i class="fa-solid fa-id-card text-brandBlue text-2xl"></i>
+                                        <div>
+                                            <p class="text-xs font-bold text-gray-500 uppercase">State HVAC License</p>
+                                            <p class="text-sm font-extrabold text-navy">TACLB28582E</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                                        Verified
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- SECCIÓN 03 — CONTACT FORM (RIGHT COLUMN ON DESKTOP) -->
+                    <div id="contact-form-section" class="lg:col-span-7">
+                        <div class="bg-white p-6 sm:p-10 rounded-2xl border border-gray-200 shadow-sm relative">
+                            
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-navy mb-2">
+                                Send Us a Message
+                            </h2>
+                            <p class="text-gray-600 text-sm mb-6 leading-relaxed">
+                                Thank you for your interest in Pronto Air. To schedule an appointment or speak with our technicians, call or email us. You can also complete the contact form to provide information about your heating or air conditioning needs.
+                            </p>
+
+                            <!-- PREVIEW / DEMO NOTICE BANNER (REQUIRED BY SPECIFICATION) -->
+                            <div class="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm flex items-start gap-3">
+                                <i class="fa-solid fa-circle-info text-amber-600 text-lg shrink-0 mt-0.5"></i>
+                                <div>
+                                    <strong class="font-bold block text-amber-900 mb-0.5">Form Preview Mode Notice:</strong>
+                                    This form is currently in preview mode. Submissions are not being sent. Please call <a href="tel:+19403123081" class="underline font-bold hover:text-brandRed">(940) 312-3081</a> or email <a href="mailto:prontoairdenton@hotmail.com" class="underline font-bold hover:text-brandRed">prontoairdenton@hotmail.com</a> directly.
+                                </div>
+                            </div>
+
+                            <!-- SUBMISSION DEMO STATUS FEEDBACK MESSAGE -->
+                            <div id="formStatusBanner" class="hidden mb-6 p-4 rounded-xl text-sm font-medium transition-all"></div>
+
+                            <!-- CONTACT FORM -->
+                            <form id="prontoContactForm" onsubmit="handleFormSubmit(event)" class="space-y-5" novalidate>
+                                
+                                <div class="grid sm:grid-cols-2 gap-5">
+                                    <!-- 01 — FIRST NAME -->
+                                    <div>
+                                        <label for="firstName" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1">
+                                            First Name <span class="text-brandRed">*</span>
+                                        </label>
+                                        <input type="text" 
+                                               id="firstName" 
+                                               name="firstName"
+                                               autocomplete="given-name"
+                                               required
+                                               placeholder="John"
+                                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brandRed focus:ring-2 focus:ring-brandRed/20 text-gray-900 text-sm transition-all outline-none"
+                                               oninput="clearFieldError('firstName')">
+                                        <span id="firstNameError" class="text-xs text-brandRed font-medium mt-1 block hidden"></span>
+                                    </div>
+
+                                    <!-- 02 — LAST NAME -->
+                                    <div>
+                                        <label for="lastName" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1">
+                                            Last Name <span class="text-brandRed">*</span>
+                                        </label>
+                                        <input type="text" 
+                                               id="lastName" 
+                                               name="lastName"
+                                               autocomplete="family-name"
+                                               required
+                                               placeholder="Doe"
+                                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brandRed focus:ring-2 focus:ring-brandRed/20 text-gray-900 text-sm transition-all outline-none"
+                                               oninput="clearFieldError('lastName')">
+                                        <span id="lastNameError" class="text-xs text-brandRed font-medium mt-1 block hidden"></span>
+                                    </div>
+                                </div>
+
+                                <div class="grid sm:grid-cols-2 gap-5">
+                                    <!-- 03 — PHONE -->
+                                    <div>
+                                        <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1">
+                                            Phone Number <span class="text-brandRed">*</span>
+                                        </label>
+                                        <input type="tel" 
+                                               id="phone" 
+                                               name="phone"
+                                               autocomplete="tel"
+                                               required
+                                               placeholder="(940) 000-0000"
+                                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brandRed focus:ring-2 focus:ring-brandRed/20 text-gray-900 text-sm transition-all outline-none"
+                                               oninput="clearFieldError('phone')">
+                                        <span id="phoneError" class="text-xs text-brandRed font-medium mt-1 block hidden"></span>
+                                    </div>
+
+                                    <!-- 04 — EMAIL -->
+                                    <div>
+                                        <label for="email" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1">
+                                            Email Address <span class="text-brandRed">*</span>
+                                        </label>
+                                        <input type="email" 
+                                               id="email" 
+                                               name="email"
+                                               autocomplete="email"
+                                               required
+                                               placeholder="john@example.com"
+                                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brandRed focus:ring-2 focus:ring-brandRed/20 text-gray-900 text-sm transition-all outline-none"
+                                               oninput="clearFieldError('email')">
+                                        <span id="emailError" class="text-xs text-brandRed font-medium mt-1 block hidden"></span>
+                                    </div>
+                                </div>
+
+                                <!-- 05 — SERVICE YOU ARE INTERESTED IN -->
+                                <div>
+                                    <label for="service" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1">
+                                        Service You Are Interested In <span class="text-brandRed">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <select id="service" 
+                                                name="service"
+                                                required
+                                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brandRed focus:ring-2 focus:ring-brandRed/20 text-gray-900 text-sm transition-all outline-none bg-white appearance-none pr-10 cursor-pointer"
+                                                onchange="clearFieldError('service')">
+                                            <option value="" disabled selected>-- Select a Service --</option>
+                                            <option value="Residential Cooling">Residential Cooling</option>
+                                            <option value="Residential Heating">Residential Heating</option>
+                                            <option value="Mobile Homes">Mobile Homes</option>
+                                            <option value="Light Commercial">Light Commercial</option>
+                                        </select>
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <span id="serviceError" class="text-xs text-brandRed font-medium mt-1 block hidden"></span>
+                                </div>
+
+                                <!-- 06 — MESSAGE -->
+                                <div>
+                                    <label for="message" class="block text-xs font-bold uppercase tracking-wider text-navy mb-1">
+                                        Message <span class="text-brandRed">*</span>
+                                    </label>
+                                    <textarea id="message" 
+                                              name="message" 
+                                              rows="4" 
+                                              required
+                                              placeholder="Please describe your heating or air conditioning needs, current issues, or requested appointment time..."
+                                              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brandRed focus:ring-2 focus:ring-brandRed/20 text-gray-900 text-sm transition-all outline-none"
+                                              oninput="clearFieldError('message')"></textarea>
+                                    <span id="messageError" class="text-xs text-brandRed font-medium mt-1 block hidden"></span>
+                                </div>
+
+                                <!-- SUBMIT BUTTON -->
+                                <button type="submit" 
+                                        id="submitBtn"
+                                        class="w-full sm:w-auto px-8 py-4 bg-brandRed hover:bg-brandRed-hover text-white font-extrabold text-base rounded-xl shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandRed flex items-center justify-center gap-2">
+                                    <span>Submit Request</span>
+                                    <i class="fa-solid fa-paper-plane text-sm"></i>
+                                </button>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SECCIÓN 04 — SERVICE AREA -->
+            <section class="bg-lightBlue/60 border-y border-gray-200 py-12 sm:py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl mx-auto text-center mb-10">
+                        <span class="text-brandRed text-xs font-extrabold uppercase tracking-wider mb-1 block">Local Coverage</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy">
+                            Our Service Area
+                        </h2>
+                        <p class="text-gray-600 text-sm sm:text-base mt-2">
+                            Pronto Air serves Denton County and lists the following communities among its service areas:
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center font-bold text-navy flex items-center justify-center gap-2 hover:border-brandRed/40 transition-colors">
+                            <i class="fa-solid fa-location-dot text-brandRed"></i> Denton
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center font-bold text-navy flex items-center justify-center gap-2 hover:border-brandRed/40 transition-colors">
+                            <i class="fa-solid fa-location-dot text-brandRed"></i> Lewisville
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center font-bold text-navy flex items-center justify-center gap-2 hover:border-brandRed/40 transition-colors">
+                            <i class="fa-solid fa-location-dot text-brandRed"></i> Flower Mound
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center font-bold text-navy flex items-center justify-center gap-2 hover:border-brandRed/40 transition-colors">
+                            <i class="fa-solid fa-location-dot text-brandRed"></i> Gainesville
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center font-bold text-navy flex items-center justify-center gap-2 col-span-2 sm:col-span-1 hover:border-brandRed/40 transition-colors">
+                            <i class="fa-solid fa-location-dot text-brandRed"></i> Grapevine
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 05 — FINAL CONTACT CTA -->
+            <section class="bg-navy text-white py-14 sm:py-20 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                    <div class="max-w-3xl mx-auto">
+                        <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">
+                            Contact Pronto Air Today
+                        </h2>
+                        <p class="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed">
+                            For residential heating and cooling, mobile home HVAC services, or light commercial heating and air conditioning needs, contact Pronto Air in Denton, Texas.
+                        </p>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4">
+                            <a href="tel:+19403123081" class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-white bg-brandRed hover:bg-brandRed-hover shadow-lg transition-all text-center">
+                                <i class="fa-solid fa-phone mr-2"></i> Call (940) 312-3081
+                            </a>
+                            <a href="mailto:prontoairdenton@hotmail.com" class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-white border-2 border-white/30 hover:bg-white/10 transition-all text-center">
+                                <i class="fa-solid fa-envelope mr-2 text-brandRed"></i> Email Pronto Air
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- SHARED FOOTER -->
+    <footer class="pronto-site-footer bg-navy text-white pt-12 pb-8 border-t-4 border-brandRed mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                
+                <!-- BRAND COL -->
+                <div class="space-y-4">
+                    <a href="index.html" class="inline-flex items-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandRed" aria-label="Pronto Air Home">
+                        <span class="inline-flex items-center bg-white rounded-lg p-2">
+                            <img src="https://irp.cdn-website.com/b34a80cb/dms3rep/multi/opt/Pronto+Air+Services+Denton+Texas+Logos+%281%29-1920w.png" alt="Pronto Air Services Logo" class="h-12 w-auto max-w-full object-contain" loading="lazy">
+                        </span>
+                    </a>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Reliable heating, cooling, and air quality services across Denton, TX and surrounding areas.
+                    </p>
+                    <div class="inline-block bg-white/10 text-xs px-3 py-1.5 rounded text-blue-200 font-mono">
+                        License: TACLB28582E
+                    </div>
+                </div>
+
+                <!-- MAIN PAGES -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Navigation</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="index.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Home</a></li>
+                        <li><a href="residential-cooling.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Residential Cooling</a></li>
+                        <li><a href="residential-heating.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Residential Heating</a></li>
+                        <li><a href="mobile-homes.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Mobile Homes</a></li>
+                        <li><a href="light-commercial.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Light Commercial</a></li>
+                        <li><a href="contact-us.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Contact us</a></li>
+                    </ul>
+                </div>
+
+                <!-- SECONDARY / MAINTENANCE LINK -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Customer Info</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>
+                            <a href="service-agreement-faqs.html" class="hover:text-brandRed transition flex items-center gap-2 font-medium text-blue-200">
+                                <i class="fa-solid fa-shield-heart text-brandRed"></i> Service Agreement & FAQs
+                            </a>
+                        </li>
+                        <li><span class="text-gray-400 text-xs block mt-2 mb-4">Annual HVAC preventative maintenance programs and answers to common heating and cooling questions.</span></li>
+                        <li>
+                            <a href="privacy-policy.html" class="hover:text-brandRed transition flex items-center gap-2 font-medium text-blue-200">
+                                <i class="fa-solid fa-shield-halved text-brandRed" aria-hidden="true"></i> Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CONTACT INFO -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Direct Contact</h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Call Us Directly:</span>
+                                <a href="tel:+19403123081" class="font-bold text-white hover:text-brandRed">(940) 312-3081</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Email Us:</span>
+                                <a href="mailto:prontoairdenton@hotmail.com" class="hover:text-brandRed break-all">prontoairdenton@hotmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-map-pin text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Service Coverage:</span>
+                                <span class="text-gray-200">Denton County, Lewisville, Flower Mound, Gainesville, Grapevine</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-blue-900/50 text-center text-xs text-gray-400 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Pronto Air. All rights reserved. Professional HVAC Services in Denton, Texas.</p>
+                <p>License TACLB28582E | Heating & Air Conditioning Maintenance</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header shared between standalone HTML pages.
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const button = document.getElementById('mobile-menu-btn');
+            const isOpening = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', !isOpening);
+            menuIcon.className = isOpening ? 'fa-solid fa-xmark text-2xl' : 'fa-solid fa-bars text-2xl';
+            button.setAttribute('aria-expanded', String(isOpening));
+        }
+
+        // Contact form remains in demo mode: validation is active but no data is sent.
+        // Smooth scroll CTA to form
+        function scrollToForm(e) {
+            e.preventDefault();
+            const formSec = document.getElementById('contact-form-section');
+            if (formSec) {
+                formSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Form field error reset
+        function clearFieldError(fieldId) {
+            const errEl = document.getElementById(fieldId + 'Error');
+            const inputEl = document.getElementById(fieldId);
+            if (errEl) errEl.classList.add('hidden');
+            if (inputEl) inputEl.classList.remove('border-brandRed', 'ring-1', 'ring-brandRed');
+        }
+
+        function showFieldError(fieldId, message) {
+            const errEl = document.getElementById(fieldId + 'Error');
+            const inputEl = document.getElementById(fieldId);
+            if (errEl) {
+                errEl.textContent = message;
+                errEl.classList.remove('hidden');
+            }
+            if (inputEl) {
+                inputEl.classList.add('border-brandRed', 'ring-1', 'ring-brandRed');
+            }
+        }
+
+        // JS Validation & Demo Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value.trim();
+
+            // Validate First Name
+            if (!firstName) {
+                showFieldError('firstName', 'Please enter your first name.');
+                isValid = false;
+            }
+
+            // Validate Last Name
+            if (!lastName) {
+                showFieldError('lastName', 'Please enter your last name.');
+                isValid = false;
+            }
+
+            // Validate Phone
+            const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+            if (!phone) {
+                showFieldError('phone', 'Please enter your phone number.');
+                isValid = false;
+            } else if (!phoneRegex.test(phone.replace(/\s+/g, ''))) {
+                showFieldError('phone', 'Please enter a valid phone number format.');
+                isValid = false;
+            }
+
+            // Validate Email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) {
+                showFieldError('email', 'Please enter your email address.');
+                isValid = false;
+            } else if (!emailRegex.test(email)) {
+                showFieldError('email', 'Please enter a valid email address.');
+                isValid = false;
+            }
+
+            // Validate Service Selection
+            if (!service) {
+                showFieldError('service', 'Please select a service category.');
+                isValid = false;
+            }
+
+            // Validate Message
+            if (!message) {
+                showFieldError('message', 'Please enter your message or service details.');
+                isValid = false;
+            }
+
+            const statusBanner = document.getElementById('formStatusBanner');
+
+            if (!isValid) {
+                statusBanner.className = 'mb-6 p-4 rounded-xl text-sm font-semibold bg-red-50 border border-red-200 text-brandRed block';
+                statusBanner.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-2"></i> Please fix the errors highlighted above before submitting.';
+                return;
+            }
+
+            // FORM IN PREVIEW MODE BANNER (WILL NOT SHOW FALSE SUCCESS)
+            statusBanner.className = 'mb-6 p-4 rounded-xl text-sm font-medium bg-amber-50 border border-amber-300 text-amber-900 block';
+            statusBanner.innerHTML = `
+                <div class="flex items-start gap-2.5">
+                    <i class="fa-solid fa-circle-exclamation text-amber-600 text-lg shrink-0 mt-0.5"></i>
+                    <div>
+                        <strong class="font-bold block mb-0.5">Form Preview Mode (Submission Not Processed)</strong>
+                        This form is currently in preview mode. Submissions are not being sent. Please call <a href="tel:+19403123081" class="font-bold underline text-brandRed">(940) 312-3081</a> or email <a href="mailto:prontoairdenton@hotmail.com" class="font-bold underline text-brandRed">prontoairdenton@hotmail.com</a> directly.
+                    </div>
+                </div>
+            `;
+
+            statusBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+
+</body>
+</html>

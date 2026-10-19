@@ -47,6 +47,27 @@
         details[open] .faq-icon { transform: rotate(180deg); }
         .faq-icon { transition: transform 0.25s ease-in-out; }
     </style>
+
+    <!-- Mobile-only utility bar: show just the centered call link; desktop/tablet unchanged. -->
+    <style>
+        @media (max-width: 767px) {
+            .pronto-site-utility > div {
+                flex-direction: row;
+                justify-content: center;
+                gap: 0;
+            }
+            .pronto-site-utility > div > div:first-child {
+                display: none;
+            }
+            .pronto-site-utility > div > div:last-child {
+                justify-content: center;
+                gap: 0;
+            }
+            .pronto-site-utility a[href^="mailto:"] {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">

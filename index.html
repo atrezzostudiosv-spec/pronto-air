@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Working redesign preview: do not index as an official business website. -->
+    <meta name="robots" content="noindex, nofollow">
     <title>Heating & Air Conditioning Services in Denton, TX | Pronto Air</title>
     <!-- Tailwind CSS for modern styling and responsiveness -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -116,7 +118,9 @@
         </div>
     </header>
 
-        <!-- SECCIÓN 01 — HERO -->
+        <main id="main-content">
+
+    <!-- SECCIÓN 01 — HERO -->
     <section id="home" class="relative bg-prontoNavy text-white overflow-hidden py-20 lg:py-28">
         <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1920');"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -163,7 +167,7 @@
             <!-- Selector Interactivo de Servicios -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <!-- Card 1 -->
-                <div onclick="selectService('cooling')" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
+                <div onclick="selectService('cooling')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectService('cooling'); }" role="button" tabindex="0" aria-controls="service-detail-box" aria-pressed="true" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-snowflake"></i>
                     </div>
@@ -177,7 +181,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div onclick="selectService('heating')" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
+                <div onclick="selectService('heating')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectService('heating'); }" role="button" tabindex="0" aria-controls="service-detail-box" aria-pressed="false" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-fire"></i>
                     </div>
@@ -191,7 +195,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div onclick="selectService('mobile')" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
+                <div onclick="selectService('mobile')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectService('mobile'); }" role="button" tabindex="0" aria-controls="service-detail-box" aria-pressed="false" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-house-chimney"></i>
                     </div>
@@ -205,7 +209,7 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div onclick="selectService('commercial')" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
+                <div onclick="selectService('commercial')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectService('commercial'); }" role="button" tabindex="0" aria-controls="service-detail-box" aria-pressed="false" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-building"></i>
                     </div>
@@ -220,16 +224,19 @@
             </div>
 
             <!-- Panel de Información Ampliada Interactiva -->
-            <div id="service-detail-box" class="bg-prontoNavy text-white rounded-3xl p-8 lg:p-12 shadow-xl flex flex-col lg:flex-row gap-8 items-center">
+            <div id="service-detail-box" class="scroll-mt-24 bg-prontoNavy text-white rounded-3xl p-8 lg:p-12 shadow-xl flex flex-col lg:flex-row gap-8 items-center">
                 <div class="lg:w-2/3 space-y-4">
                     <span id="detail-tag" class="bg-prontoRed text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Selected Service</span>
                     <h3 id="detail-title" class="text-2xl sm:text-3xl font-bold">Residential Cooling Services</h3>
                     <p id="detail-desc" class="text-gray-300 text-base leading-relaxed">
                         As licensed HVAC contractors, we have the expertise to design and install your complete air conditioning systems. Count on Pronto Air to professionally check your AC unit to make sure your unit is performing optimally for the hot summers, central air, ductless systems, and new equipment replacement.
                     </p>
-                    <div class="pt-2">
+                    <div class="pt-2 flex flex-wrap items-center gap-5">
                         <a href="tel:+19403123081" class="inline-flex items-center gap-2 bg-prontoRed hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl transition shadow-md">
                             <i class="fa-solid fa-phone"></i> Call to Schedule Service
+                        </a>
+                        <a id="detail-page-link" href="residential-cooling.html" class="inline-flex items-center gap-2 text-sm font-semibold text-white underline underline-offset-4 hover:text-prontoLight focus-visible:outline focus-visible:outline-2 focus-visible:outline-prontoRed">
+                            View full service page <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -471,6 +478,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- FOOTER -->
     <footer class="pronto-site-footer bg-navy text-white pt-12 pb-8 border-t-4 border-brandRed mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -600,14 +609,32 @@
             }
         };
 
+        // The service previews retain their interactive panel and link to the actual subpage.
+        const servicePageLinks = {
+            cooling: 'residential-cooling.html',
+            heating: 'residential-heating.html',
+            mobile: 'mobile-homes.html',
+            commercial: 'light-commercial.html'
+        };
+
         function selectService(type) {
             const data = serviceData[type];
-            if (data) {
-                document.getElementById('detail-tag').innerText = data.tag;
-                document.getElementById('detail-title').innerText = data.title;
-                document.getElementById('detail-desc').innerText = data.desc;
-                document.getElementById('detail-img').src = data.img;
-            }
+            if (!data) return;
+            document.getElementById('detail-tag').innerText = data.tag;
+            document.getElementById('detail-title').innerText = data.title;
+            document.getElementById('detail-desc').innerText = data.desc;
+            const image = document.getElementById('detail-img');
+            image.src = data.img;
+            image.alt = `Illustrative image for ${data.tag}`;
+            document.getElementById('detail-page-link').href = servicePageLinks[type];
+            const order = ['cooling', 'heating', 'mobile', 'commercial'];
+            document.querySelectorAll('.service-card').forEach((card, i) => {
+                card.setAttribute('aria-pressed', String(order[i] === type));
+            });
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            document.getElementById('service-detail-box').scrollIntoView({
+                behavior: reduceMotion ? 'auto' : 'smooth', block: 'start'
+            });
         }
 
         // Validación y aviso del formulario de contacto

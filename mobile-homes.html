@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Home Heating & AC Services in Denton, TX | Pronto Air</title>
+    <meta name="description" content="Pronto Air provides heating and air conditioning inspections, repairs, and system replacement for mobile homes in Denton, TX. Call today.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#0B2545',
+                            dark: '#06162B',
+                            light: '#134074'
+                        },
+                        brandRed: {
+                            DEFAULT: '#D90429',
+                            hover: '#EF233C'
+                        },
+                        brandLightBlue: '#EEF4F8'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .pronto-site-utility, .pronto-site-header, .pronto-site-footer {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1A202C;
+            background-color: #FFFFFF;
+        }
+        /* Focus state accessibility ring */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #D90429;
+            outline-offset: 2px;
+        }
+        /* Filter button styling transitions */
+        .filter-btn {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen selection:bg-brandRed selection:text-white">
+
+    <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
+    <div class="pronto-site-utility bg-navy-dark text-white text-xs sm:text-sm py-2 px-4 border-b border-navy-light/30">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 text-xs">
+                <span><i class="fa-solid fa-shield-halved text-brandRed mr-1.5" aria-hidden="true"></i> License: <strong>TACLB28582E</strong></span>
+                <span class="hidden md:inline"><i class="fa-solid fa-location-dot text-blue-300 mr-1.5" aria-hidden="true"></i> Serving Denton County & Surrounding Areas</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="tel:+19403123081" class="hover:text-brandRed transition-colors font-medium flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-brandRed" aria-hidden="true"></i> (940) 312-3081
+                </a>
+                <a href="mailto:prontoairdenton@hotmail.com" class="hover:text-brandRed transition-colors hidden sm:flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope text-blue-300" aria-hidden="true"></i> prontoairdenton@hotmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER / NAVIGATION -->
+    <header class="pronto-site-header bg-white sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- LOGO -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-left focus:outline-none" aria-label="Pronto Air Home">
+                        <img class="h-12 w-auto object-contain" 
+                             src="https://irp.cdn-website.com/b34a80cb/dms3rep/multi/opt/Pronto+Air+Services+Denton+Texas+Logos+%281%29-1920w.png" 
+                             alt="Pronto Air Services Logo">
+                    </a>
+                </div>
+
+                <!-- DESKTOP NAVIGATION -->
+                <nav class="hidden lg:flex space-x-1 xl:space-x-2" aria-label="Main Navigation">
+                    <a href="index.html" id="nav-home" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Home</a>
+                    <a href="residential-cooling.html" id="nav-cooling" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Residential Cooling</a>
+                    <a href="residential-heating.html" id="nav-heating" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Residential Heating</a>
+                    <a href="mobile-homes.html" id="nav-mobile-homes" class="px-3 py-2 rounded-md text-sm font-bold bg-navy text-white shadow-sm" aria-current="page">Mobile Homes</a>
+                    <a href="light-commercial.html" id="nav-commercial" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Light Commercial</a>
+                    <a href="contact-us.html" id="nav-contact" class="px-3 py-2 rounded-md text-sm font-semibold text-gray-700 hover:text-brandRed hover:bg-brandLightBlue transition-colors">Contact us</a>
+                </nav>
+
+                <!-- HEADER CALL CTA -->
+                <div class="hidden md:flex items-center">
+                    <a href="tel:+19403123081" class="bg-brandRed hover:bg-brandRed-hover text-white font-bold py-2.5 px-5 rounded-lg text-sm transition-all transform hover:-translate-y-0.5 shadow-md flex items-center gap-2">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <span>(940) 312-3081</span>
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <div class="flex lg:hidden items-center">
+                    <button id="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-navy hover:text-brandRed hover:bg-brandLightBlue focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle Navigation Menu">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU PANELS -->
+        <div class="hidden lg:hidden bg-white border-t border-gray-200" id="mobile-menu">
+            <nav class="px-4 pt-3 pb-6 space-y-2" aria-label="Mobile Navigation">
+                <a href="index.html" id="mob-nav-home" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Home</a>
+                <a href="residential-cooling.html" id="mob-nav-cooling" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Residential Cooling</a>
+                <a href="residential-heating.html" id="mob-nav-heating" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Residential Heating</a>
+                <a href="mobile-homes.html" id="mob-nav-mobile-homes" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-bold bg-navy text-white" aria-current="page">Mobile Homes</a>
+                <a href="light-commercial.html" id="mob-nav-commercial" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Light Commercial</a>
+                <a href="contact-us.html" id="mob-nav-contact" class="block w-full text-left px-4 py-2.5 rounded-md text-base font-medium text-gray-700 hover:bg-brandLightBlue">Contact us</a>
+                <div class="pt-4 border-t border-gray-100">
+                    <a href="tel:+19403123081" class="w-full bg-brandRed text-white font-bold py-3 px-4 rounded-lg text-center flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> Call (940) 312-3081
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+            <!-- SECTION 01 — HERO -->
+            <section class="relative bg-navy text-white py-16 lg:py-24 overflow-hidden border-b border-navy-light/40">
+                <!-- Background Image overlay with mobile home context -->
+                <div class="absolute inset-0 z-0 opacity-25 bg-cover bg-center" 
+                     style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80');" 
+                     aria-hidden="true"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7">
+                            <div class="inline-flex items-center gap-2 bg-brandRed/90 text-white text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-5">
+                                <i class="fa-solid fa-caravan" aria-hidden="true"></i> Dedicated Mobile Home HVAC
+                            </div>
+                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+                                Mobile Home Heating & Air Conditioning Services
+                            </h1>
+                            <h2 class="text-lg sm:text-xl text-blue-200 font-semibold mb-6">
+                                Heating and Cooling Services for Mobile Homes in Denton, TX
+                            </h2>
+                            <div class="space-y-4 text-gray-200 text-base sm:text-lg mb-8 max-w-2xl">
+                                <p>
+                                    Pronto Air provides heating and air conditioning inspections, repairs, and system replacement services for mobile homes in Denton, Texas.
+                                </p>
+                                <p class="text-sm sm:text-base text-gray-300">
+                                    Mobile home heating and cooling systems have different requirements from conventional residential systems. Pronto Air works with these systems to assess and address heating and cooling problems.
+                                </p>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="tel:+19403123081" class="bg-brandRed hover:bg-brandRed-hover text-white font-bold px-7 py-3.5 rounded-xl text-base text-center transition-all shadow-lg flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                                    <span>Call (940) 312-3081</span>
+                                </a>
+                                <a href="#mobile-services" onclick="smoothScrollTo('mobile-services')" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-7 py-3.5 rounded-xl text-base text-center transition-all backdrop-blur-sm flex items-center justify-center gap-2">
+                                    <span>Explore Mobile Home Services</span>
+                                    <i class="fa-solid fa-chevron-down text-sm" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Hero Feature Visual Card -->
+                        <div class="lg:col-span-5">
+                            <div class="bg-navy-dark/80 backdrop-blur-md rounded-2xl p-6 border border-navy-light/60 shadow-2xl relative">
+                                <div class="rounded-xl overflow-hidden mb-6 aspect-video bg-navy-light relative">
+                                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" 
+                                         alt="HVAC technician assessing system equipment" 
+                                         class="w-full h-full object-cover"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B2545/FFFFFF?text=Mobile+Home+HVAC+Service';">
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-circle-check text-brandRed mt-1" aria-hidden="true"></i>
+                                        <p class="text-sm text-gray-200">Specalized knowledge for manufactured & mobile home heating/cooling equipment.</p>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-circle-check text-brandRed mt-1" aria-hidden="true"></i>
+                                        <p class="text-sm text-gray-200">Over 20 years of hands-on HVAC industry experience in Denton County.</p>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <i class="fa-solid fa-circle-check text-brandRed mt-1" aria-hidden="true"></i>
+                                        <p class="text-sm text-gray-200">Licensed local service provider: TACLB28582E.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 02 — MOBILE HOME HEATING & AIR SERVICES -->
+            <section id="mobile-services" class="py-16 bg-white border-b border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-10">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy mb-4">
+                            Heating & Cooling Services for Mobile Homes
+                        </h2>
+                        <p class="text-gray-600 text-base leading-relaxed">
+                            Pronto Air provides inspections, repairs, and heating and air conditioning system replacement services for mobile homes.
+                        </p>
+                    </div>
+
+                    <!-- Category Filter Selector -->
+                    <div class="flex justify-center mb-10">
+                        <div class="inline-flex p-1.5 bg-brandLightBlue rounded-xl border border-blue-100 flex-wrap justify-center gap-1" role="tablist" aria-label="Mobile home service categories">
+                            <button onclick="filterMobileServices('all')" id="filter-all" class="filter-btn px-5 py-2.5 rounded-lg text-sm font-bold bg-navy text-white shadow-sm" role="tab" aria-selected="true">
+                                All Services (5)
+                            </button>
+                            <button onclick="filterMobileServices('inspections')" id="filter-inspections" class="filter-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:text-navy hover:bg-white/60" role="tab" aria-selected="false">
+                                Inspections
+                            </button>
+                            <button onclick="filterMobileServices('repairs')" id="filter-repairs" class="filter-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:text-navy hover:bg-white/60" role="tab" aria-selected="false">
+                                Repairs
+                            </button>
+                            <button onclick="filterMobileServices('replacement')" id="filter-replacement" class="filter-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:text-navy hover:bg-white/60" role="tab" aria-selected="false">
+                                Replacement
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 5 Confirmed Services Grid -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto" id="services-grid">
+                        
+                        <!-- 01 — Air Conditioning Inspections -->
+                        <div class="service-card group bg-gray-50 hover:bg-brandLightBlue rounded-2xl p-7 border border-gray-200 hover:border-blue-200 transition-all duration-200 hover:shadow-md flex flex-col justify-between" data-category="inspections">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-xs font-bold text-brandRed tracking-widest uppercase bg-white px-2.5 py-1 rounded-md border border-gray-200">01</span>
+                                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-navy group-hover:text-white rounded-xl flex items-center justify-center text-xl transition-colors shadow-sm">
+                                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-brandRed transition-colors">
+                                    Air Conditioning Inspections
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Professional AC inspection services to evaluate system operation and identify potential cooling issues in mobile homes.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-semibold text-gray-500">
+                                <span>Category: Inspection</span>
+                                <i class="fa-solid fa-chevron-right text-brandRed" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <!-- 02 — Heating Inspections -->
+                        <div class="service-card group bg-gray-50 hover:bg-brandLightBlue rounded-2xl p-7 border border-gray-200 hover:border-blue-200 transition-all duration-200 hover:shadow-md flex flex-col justify-between" data-category="inspections">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-xs font-bold text-brandRed tracking-widest uppercase bg-white px-2.5 py-1 rounded-md border border-gray-200">02</span>
+                                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-navy group-hover:text-white rounded-xl flex items-center justify-center text-xl transition-colors shadow-sm">
+                                        <i class="fa-solid fa-[#134074] fa-clipboard-check" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-brandRed transition-colors">
+                                    Heating Inspections
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Comprehensive evaluation of mobile home heating units to assess condition, functionality, and heating performance.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-semibold text-gray-500">
+                                <span>Category: Inspection</span>
+                                <i class="fa-solid fa-chevron-right text-brandRed" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <!-- 03 — Air Conditioning and Heating Replacement for Mobile Home -->
+                        <div class="service-card group bg-gray-50 hover:bg-brandLightBlue rounded-2xl p-7 border border-gray-200 hover:border-blue-200 transition-all duration-200 hover:shadow-md flex flex-col justify-between md:col-span-2 lg:col-span-1" data-category="replacement">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-xs font-bold text-brandRed tracking-widest uppercase bg-white px-2.5 py-1 rounded-md border border-gray-200">03</span>
+                                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-navy group-hover:text-white rounded-xl flex items-center justify-center text-xl transition-colors shadow-sm">
+                                        <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-brandRed transition-colors">
+                                    Air Conditioning and Heating Replacement for Mobile Home
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    System replacement services designed for manufactured and mobile homes when updating old or malfunctioning HVAC equipment.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-semibold text-gray-500">
+                                <span>Category: Replacement</span>
+                                <i class="fa-solid fa-chevron-right text-brandRed" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <!-- 04 — Air Conditioning Repair -->
+                        <div class="service-card group bg-gray-50 hover:bg-brandLightBlue rounded-2xl p-7 border border-gray-200 hover:border-blue-200 transition-all duration-200 hover:shadow-md flex flex-col justify-between" data-category="repairs">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-xs font-bold text-brandRed tracking-widest uppercase bg-white px-2.5 py-1 rounded-md border border-gray-200">04</span>
+                                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-navy group-hover:text-white rounded-xl flex items-center justify-center text-xl transition-colors shadow-sm">
+                                        <i class="fa-solid fa-snowflake" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-brandRed transition-colors">
+                                    Air Conditioning Repair
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Targeted repair solutions to fix cooling issues and restore proper air conditioning in mobile home systems.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-semibold text-gray-500">
+                                <span>Category: Repair</span>
+                                <i class="fa-solid fa-chevron-right text-brandRed" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <!-- 05 — Heating Repair -->
+                        <div class="service-card group bg-gray-50 hover:bg-brandLightBlue rounded-2xl p-7 border border-gray-200 hover:border-blue-200 transition-all duration-200 hover:shadow-md flex flex-col justify-between" data-category="repairs">
+                            <div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-xs font-bold text-brandRed tracking-widest uppercase bg-white px-2.5 py-1 rounded-md border border-gray-200">05</span>
+                                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-navy group-hover:text-white rounded-xl flex items-center justify-center text-xl transition-colors shadow-sm">
+                                        <i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-brandRed transition-colors">
+                                    Heating Repair
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Repair services addressing mobile home furnace and heating system problems to restore winter comfort.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-semibold text-gray-500">
+                                <span>Category: Repair</span>
+                                <i class="fa-solid fa-chevron-right text-brandRed" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 03 — UNDERSTANDING MOBILE HOME HVAC -->
+            <section class="py-16 lg:py-20 bg-gray-50 border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <!-- Editorial Content Column -->
+                        <div class="order-2 lg:order-1">
+                            <span class="text-brandRed font-bold text-sm uppercase tracking-wider mb-2 block">Technical Awareness</span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-navy mb-6 leading-snug">
+                                Heating & Cooling Systems for Mobile Homes
+                            </h2>
+                            <div class="prose prose-blue text-gray-700 space-y-4 leading-relaxed text-base">
+                                <p class="bg-white p-5 rounded-xl border-l-4 border-navy shadow-sm">
+                                    Mobile home heating and cooling systems are different from conventional residential equipment and require specific knowledge and care when repairs are needed.
+                                </p>
+                                <p>
+                                    Pronto Air states that its technicians are qualified to work with mobile home heating and cooling systems.
+                                </p>
+                                <p class="text-sm text-gray-600 pt-2">
+                                    Whether evaluating an older mobile home unit or assessing needed repair services, our team applies over 20 years of local industry experience to assess and address heating and cooling challenges.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Editorial Image Column -->
+                        <div class="order-1 lg:order-2">
+                            <div class="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white">
+                                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Illustrative mobile home residential exterior" 
+                                     class="w-full h-80 sm:h-96 object-cover"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/800x600/EEF4F8/0B2545?text=Mobile+Home+HVAC+Systems';">
+                                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent p-6 text-white">
+                                    <div class="text-xs font-semibold uppercase tracking-wider text-blue-200 mb-1">Denton, Texas</div>
+                                    <div class="text-sm font-medium">Qualified service for mobile home heating and cooling equipment</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 04 — INSPECTIONS, REPAIRS & REPLACEMENT -->
+            <section class="py-16 bg-navy text-white relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid lg:grid-cols-12 gap-10 items-center">
+                        <div class="lg:col-span-8 space-y-6">
+                            <div class="inline-block bg-white/10 text-blue-200 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider border border-white/20">
+                                Professional HVAC Guidance
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight">
+                                Help With Your Mobile Home HVAC System
+                            </h2>
+                            <div class="space-y-4 text-gray-200 text-base sm:text-lg leading-relaxed">
+                                <p>
+                                    Pronto Air's technicians assess heating and cooling problems in mobile homes and provide repair services.
+                                </p>
+                                <p class="text-sm sm:text-base text-gray-300">
+                                    The company also offers air conditioning and heating system replacement for mobile homes and states that it keeps informed about newer developments to help customers consider appropriate options.
+                                </p>
+                            </div>
+                            <div class="pt-4">
+                                <a href="tel:+19403123081" class="inline-flex items-center gap-3 bg-brandRed hover:bg-brandRed-hover text-white font-bold px-8 py-4 rounded-xl text-base transition-all shadow-lg">
+                                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                                    <span>Call to Discuss Your HVAC Needs</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Accent Column -->
+                        <div class="lg:col-span-4">
+                            <div class="bg-navy-dark p-6 rounded-2xl border border-navy-light/50 space-y-4">
+                                <div class="flex items-center gap-3 text-brandRed">
+                                    <i class="fa-solid fa-circle-info text-xl" aria-hidden="true"></i>
+                                    <h3 class="font-bold text-white text-lg">Key Focus Areas</h3>
+                                </div>
+                                <ul class="space-y-3 text-sm text-gray-300">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brandRed mt-0.5" aria-hidden="true"></i>
+                                        <span>System diagnostic evaluations</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brandRed mt-0.5" aria-hidden="true"></i>
+                                        <span>Targeted heating & cooling repairs</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-check text-brandRed mt-0.5" aria-hidden="true"></i>
+                                        <span>Mobile home unit replacement options</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 05 — SERVICE AREA -->
+            <section class="py-16 bg-white border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-3xl mx-auto text-center mb-10">
+                        <span class="text-brandRed font-bold text-xs uppercase tracking-wider block mb-2">Coverage</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy mb-4">
+                            Mobile Home HVAC Services in Denton and Surrounding Areas
+                        </h2>
+                        <p class="text-gray-600 text-base">
+                            Pronto Air lists Denton County and the following communities among its service areas:
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
+                        <div class="bg-brandLightBlue/60 p-4 rounded-xl text-center border border-blue-100 hover:border-brandRed transition-colors">
+                            <i class="fa-solid fa-location-dot text-brandRed mb-2 text-lg" aria-hidden="true"></i>
+                            <div class="font-bold text-navy">Denton</div>
+                        </div>
+                        <div class="bg-brandLightBlue/60 p-4 rounded-xl text-center border border-blue-100 hover:border-brandRed transition-colors">
+                            <i class="fa-solid fa-location-dot text-brandRed mb-2 text-lg" aria-hidden="true"></i>
+                            <div class="font-bold text-navy">Lewisville</div>
+                        </div>
+                        <div class="bg-brandLightBlue/60 p-4 rounded-xl text-center border border-blue-100 hover:border-brandRed transition-colors">
+                            <i class="fa-solid fa-location-dot text-brandRed mb-2 text-lg" aria-hidden="true"></i>
+                            <div class="font-bold text-navy">Flower Mound</div>
+                        </div>
+                        <div class="bg-brandLightBlue/60 p-4 rounded-xl text-center border border-blue-100 hover:border-brandRed transition-colors">
+                            <i class="fa-solid fa-location-dot text-brandRed mb-2 text-lg" aria-hidden="true"></i>
+                            <div class="font-bold text-navy">Gainesville</div>
+                        </div>
+                        <div class="bg-brandLightBlue/60 p-4 rounded-xl text-center border border-blue-100 hover:border-brandRed transition-colors col-span-2 sm:col-span-1">
+                            <i class="fa-solid fa-location-dot text-brandRed mb-2 text-lg" aria-hidden="true"></i>
+                            <div class="font-bold text-navy">Grapevine</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 06 — CONTACT CTA -->
+            <section class="py-16 bg-brandLightBlue">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy mb-4">
+                        Need Heating or Cooling Service for Your Mobile Home?
+                    </h2>
+                    <p class="text-gray-600 text-base max-w-2xl mx-auto mb-8">
+                        Contact Pronto Air to discuss mobile home heating and air conditioning inspections, repairs, or replacement services.
+                    </p>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-blue-100 max-w-2xl mx-auto mb-8">
+                        <div class="grid sm:grid-cols-2 gap-6 text-left">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-brandLightBlue text-brandRed rounded-xl flex items-center justify-center text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-semibold text-gray-500 uppercase">Phone Contact</div>
+                                    <a href="tel:+19403123081" class="text-lg font-bold text-navy hover:text-brandRed transition-colors">
+                                        (940) 312-3081
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-brandLightBlue text-navy rounded-xl flex items-center justify-center text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <div class="text-xs font-semibold text-gray-500 uppercase">Email Direct</div>
+                                    <a href="mailto:prontoairdenton@hotmail.com" class="text-sm font-bold text-navy hover:text-brandRed transition-colors truncate block">
+                                        prontoairdenton@hotmail.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="tel:+19403123081" class="bg-brandRed hover:bg-brandRed-hover text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                            <span>Call Pronto Air</span>
+                        </a>
+                        <a href="mailto:prontoairdenton@hotmail.com" class="bg-navy hover:bg-navy-light text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                            <span>Email Pronto Air</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+    </main>
+
+    <!-- SHARED FOOTER -->
+    <footer class="pronto-site-footer bg-navy text-white pt-12 pb-8 border-t-4 border-brandRed mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                
+                <!-- BRAND COL -->
+                <div class="space-y-4">
+                    <a href="index.html" class="inline-flex items-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandRed" aria-label="Pronto Air Home">
+                        <span class="inline-flex items-center bg-white rounded-lg p-2">
+                            <img src="https://irp.cdn-website.com/b34a80cb/dms3rep/multi/opt/Pronto+Air+Services+Denton+Texas+Logos+%281%29-1920w.png" alt="Pronto Air Services Logo" class="h-12 w-auto max-w-full object-contain" loading="lazy">
+                        </span>
+                    </a>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Reliable heating, cooling, and air quality services across Denton, TX and surrounding areas.
+                    </p>
+                    <div class="inline-block bg-white/10 text-xs px-3 py-1.5 rounded text-blue-200 font-mono">
+                        License: TACLB28582E
+                    </div>
+                </div>
+
+                <!-- MAIN PAGES -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Navigation</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="index.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Home</a></li>
+                        <li><a href="residential-cooling.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Residential Cooling</a></li>
+                        <li><a href="residential-heating.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Residential Heating</a></li>
+                        <li><a href="mobile-homes.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Mobile Homes</a></li>
+                        <li><a href="light-commercial.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Light Commercial</a></li>
+                        <li><a href="contact-us.html" class="hover:text-brandRed transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-brandRed"></i> Contact us</a></li>
+                    </ul>
+                </div>
+
+                <!-- SECONDARY / MAINTENANCE LINK -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Customer Info</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li>
+                            <a href="service-agreement-faqs.html" class="hover:text-brandRed transition flex items-center gap-2 font-medium text-blue-200">
+                                <i class="fa-solid fa-shield-heart text-brandRed"></i> Service Agreement & FAQs
+                            </a>
+                        </li>
+                        <li><span class="text-gray-400 text-xs block mt-2 mb-4">Annual HVAC preventative maintenance programs and answers to common heating and cooling questions.</span></li>
+                        <li>
+                            <a href="privacy-policy.html" class="hover:text-brandRed transition flex items-center gap-2 font-medium text-blue-200">
+                                <i class="fa-solid fa-shield-halved text-brandRed" aria-hidden="true"></i> Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CONTACT INFO -->
+                <div>
+                    <h3 class="text-base font-bold text-white uppercase tracking-wider mb-4 border-b border-blue-900/80 pb-2">Direct Contact</h3>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Call Us Directly:</span>
+                                <a href="tel:+19403123081" class="font-bold text-white hover:text-brandRed">(940) 312-3081</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Email Us:</span>
+                                <a href="mailto:prontoairdenton@hotmail.com" class="hover:text-brandRed break-all">prontoairdenton@hotmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-map-pin text-brandRed mt-1"></i>
+                            <div>
+                                <span class="block text-xs text-gray-400">Service Coverage:</span>
+                                <span class="text-gray-200">Denton County, Lewisville, Flower Mound, Gainesville, Grapevine</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-blue-900/50 text-center text-xs text-gray-400 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 Pronto Air. All rights reserved. Professional HVAC Services in Denton, Texas.</p>
+                <p>License TACLB28582E | Heating & Air Conditioning Maintenance</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navegación compartida: enlaces reales a páginas HTML independientes.
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const button = document.getElementById('mobile-menu-btn');
+            const isOpening = mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden', !isOpening);
+            menuIcon.className = isOpening ? 'fa-solid fa-xmark text-2xl' : 'fa-solid fa-bars text-2xl';
+            button.setAttribute('aria-expanded', String(isOpening));
+        }
+
+        // Filtro original de servicios y desplazamiento interno de Mobile Homes.
+        function filterMobileServices(category) {
+            const cards = document.querySelectorAll('.service-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            // Button style updates
+            filterBtns.forEach(btn => {
+                btn.className = "filter-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:text-navy hover:bg-white/60";
+                btn.setAttribute('aria-selected', 'false');
+            });
+
+            const activeBtn = document.getElementById(`filter-${category}`);
+            if (activeBtn) {
+                activeBtn.className = "filter-btn px-5 py-2.5 rounded-lg text-sm font-bold bg-navy text-white shadow-sm";
+                activeBtn.setAttribute('aria-selected', 'true');
+            }
+
+            // Filter service cards
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Smooth scroll helper for internal links
+        function smoothScrollTo(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -192,9 +192,9 @@
             </div>
 
             <!-- Selector Interactivo de Servicios -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 md:mb-0">
                 <!-- Card 1 -->
-                <div onclick="selectService('cooling')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectService('cooling'); }" role="button" tabindex="0" aria-controls="service-detail-box" aria-pressed="true" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
+                <div class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-snowflake"></i>
                     </div>
@@ -205,10 +205,12 @@
                     <span class="text-prontoRed text-sm font-semibold flex items-center gap-1 group-hover:underline">
                         View details <i class="fa-solid fa-arrow-right text-xs"></i>
                     </span>
+                <a href="residential-cooling.html" class="absolute inset-0 hidden md:block rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed" aria-label="Open Residential Cooling page"></a>
+                    <button type="button" onclick="selectService('cooling')" class="service-preview-trigger absolute inset-0 w-full rounded-2xl bg-transparent md:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed" aria-label="Preview Residential Cooling details" aria-controls="service-detail-box" aria-pressed="true"></button>
                 </div>
 
                 <!-- Card 2 -->
-                <div onclick="selectService('heating')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectService('heating'); }" role="button" tabindex="0" aria-controls="service-detail-box" aria-pressed="false" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
+                <div class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-fire"></i>
                     </div>
@@ -219,10 +221,12 @@
                     <span class="text-prontoRed text-sm font-semibold flex items-center gap-1 group-hover:underline">
                         View details <i class="fa-solid fa-arrow-right text-xs"></i>
                     </span>
+                <a href="residential-heating.html" class="absolute inset-0 hidden md:block rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed" aria-label="Open Residential Heating page"></a>
+                    <button type="button" onclick="selectService('heating')" class="service-preview-trigger absolute inset-0 w-full rounded-2xl bg-transparent md:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed" aria-label="Preview Residential Heating details" aria-controls="service-detail-box" aria-pressed="false"></button>
                 </div>
 
                 <!-- Card 3 -->
-                <div onclick="selectService('mobile')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectService('mobile'); }" role="button" tabindex="0" aria-controls="service-detail-box" aria-pressed="false" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
+                <div class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-house-chimney"></i>
                     </div>
@@ -233,10 +237,12 @@
                     <span class="text-prontoRed text-sm font-semibold flex items-center gap-1 group-hover:underline">
                         View details <i class="fa-solid fa-arrow-right text-xs"></i>
                     </span>
+                <a href="mobile-homes.html" class="absolute inset-0 hidden md:block rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed" aria-label="Open Mobile Homes page"></a>
+                    <button type="button" onclick="selectService('mobile')" class="service-preview-trigger absolute inset-0 w-full rounded-2xl bg-transparent md:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed" aria-label="Preview Mobile Homes details" aria-controls="service-detail-box" aria-pressed="false"></button>
                 </div>
 
                 <!-- Card 4 -->
-                <div onclick="selectService('commercial')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectService('commercial'); }" role="button" tabindex="0" aria-controls="service-detail-box" aria-pressed="false" class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group">
+                <div class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-building"></i>
                     </div>
@@ -247,11 +253,13 @@
                     <span class="text-prontoRed text-sm font-semibold flex items-center gap-1 group-hover:underline">
                         View details <i class="fa-solid fa-arrow-right text-xs"></i>
                     </span>
+                <a href="light-commercial.html" class="absolute inset-0 hidden md:block rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed" aria-label="Open Light Commercial page"></a>
+                    <button type="button" onclick="selectService('commercial')" class="service-preview-trigger absolute inset-0 w-full rounded-2xl bg-transparent md:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed" aria-label="Preview Light Commercial details" aria-controls="service-detail-box" aria-pressed="false"></button>
                 </div>
             </div>
 
             <!-- Panel de Información Ampliada Interactiva -->
-            <div id="service-detail-box" class="scroll-mt-24 bg-prontoNavy text-white rounded-3xl p-8 lg:p-12 shadow-xl flex flex-col lg:flex-row gap-8 items-center">
+            <div id="service-detail-box" class="md:hidden scroll-mt-24 bg-prontoNavy text-white rounded-3xl p-8 lg:p-12 shadow-xl flex flex-col lg:flex-row gap-8 items-center">
                 <div class="lg:w-2/3 space-y-4">
                     <span id="detail-tag" class="bg-prontoRed text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Selected Service</span>
                     <h3 id="detail-title" class="text-2xl sm:text-3xl font-bold">Residential Cooling Services</h3>
@@ -653,7 +661,7 @@
             image.alt = `Illustrative image for ${data.tag}`;
             document.getElementById('detail-page-link').href = servicePageLinks[type];
             const order = ['cooling', 'heating', 'mobile', 'commercial'];
-            document.querySelectorAll('.service-card').forEach((card, i) => {
+            document.querySelectorAll('.service-preview-trigger').forEach((card, i) => {
                 card.setAttribute('aria-pressed', String(order[i] === type));
             });
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

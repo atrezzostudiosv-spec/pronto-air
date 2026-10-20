@@ -163,67 +163,31 @@
     <main class="flex-grow">
 
             <!-- SECTION 01 — HERO -->
-            <section class="relative bg-navy text-white py-16 lg:py-24 overflow-hidden border-b border-navy-light/40">
-                <!-- Background Image overlay with mobile home context -->
-                <div class="absolute inset-0 z-0 opacity-25 bg-cover bg-center" 
-                     style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80');" 
-                     aria-hidden="true"></div>
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="grid lg:grid-cols-12 gap-12 items-center">
-                        <div class="lg:col-span-7">
-                            <div class="inline-flex items-center gap-2 bg-brandRed/90 text-white text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-5">
-                                <i class="fa-solid fa-caravan" aria-hidden="true"></i> Dedicated Mobile Home HVAC
-                            </div>
-                            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
-                                Mobile Home Heating & Air Conditioning Services
-                            </h1>
-                            <h2 class="text-lg sm:text-xl text-blue-200 font-semibold mb-6">
-                                Heating and Cooling Services for Mobile Homes in Denton, TX
-                            </h2>
-                            <div class="space-y-4 text-gray-200 text-base sm:text-lg mb-8 max-w-2xl">
-                                <p>
-                                    Pronto Air provides heating and air conditioning inspections, repairs, and system replacement services for mobile homes in Denton, Texas.
-                                </p>
-                                <p class="text-sm sm:text-base text-gray-300">
-                                    Mobile home heating and cooling systems have different requirements from conventional residential systems. Pronto Air works with these systems to assess and address heating and cooling problems.
-                                </p>
-                            </div>
-                            <div class="flex flex-col sm:flex-row gap-4">
-                                <a href="tel:+19403123081" class="bg-brandRed hover:bg-brandRed-hover text-white font-bold px-7 py-3.5 rounded-xl text-base text-center transition-all shadow-lg flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                                    <span>Call (940) 312-3081</span>
-                                </a>
-                                <a href="#mobile-services" onclick="smoothScrollTo('mobile-services')" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-7 py-3.5 rounded-xl text-base text-center transition-all backdrop-blur-sm flex items-center justify-center gap-2">
-                                    <span>Explore Mobile Home Services</span>
-                                    <i class="fa-solid fa-chevron-down text-sm" aria-hidden="true"></i>
-                                </a>
-                            </div>
+            <section class="relative overflow-hidden bg-navy text-white">
+                <div class="absolute inset-0 hidden md:block bg-cover bg-center" style="background-image: linear-gradient(90deg, rgba(6,23,46,.94) 0%, rgba(11,37,69,.80) 42%, rgba(11,37,69,.28) 100%), url('images/mobile-homes-hero.webp');"></div>
+                <div class="absolute inset-0 md:hidden pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.28) 1.4px, transparent 1.4px); background-size: 20px 20px; opacity:.62"></div>
+                <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-24">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs sm:text-sm font-semibold tracking-wide text-white backdrop-blur-sm">
+                            <i class="fa-solid fa-caravan text-brandRed" aria-hidden="true"></i> Dedicated Mobile Home HVAC
                         </div>
-
-                        <!-- Hero Feature Visual Card -->
-                        <div class="lg:col-span-5">
-                            <div class="bg-navy-dark/80 backdrop-blur-md rounded-2xl p-6 border border-navy-light/60 shadow-2xl relative">
-                                <div class="rounded-xl overflow-hidden mb-6 aspect-video bg-navy-light relative">
-                                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" 
-                                         alt="HVAC technician assessing system equipment" 
-                                         class="w-full h-full object-cover"
-                                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0B2545/FFFFFF?text=Mobile+Home+HVAC+Service';">
-                                </div>
-                                <div class="space-y-3">
-                                    <div class="flex items-start gap-3">
-                                        <i class="fa-solid fa-circle-check text-brandRed mt-1" aria-hidden="true"></i>
-                                        <p class="text-sm text-gray-200">Specalized knowledge for manufactured & mobile home heating/cooling equipment.</p>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <i class="fa-solid fa-circle-check text-brandRed mt-1" aria-hidden="true"></i>
-                                        <p class="text-sm text-gray-200">Over 20 years of hands-on HVAC industry experience in Denton County.</p>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <i class="fa-solid fa-circle-check text-brandRed mt-1" aria-hidden="true"></i>
-                                        <p class="text-sm text-gray-200">Licensed local service provider: TACLB28582E.</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]">Mobile Home Heating & Air Conditioning Services</h1>
+                <h2 class="mt-1 text-lg sm:text-xl text-blue-200 font-semibold">Heating and Cooling Services for Mobile Homes in Denton, TX</h2>
+                        <div class="mt-5 space-y-4 text-gray-200 text-base sm:text-lg leading-relaxed max-w-2xl">
+                            <p>Pronto Air provides heating and air conditioning inspections, repairs, and system replacement services for mobile homes in Denton, Texas.</p>
+                            <p class="text-sm sm:text-base text-gray-300">Mobile home heating and cooling systems have different requirements from conventional residential systems. Pronto Air works with these systems to assess and address heating and cooling problems.</p>
+                        </div>
+                        <div class="mt-7 flex flex-col sm:flex-row gap-3">
+                            <a href="tel:+19403123081" class="bg-brandRed hover:bg-red-700 text-white text-center font-bold px-7 py-4 rounded-xl transition shadow-lg flex items-center justify-center gap-3 text-base">
+                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call (940) 312-3081
+                            </a>
+                            <a href="#mobile-services" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white text-center font-bold px-7 py-4 rounded-xl transition flex items-center justify-center gap-2 text-base backdrop-blur-sm">
+                                Explore Mobile Home Services <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="mt-8 md:hidden rounded-2xl border border-white/10 bg-[#07182D] p-4 shadow-2xl">
+                            <img src="images/mobile-homes-hero.webp" alt="Illustrative HVAC image for Mobile Home Heating & Air Conditioning Services" class="w-full h-[235px] rounded-xl object-cover object-[62%_center]">
+                            <ul class="mt-5 space-y-3 text-sm leading-relaxed text-blue-100"><li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-1 shrink-0 text-brandRed"></i><span>Heating and cooling inspections for mobile homes.</span></li><li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-1 shrink-0 text-brandRed"></i><span>Repair support for mobile home HVAC systems.</span></li><li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-1 shrink-0 text-brandRed"></i><span>System replacement services for mobile homes.</span></li></ul>
                         </div>
                     </div>
                 </div>

@@ -155,46 +155,37 @@
     <main class="flex-grow">
         
         <!-- SECTION 01 — HERO -->
-        <section class="bg-navy text-white relative py-16 md:py-24 bg-cover bg-center overflow-hidden" style="background-image: linear-gradient(rgba(11, 37, 69, 0.88), rgba(11, 37, 69, 0.94)), url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=80');">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid md:grid-cols-12 gap-8 items-center">
-                    <div class="md:col-span-7">
-                        <span class="inline-flex items-center gap-2 bg-brandRed/90 text-white text-xs uppercase font-bold tracking-wider px-3.5 py-1.5 rounded-full mb-4">
-                            <i class="fa-solid fa-fire text-amber-300"></i> Residential Heating Specialist
-                        </span>
-                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4 text-white">
-                            Residential Heating Services
-                        </h1>
-                        <p class="text-lg md:text-xl font-medium text-brandRed bg-white/10 backdrop-blur-sm inline-block px-3 py-1 rounded mb-4">
-                            Heating Maintenance, Repair & Installation in Denton, TX
-                        </p>
-                        <p class="text-gray-200 text-base md:text-lg mb-8 leading-relaxed max-w-2xl">
-                            Pronto Air provides residential heating repairs, maintenance, and installation of new heating systems in Denton, Texas. With over 20 years of experience, the company performs heating system inspections to identify problems and carry out necessary repairs.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="tel:+19403123081" class="bg-brandRed hover:bg-red-700 text-white font-bold py-3.5 px-7 rounded-md text-center transition-all shadow-lg flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-phone"></i> Call (940) 312-3081
+            <section class="relative overflow-hidden bg-navy text-white">
+                <div class="absolute inset-0 hidden md:block bg-cover bg-center" style="background-image: linear-gradient(90deg, rgba(6,23,46,.94) 0%, rgba(11,37,69,.80) 42%, rgba(11,37,69,.28) 100%), url('images/residential-heating-hero.webp');"></div>
+                <div class="absolute inset-0 md:hidden pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.28) 1.4px, transparent 1.4px); background-size: 20px 20px; opacity:.62"></div>
+                <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-24">
+                    <div class="max-w-2xl">
+                        <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs sm:text-sm font-semibold tracking-wide text-white backdrop-blur-sm">
+                            <i class="fa-solid fa-fire text-brandRed" aria-hidden="true"></i> Residential Heating Specialist
+                        </div>
+                        <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]">Residential Heating Services</h1>
+                <h2 class="mt-1 text-lg sm:text-xl text-blue-200 font-semibold">Heating Maintenance, Repair & Installation in Denton, TX</h2>
+                        <div class="mt-5 space-y-4 text-gray-200 text-base sm:text-lg leading-relaxed max-w-2xl">
+                            <p>Pronto Air provides residential heating repairs, maintenance, and installation of new heating systems in Denton, Texas.</p>
+                            <p class="text-sm sm:text-base text-gray-300">With over 20 years of experience, the company performs heating system inspections to identify problems and carry out necessary repairs.</p>
+                        </div>
+                        <div class="mt-7 flex flex-col sm:flex-row gap-3">
+                            <a href="tel:+19403123081" class="bg-brandRed hover:bg-red-700 text-white text-center font-bold px-7 py-4 rounded-xl transition shadow-lg flex items-center justify-center gap-3 text-base">
+                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call (940) 312-3081
                             </a>
-                            <a href="#heating-services-grid" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold py-3.5 px-6 rounded-md text-center transition-all backdrop-blur-sm flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-list-check"></i> Explore Heating Services
+                            <a href="#heating-services-grid" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white text-center font-bold px-7 py-4 rounded-xl transition flex items-center justify-center gap-2 text-base backdrop-blur-sm">
+                                Explore Heating Services <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
                             </a>
                         </div>
-                    </div>
-                    <div class="md:col-span-5 hidden md:block">
-                        <div class="relative mx-auto max-w-md rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
-                            <!-- Illustrative image of residential heating equipment -->
-                            <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80" alt="Illustrative Residential Heating System Equipment" class="w-full h-80 object-cover" onerror="this.src='https://placehold.co/600x400/134074/ffffff?text=Residential+Heating+System'">
-                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-navy via-navy/80 to-transparent p-4 text-xs text-gray-300">
-                                <p class="font-semibold text-white">Residential Heating Expertise</p>
-                                <p>Licensed HVAC Services • TACLB28582E</p>
-                            </div>
+                        <div class="mt-8 md:hidden rounded-2xl border border-white/10 bg-[#07182D] p-4 shadow-2xl">
+                            <img src="images/residential-heating-hero.webp" alt="Illustrative HVAC image for Residential Heating Services" class="w-full h-[235px] rounded-xl object-cover object-[62%_center]">
+                            <ul class="mt-5 space-y-3 text-sm leading-relaxed text-blue-100"><li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-1 shrink-0 text-brandRed"></i><span>Heating inspections to identify system problems.</span></li><li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-1 shrink-0 text-brandRed"></i><span>Maintenance and repair for home heating equipment.</span></li><li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-1 shrink-0 text-brandRed"></i><span>Installation of new heating systems.</span></li></ul>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- SECTION 02 — HEATING MAINTENANCE, REPAIR & INSTALLATION -->
+            <!-- SECTION 02 — HEATING MAINTENANCE, REPAIR & INSTALLATION -->
         <section id="heating-services-grid" class="py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">

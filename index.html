@@ -142,22 +142,30 @@
         <main id="main-content">
 
     <!-- SECCIÓN 01 — HERO -->
-    <section id="home" class="relative isolate flex min-h-[72svh] items-center overflow-hidden bg-prontoNavy text-white lg:min-h-[80vh]">
-        <!-- One illustrative HVAC photograph, with a navy overlay for accessible text. -->
-        <div class="absolute inset-0 bg-cover bg-center lg:bg-center" style="background-image: url('https://images.unsplash.com/photo-1581092921461-eab10380bee1?auto=format&fit=crop&q=85&w=1920');" aria-hidden="true"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#06172E]/90 via-[#0B2545]/70 to-[#0B2545]/35" aria-hidden="true"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#06172E]/65 via-transparent to-transparent" aria-hidden="true"></div>
-        <div class="relative z-10 mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+    <section id="home" class="relative isolate overflow-hidden bg-prontoNavy text-white">
+        <!-- Desktop & tablet: one full-bleed HVAC photograph, no second overlay photo. -->
+        <div class="pointer-events-none absolute inset-0 hidden bg-cover bg-center md:block"
+             style="background-image: linear-gradient(90deg, rgba(6,22,43,.94) 0%, rgba(11,37,69,.78) 42%, rgba(11,37,69,.24) 100%), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=85&w=1920');"
+             aria-hidden="true"></div>
+
+        <!-- Mobile: solid navy with the same subtle 16px dots used on Service Agreement & FAQs. -->
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] opacity-10 md:hidden" aria-hidden="true"></div>
+
+        <div class="relative z-10 mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-16 md:py-24 lg:px-8 lg:py-28">
             <div class="max-w-2xl">
-                <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-[#0B2545]/40 px-3 py-1.5 text-xs font-semibold tracking-wide text-white backdrop-blur-sm sm:text-sm">
-                    <i class="fa-solid fa-star text-prontoRed" aria-hidden="true"></i> Family-Owned &amp; Operated • 20+ Years Experience
+                <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-prontoRed/20 px-3 py-1.5 text-xs font-semibold tracking-wide text-red-100 sm:text-sm">
+                    <i class="fa-solid fa-star text-prontoRed" aria-hidden="true"></i>
+                    Family-Owned &amp; Operated · 20+ Years Experience
                 </p>
+
                 <h1 class="mb-5 max-w-2xl text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
                     Heating &amp; Air Conditioning Services in Denton, TX
                 </h1>
+
                 <p class="mb-7 max-w-xl text-base leading-relaxed text-gray-100 sm:text-lg lg:text-xl">
                     Residential heating and cooling, mobile home HVAC, and light commercial service.
                 </p>
+
                 <div class="flex flex-col gap-3 sm:flex-row sm:gap-4">
                     <a href="tel:+19403123081" class="inline-flex items-center justify-center gap-2 rounded-xl bg-prontoRed px-7 py-3.5 text-base font-bold text-white shadow-lg transition hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
                         <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call (940) 312-3081
@@ -165,6 +173,19 @@
                     <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/10 px-7 py-3.5 text-base font-bold text-white backdrop-blur-sm transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
                         Request Service <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
                     </a>
+                </div>
+
+                <!-- Mobile-only visual card follows both CTA buttons. -->
+                <div class="mt-8 rounded-2xl border border-white/10 bg-[#07182D] p-4 shadow-xl sm:p-5 md:hidden">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=85&w=900"
+                         alt="Illustrative photograph of HVAC equipment and service"
+                         class="h-52 w-full rounded-xl object-cover sm:h-64"
+                         loading="eager" decoding="async">
+                    <ul class="mt-5 space-y-3 text-sm leading-relaxed text-blue-100">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-1 shrink-0 text-prontoRed" aria-hidden="true"></i><span>Residential heating &amp; cooling</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-1 shrink-0 text-prontoRed" aria-hidden="true"></i><span>Mobile home HVAC services</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check mt-1 shrink-0 text-prontoRed" aria-hidden="true"></i><span>Light commercial HVAC service &amp; repairs</span></li>
+                    </ul>
                 </div>
             </div>
         </div>

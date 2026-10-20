@@ -38,6 +38,14 @@
             outline: 2px solid #D90429;
             outline-offset: 2px;
         }
+        /* Horizontal scrolling stays inside the mobile services rail. */
+        @media (max-width: 767px) {
+            .pronto-services-carousel {
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .pronto-services-carousel::-webkit-scrollbar { display: none; }
+        }
     </style>
 
     <!-- Mobile-only utility bar: show just the centered call link; desktop/tablet unchanged. -->
@@ -192,9 +200,9 @@
             </div>
 
             <!-- Selector Interactivo de Servicios -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 md:mb-0">
+            <div id="services-cards-carousel" class="pronto-services-carousel flex gap-4 overflow-x-auto overscroll-x-contain snap-x snap-mandatory scroll-smooth pb-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:overflow-visible md:snap-none md:pb-0" aria-label="Heating and cooling services">
                 <!-- Card 1 -->
-                <div class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
+                <div class="service-card w-[82%] sm:w-[62%] shrink-0 snap-start self-stretch md:w-auto md:shrink cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-snowflake"></i>
                     </div>
@@ -210,7 +218,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
+                <div class="service-card w-[82%] sm:w-[62%] shrink-0 snap-start self-stretch md:w-auto md:shrink cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-fire"></i>
                     </div>
@@ -226,7 +234,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
+                <div class="service-card w-[82%] sm:w-[62%] shrink-0 snap-start self-stretch md:w-auto md:shrink cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-house-chimney"></i>
                     </div>
@@ -242,7 +250,7 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div class="service-card cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
+                <div class="service-card w-[82%] sm:w-[62%] shrink-0 snap-start self-stretch md:w-auto md:shrink cursor-pointer bg-prontoLight border-2 border-transparent hover:border-prontoRed p-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-xl group relative focus-within:border-prontoRed focus-within:shadow-xl">
                     <div class="w-14 h-14 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-2xl mb-6 transition-colors">
                         <i class="fa-solid fa-building"></i>
                     </div>
@@ -256,6 +264,20 @@
                 <a href="light-commercial.html" class="absolute inset-0 hidden md:block rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed" aria-label="Open Light Commercial page"></a>
                     <button type="button" onclick="selectService('commercial')" class="service-preview-trigger absolute inset-0 w-full rounded-2xl bg-transparent md:hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed" aria-label="Preview Light Commercial details" aria-controls="service-detail-box" aria-pressed="false"></button>
                 </div>
+            </div>
+
+            <!-- Mobile-only carousel controls; desktop/tablet retain the grid. -->
+            <div class="mb-8 flex items-center justify-center gap-4 md:hidden" aria-label="Navigate services">
+                <button type="button" id="services-carousel-previous" onclick="moveServicesCarousel(-1)" disabled aria-label="Previous service" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-prontoNavy transition hover:bg-prontoLight focus-visible:outline focus-visible:outline-2 focus-visible:outline-prontoRed disabled:cursor-not-allowed disabled:opacity-30">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <div class="h-1 w-32 overflow-hidden rounded-full bg-gray-200" aria-hidden="true">
+                    <div id="services-carousel-progress" class="h-full w-1/4 rounded-full bg-prontoRed transition-transform duration-200" style="transform: translateX(0%);"></div>
+                </div>
+                <span id="services-carousel-position" class="sr-only" aria-live="polite" aria-atomic="true">Service 1 of 4</span>
+                <button type="button" id="services-carousel-next" onclick="moveServicesCarousel(1)" aria-label="Next service" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-prontoNavy transition hover:bg-prontoLight focus-visible:outline focus-visible:outline-2 focus-visible:outline-prontoRed disabled:cursor-not-allowed disabled:opacity-30">
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
             </div>
 
             <!-- Panel de Información Ampliada Interactiva -->
@@ -669,6 +691,63 @@
                 behavior: reduceMotion ? 'auto' : 'smooth', block: 'start'
             });
         }
+
+        // Mobile-only service rail: native finger swiping, snap points and accessible controls.
+        function getServicesCarouselIndex() {
+            const carousel = document.getElementById('services-cards-carousel');
+            if (!carousel) return 0;
+            const cards = [...carousel.querySelectorAll('.service-card')];
+            if (!cards.length) return 0;
+            const firstLeft = cards[0].offsetLeft;
+            let index = 0;
+            let nearest = Infinity;
+            cards.forEach((card, i) => {
+                const distance = Math.abs(carousel.scrollLeft - (card.offsetLeft - firstLeft));
+                if (distance < nearest) { nearest = distance; index = i; }
+            });
+            return index;
+        }
+
+        function updateServicesCarouselControls() {
+            const carousel = document.getElementById('services-cards-carousel');
+            if (!carousel) return;
+            const cards = carousel.querySelectorAll('.service-card');
+            const count = cards.length;
+            if (!count) return;
+            const index = getServicesCarouselIndex();
+            const prev = document.getElementById('services-carousel-previous');
+            const next = document.getElementById('services-carousel-next');
+            const progress = document.getElementById('services-carousel-progress');
+            const position = document.getElementById('services-carousel-position');
+            if (prev) prev.disabled = index === 0;
+            if (next) next.disabled = index === count - 1;
+            if (progress) progress.style.transform = 'translateX(' + (index * 100) + '%)';
+            if (position) {
+                const value = 'Service ' + (index + 1) + ' of ' + count;
+                if (position.textContent !== value) position.textContent = value;
+            }
+        }
+
+        function moveServicesCarousel(direction) {
+            const carousel = document.getElementById('services-cards-carousel');
+            if (!carousel) return;
+            const cards = [...carousel.querySelectorAll('.service-card')];
+            if (!cards.length) return;
+            const index = Math.max(0, Math.min(cards.length - 1, getServicesCarouselIndex() + direction));
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            carousel.scrollTo({
+                left: cards[index].offsetLeft - cards[0].offsetLeft,
+                behavior: reduceMotion ? 'auto' : 'smooth'
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousel = document.getElementById('services-cards-carousel');
+            if (!carousel) return;
+            carousel.addEventListener('scroll', updateServicesCarouselControls, { passive: true });
+            window.addEventListener('resize', updateServicesCarouselControls);
+            updateServicesCarouselControls();
+        });
 
         // Validación y aviso del formulario de contacto
         function handleFormSubmit(event) {

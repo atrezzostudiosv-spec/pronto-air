@@ -87,9 +87,16 @@
             }
         }
     </style>
+    <!-- Keyboard-only skip navigation and reduced-motion preference. -->
+    <style>
+        .pronto-skip-link { position: absolute; top: -7rem; left: 1rem; z-index: 9999; padding: .75rem 1rem; background: #fff; color: #0B2545; border: 2px solid #D90429; border-radius: .625rem; font-weight: 700; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+        .pronto-skip-link:focus { top: 1rem; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto !important; } }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 antialiased flex flex-col min-h-screen">
+    <a href="#main-content" class="pronto-skip-link">Skip to main content</a>
 
     <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
     <div class="pronto-site-utility bg-navy-dark text-white text-xs sm:text-sm py-2 px-4 border-b border-navy-light/30">

@@ -118,6 +118,32 @@
             .cooling-system-item:hover .cooling-system-icon { transform: none; }
         }
     </style>
+    <!-- Tablet only: avoid redundant contact links in the utility bar; center the existing header call button. -->
+    <style>
+        @media (min-width: 768px) and (max-width: 1023.98px) {
+            .pronto-site-utility > div {
+                justify-content: center;
+            }
+            .pronto-site-utility > div > div:first-child {
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+                gap: clamp(1.5rem, 5vw, 4rem);
+            }
+            .pronto-site-utility > div > div:first-child > span:first-child {
+                white-space: nowrap;
+            }
+            .pronto-site-utility > div > div:last-child {
+                display: none;
+            }
+            .pronto-site-header .pronto-tablet-call {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
@@ -143,7 +169,7 @@
     <!-- MAIN HEADER / NAVIGATION -->
     <header class="pronto-site-header bg-white sticky top-0 z-50 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="relative flex justify-between items-center h-20">
                 <!-- LOGO -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="index.html" class="text-left focus:outline-none" aria-label="Pronto Air Home">
@@ -164,7 +190,7 @@
                 </nav>
 
                 <!-- HEADER CALL CTA -->
-                <div class="hidden md:flex items-center">
+                <div class="pronto-tablet-call hidden md:flex items-center">
                     <a href="tel:+19403123081" class="bg-brandRed hover:bg-brandRed-hover text-white font-bold py-2.5 px-5 rounded-lg text-sm transition-all transform hover:-translate-y-0.5 shadow-md flex items-center gap-2">
                         <i class="fa-solid fa-phone" aria-hidden="true"></i>
                         <span>(940) 312-3081</span>

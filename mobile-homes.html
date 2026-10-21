@@ -80,6 +80,34 @@
             }
         }
     </style>
+
+    <!-- Mobile Homes Bento card treatment: premium lift, smooth zoom, reduced-motion aware. -->
+    <style>
+        .mobile-bento-card {
+            box-shadow: 0 4px 15px rgba(11, 37, 69, .06);
+            transition: transform .38s cubic-bezier(.22, 1, .36, 1),
+                        box-shadow .38s cubic-bezier(.22, 1, .36, 1),
+                        border-color .38s ease;
+        }
+        .mobile-bento-photo {
+            transition: transform .75s cubic-bezier(.22, 1, .36, 1);
+        }
+        @media (hover: hover) {
+            .mobile-bento-card:hover {
+                position: relative;
+                z-index: 2;
+                transform: translateY(-6px) scale(1.01);
+                box-shadow: 0 22px 48px rgba(11, 37, 69, .17);
+            }
+            .mobile-bento-feature:hover .mobile-bento-photo { transform: scale(1.055); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .mobile-bento-card, .mobile-bento-photo {
+                transition: none !important;
+                transform: none !important;
+            }
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen selection:bg-brandRed selection:text-white">
@@ -194,148 +222,85 @@
             </section>
 
             <!-- SECTION 02 — MOBILE HOME HEATING & AIR SERVICES -->
-            <section id="mobile-services" class="py-16 bg-white border-b border-gray-100">
+            <section id="mobile-services" class="py-16 sm:py-20 bg-white border-b border-gray-100">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-3xl mx-auto mb-10">
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-navy mb-4">
-                            Heating & Cooling Services for Mobile Homes
+                    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy mb-4">
+                            Heating &amp; Cooling Services for Mobile Homes
                         </h2>
-                        <p class="text-gray-600 text-base leading-relaxed">
+                        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
                             Pronto Air provides inspections, repairs, and heating and air conditioning system replacement services for mobile homes.
                         </p>
                     </div>
 
-                    <!-- Category Filter Selector -->
-                    <div class="flex justify-center mb-10">
-                        <div class="inline-flex p-1.5 bg-brandLightBlue rounded-xl border border-blue-100 flex-wrap justify-center gap-1" role="tablist" aria-label="Mobile home service categories">
-                            <button onclick="filterMobileServices('all')" id="filter-all" class="filter-btn px-5 py-2.5 rounded-lg text-sm font-bold bg-navy text-white shadow-sm" role="tab" aria-selected="true">
-                                All Services (5)
-                            </button>
-                            <button onclick="filterMobileServices('inspections')" id="filter-inspections" class="filter-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:text-navy hover:bg-white/60" role="tab" aria-selected="false">
-                                Inspections
-                            </button>
-                            <button onclick="filterMobileServices('repairs')" id="filter-repairs" class="filter-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:text-navy hover:bg-white/60" role="tab" aria-selected="false">
-                                Repairs
-                            </button>
-                            <button onclick="filterMobileServices('replacement')" id="filter-replacement" class="filter-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:text-navy hover:bg-white/60" role="tab" aria-selected="false">
-                                Replacement
-                            </button>
-                        </div>
-                    </div>
+                    <!-- Editorial Bento: one photographic lead card and four supporting service cards.
+                         All five entries retain content from the existing site. No false links or category filters. -->
+                    <div id="services-grid" class="mobile-bento-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6" aria-label="Mobile home heating and cooling services">
+                        <!-- Featured: Air Conditioning and Heating Replacement -->
+                        <article class="mobile-bento-card mobile-bento-feature group relative isolate flex flex-col justify-between overflow-hidden rounded-3xl bg-navy text-white p-7 sm:col-span-2 lg:col-span-2 lg:row-span-2 sm:p-9 lg:p-10 min-h-[470px] lg:min-h-[570px]">
+                            <img src="images/mobile-homes-hero.webp"
+                                 alt="Illustrative technician servicing air conditioning equipment for a mobile home"
+                                 loading="lazy" decoding="async"
+                                 class="mobile-bento-photo absolute inset-0 h-full w-full object-cover object-center"
+                            >
+                            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#06162B]/95 via-[#0B2545]/75 to-[#0B2545]/15" aria-hidden="true"></div>
+                            <div class="relative z-10 flex items-start justify-between">
+                                <span class="inline-flex rounded-full border border-white/30 bg-navy/60 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm">03 / Replacement</span>
+                                <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/15 text-xl text-white backdrop-blur-sm" aria-hidden="true"><i class="fa-solid fa-arrows-rotate"></i></span>
+                            </div>
+                            <div class="relative z-10 max-w-lg">
+                                <h3 class="mb-4 text-2xl sm:text-3xl lg:text-[2rem] font-extrabold leading-tight text-white">Air Conditioning and Heating Replacement for Mobile Home</h3>
+                                <p class="max-w-md text-base leading-relaxed text-gray-100">System replacement services designed for manufactured and mobile homes when updating old or malfunctioning HVAC equipment.</p>
+                            </div>
+                        </article>
 
-                    <!-- 5 Confirmed Services Grid -->
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto" id="services-grid">
-                        
-                        <!-- 01 — Air Conditioning Inspections -->
-                        <div class="service-card group bg-gray-50 hover:bg-brandLightBlue rounded-2xl p-7 border border-gray-200 hover:border-blue-200 transition-all duration-200 hover:shadow-md flex flex-col justify-between" data-category="inspections">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-xs font-bold text-brandRed tracking-widest uppercase bg-white px-2.5 py-1 rounded-md border border-gray-200">01</span>
-                                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-navy group-hover:text-white rounded-xl flex items-center justify-center text-xl transition-colors shadow-sm">
-                                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-brandRed transition-colors">
-                                    Air Conditioning Inspections
-                                </h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                    Professional AC inspection services to evaluate system operation and identify potential cooling issues in mobile homes.
-                                </p>
+                        <!-- Air Conditioning Inspections -->
+                        <article class="mobile-bento-card group flex min-h-[225px] flex-col justify-between rounded-3xl border border-[#dae4ed] bg-[#EEF4F8] p-6 sm:p-7">
+                            <div class="flex items-start justify-between gap-3">
+                                <span class="text-xs font-bold uppercase tracking-widest text-[#57697d]">01 / Inspection</span>
+                                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-navy shadow-sm transition-colors group-hover:bg-navy group-hover:text-white" aria-hidden="true"><i class="fa-solid fa-magnifying-glass text-lg"></i></span>
                             </div>
-                            <div class="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-semibold text-gray-500">
-                                <span>Category: Inspection</span>
-                                <i class="fa-solid fa-chevron-right text-brandRed" aria-hidden="true"></i>
+                            <div class="mt-8">
+                                <h3 class="mb-3 text-xl font-bold leading-snug text-navy">Air Conditioning Inspections</h3>
+                                <p class="text-sm leading-relaxed text-gray-700">Professional AC inspection services to evaluate system operation and identify potential cooling issues in mobile homes.</p>
                             </div>
-                        </div>
+                        </article>
 
-                        <!-- 02 — Heating Inspections -->
-                        <div class="service-card group bg-gray-50 hover:bg-brandLightBlue rounded-2xl p-7 border border-gray-200 hover:border-blue-200 transition-all duration-200 hover:shadow-md flex flex-col justify-between" data-category="inspections">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-xs font-bold text-brandRed tracking-widest uppercase bg-white px-2.5 py-1 rounded-md border border-gray-200">02</span>
-                                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-navy group-hover:text-white rounded-xl flex items-center justify-center text-xl transition-colors shadow-sm">
-                                        <i class="fa-solid fa-[#134074] fa-clipboard-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-brandRed transition-colors">
-                                    Heating Inspections
-                                </h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                    Comprehensive evaluation of mobile home heating units to assess condition, functionality, and heating performance.
-                                </p>
+                        <!-- Heating Inspections -->
+                        <article class="mobile-bento-card group flex min-h-[225px] flex-col justify-between rounded-3xl border border-[#133759] bg-navy p-6 text-white sm:p-7">
+                            <div class="flex items-start justify-between gap-3">
+                                <span class="text-xs font-bold uppercase tracking-widest text-blue-200">02 / Inspection</span>
+                                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white transition-colors group-hover:bg-brandRed" aria-hidden="true"><i class="fa-solid fa-clipboard-check text-lg"></i></span>
                             </div>
-                            <div class="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-semibold text-gray-500">
-                                <span>Category: Inspection</span>
-                                <i class="fa-solid fa-chevron-right text-brandRed" aria-hidden="true"></i>
+                            <div class="mt-8">
+                                <h3 class="mb-3 text-xl font-bold leading-snug text-white">Heating Inspections</h3>
+                                <p class="text-sm leading-relaxed text-blue-100">Comprehensive evaluation of mobile home heating units to assess condition, functionality, and heating performance.</p>
                             </div>
-                        </div>
+                        </article>
 
-                        <!-- 03 — Air Conditioning and Heating Replacement for Mobile Home -->
-                        <div class="service-card group bg-gray-50 hover:bg-brandLightBlue rounded-2xl p-7 border border-gray-200 hover:border-blue-200 transition-all duration-200 hover:shadow-md flex flex-col justify-between md:col-span-2 lg:col-span-1" data-category="replacement">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-xs font-bold text-brandRed tracking-widest uppercase bg-white px-2.5 py-1 rounded-md border border-gray-200">03</span>
-                                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-navy group-hover:text-white rounded-xl flex items-center justify-center text-xl transition-colors shadow-sm">
-                                        <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-brandRed transition-colors">
-                                    Air Conditioning and Heating Replacement for Mobile Home
-                                </h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                    System replacement services designed for manufactured and mobile homes when updating old or malfunctioning HVAC equipment.
-                                </p>
+                        <!-- Air Conditioning Repair -->
+                        <article class="mobile-bento-card group flex min-h-[225px] flex-col justify-between rounded-3xl border border-gray-200 bg-white p-6 sm:p-7">
+                            <div class="flex items-start justify-between gap-3">
+                                <span class="text-xs font-bold uppercase tracking-widest text-[#57697d]">04 / Repair</span>
+                                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EEF4F8] text-brandRed transition-colors group-hover:bg-navy group-hover:text-white" aria-hidden="true"><i class="fa-solid fa-snowflake text-lg"></i></span>
                             </div>
-                            <div class="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-semibold text-gray-500">
-                                <span>Category: Replacement</span>
-                                <i class="fa-solid fa-chevron-right text-brandRed" aria-hidden="true"></i>
+                            <div class="mt-8">
+                                <h3 class="mb-3 text-xl font-bold leading-snug text-navy">Air Conditioning Repair</h3>
+                                <p class="text-sm leading-relaxed text-gray-700">Targeted repair solutions to fix cooling issues and restore proper air conditioning in mobile home systems.</p>
                             </div>
-                        </div>
+                        </article>
 
-                        <!-- 04 — Air Conditioning Repair -->
-                        <div class="service-card group bg-gray-50 hover:bg-brandLightBlue rounded-2xl p-7 border border-gray-200 hover:border-blue-200 transition-all duration-200 hover:shadow-md flex flex-col justify-between" data-category="repairs">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-xs font-bold text-brandRed tracking-widest uppercase bg-white px-2.5 py-1 rounded-md border border-gray-200">04</span>
-                                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-navy group-hover:text-white rounded-xl flex items-center justify-center text-xl transition-colors shadow-sm">
-                                        <i class="fa-solid fa-snowflake" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-brandRed transition-colors">
-                                    Air Conditioning Repair
-                                </h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                    Targeted repair solutions to fix cooling issues and restore proper air conditioning in mobile home systems.
-                                </p>
+                        <!-- Heating Repair -->
+                        <article class="mobile-bento-card group flex min-h-[225px] flex-col justify-between rounded-3xl border border-[#dae4ed] bg-[#EEF4F8] p-6 sm:p-7">
+                            <div class="flex items-start justify-between gap-3">
+                                <span class="text-xs font-bold uppercase tracking-widest text-[#57697d]">05 / Repair</span>
+                                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-brandRed shadow-sm transition-colors group-hover:bg-navy group-hover:text-white" aria-hidden="true"><i class="fa-solid fa-fire-flame-curved text-lg"></i></span>
                             </div>
-                            <div class="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-semibold text-gray-500">
-                                <span>Category: Repair</span>
-                                <i class="fa-solid fa-chevron-right text-brandRed" aria-hidden="true"></i>
+                            <div class="mt-8">
+                                <h3 class="mb-3 text-xl font-bold leading-snug text-navy">Heating Repair</h3>
+                                <p class="text-sm leading-relaxed text-gray-700">Repair services addressing mobile home furnace and heating system problems to restore winter comfort.</p>
                             </div>
-                        </div>
-
-                        <!-- 05 — Heating Repair -->
-                        <div class="service-card group bg-gray-50 hover:bg-brandLightBlue rounded-2xl p-7 border border-gray-200 hover:border-blue-200 transition-all duration-200 hover:shadow-md flex flex-col justify-between" data-category="repairs">
-                            <div>
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-xs font-bold text-brandRed tracking-widest uppercase bg-white px-2.5 py-1 rounded-md border border-gray-200">05</span>
-                                    <div class="w-12 h-12 bg-white text-navy group-hover:bg-navy group-hover:text-white rounded-xl flex items-center justify-center text-xl transition-colors shadow-sm">
-                                        <i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <h3 class="text-xl font-bold text-navy mb-2 group-hover:text-brandRed transition-colors">
-                                    Heating Repair
-                                </h3>
-                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                    Repair services addressing mobile home furnace and heating system problems to restore winter comfort.
-                                </p>
-                            </div>
-                            <div class="pt-4 border-t border-gray-200/60 flex items-center justify-between text-xs font-semibold text-gray-500">
-                                <span>Category: Repair</span>
-                                <i class="fa-solid fa-chevron-right text-brandRed" aria-hidden="true"></i>
-                            </div>
-                        </div>
-
+                        </article>
                     </div>
                 </div>
             </section>
@@ -586,35 +551,6 @@
             mobileMenu.classList.toggle('hidden', !isOpening);
             menuIcon.className = isOpening ? 'fa-solid fa-xmark text-2xl' : 'fa-solid fa-bars text-2xl';
             button.setAttribute('aria-expanded', String(isOpening));
-        }
-
-        // Filtro original de servicios y desplazamiento interno de Mobile Homes.
-        function filterMobileServices(category) {
-            const cards = document.querySelectorAll('.service-card');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-
-            // Button style updates
-            filterBtns.forEach(btn => {
-                btn.className = "filter-btn px-5 py-2.5 rounded-lg text-sm font-semibold text-gray-600 hover:text-navy hover:bg-white/60";
-                btn.setAttribute('aria-selected', 'false');
-            });
-
-            const activeBtn = document.getElementById(`filter-${category}`);
-            if (activeBtn) {
-                activeBtn.className = "filter-btn px-5 py-2.5 rounded-lg text-sm font-bold bg-navy text-white shadow-sm";
-                activeBtn.setAttribute('aria-selected', 'true');
-            }
-
-            // Filter service cards
-            cards.forEach(card => {
-                const cardCat = card.getAttribute('data-category');
-
-                if (category === 'all' || cardCat === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
         }
 
         // Smooth scroll helper for internal links

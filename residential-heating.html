@@ -100,9 +100,16 @@
             }
         }
     </style>
+    <!-- Keyboard-only skip navigation and reduced-motion preference. -->
+    <style>
+        .pronto-skip-link { position: absolute; top: -7rem; left: 1rem; z-index: 9999; padding: .75rem 1rem; background: #fff; color: #0B2545; border: 2px solid #D90429; border-radius: .625rem; font-weight: 700; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+        .pronto-skip-link:focus { top: 1rem; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto !important; } }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+    <a href="#main-content" class="pronto-skip-link">Skip to main content</a>
 
     <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
     <div class="pronto-site-utility bg-navy-dark text-white text-xs sm:text-sm py-2 px-4 border-b border-navy-light/30">
@@ -180,7 +187,7 @@
         </div>
     </header>
 
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
         
         <!-- SECTION 01 — HERO -->
             <section class="relative overflow-hidden bg-navy text-white">
@@ -199,10 +206,10 @@
                         </div>
                         <div class="mt-7 flex flex-col sm:flex-row gap-3">
                             <a href="tel:+19403123081" class="bg-brandRed hover:bg-red-700 text-white text-center font-bold px-7 py-4 rounded-xl transition shadow-lg flex items-center justify-center gap-3 text-base">
-                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call (940) 312-3081
+                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Now
                             </a>
                             <a href="#heating-services-grid" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white text-center font-bold px-7 py-4 rounded-xl transition flex items-center justify-center gap-2 text-base backdrop-blur-sm">
-                                Explore Heating Services <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                                Explore Services <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
                             </a>
                         </div>
                         <div class="mt-8 md:hidden rounded-2xl border border-white/10 bg-[#07182D] p-4 shadow-2xl">
@@ -247,10 +254,10 @@
 
                         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
                             <a href="tel:+19403123081" class="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-brandRed px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
-                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Pronto Air
+                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Now
                             </a>
                             <a href="mailto:prontoairdenton@hotmail.com" class="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-navy px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-brandBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandRed">
-                                <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Pronto Air
+                                <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Us
                             </a>
                         </div>
                     </div>
@@ -348,7 +355,7 @@
                         <div>
                             <!-- Illustrative image for Furnaces -->
                             <div class="h-48 overflow-hidden relative">
-                                <img src="images/heating-furnaces.webp" alt="Illustrative residential furnace maintenance" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/0B2545/ffffff?text=Furnace+System'">
+                                <img src="images/heating-furnaces.webp" alt="Illustrative residential furnace maintenance" class="w-full h-full object-cover">
                                 <div class="absolute top-3 left-3 bg-navy text-white text-xs font-bold px-2.5 py-1 rounded">
                                     01 — Furnaces
                                 </div>
@@ -370,7 +377,7 @@
                         <div>
                             <!-- Illustrative image for Heat Pumps -->
                             <div class="h-48 overflow-hidden relative">
-                                <img src="images/heating-heat-pumps.webp" alt="Illustrative residential heat pump service" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/0B2545/ffffff?text=Heat+Pump+Unit'">
+                                <img src="images/heating-heat-pumps.webp" alt="Illustrative residential heat pump service" class="w-full h-full object-cover">
                                 <div class="absolute top-3 left-3 bg-navy text-white text-xs font-bold px-2.5 py-1 rounded">
                                     02 — Heat Pumps
                                 </div>
@@ -392,7 +399,7 @@
                         <div>
                             <!-- Illustrative image for Air Handlers -->
                             <div class="h-48 overflow-hidden relative">
-                                <img src="images/heating-air-handlers.webp" alt="Illustrative residential air handler filter inspection" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/0B2545/ffffff?text=Air+Handler'">
+                                <img src="images/heating-air-handlers.webp" alt="Illustrative residential air handler filter inspection" class="w-full h-full object-cover">
                                 <div class="absolute top-3 left-3 bg-navy text-white text-xs font-bold px-2.5 py-1 rounded">
                                     03 — Air Handlers
                                 </div>
@@ -428,16 +435,12 @@
                         <p class="text-gray-300 text-sm md:text-base mb-8 leading-relaxed">
                             The company states that its team receives ongoing training and stays informed about developments in heating systems.
                         </p>
-                        <div>
-                            <a href="tel:+19403123081" class="inline-flex items-center gap-2 bg-brandRed hover:bg-red-700 text-white font-bold py-3.5 px-7 rounded-md transition-all shadow-lg">
-                                <i class="fa-solid fa-phone"></i> Call to Discuss Your Heating System
-                            </a>
-                        </div>
+                        
                     </div>
                     <div class="md:col-span-5">
                         <div class="rounded-xl overflow-hidden border-2 border-white/20 shadow-2xl">
                             <!-- Illustrative image of residential heating inspection -->
-                            <img src="images/heating-inspections.webp" alt="Illustrative residential heating inspection and repair" class="w-full h-72 object-cover" onerror="this.src='https://placehold.co/600x400/134074/ffffff?text=Heating+Inspection'">
+                            <img src="images/heating-inspections.webp" alt="Illustrative residential heating inspection and repair" class="w-full h-72 object-cover">
                         </div>
                     </div>
                 </div>
@@ -489,10 +492,10 @@
                     <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-gray-700">Contact Pronto Air to discuss your residential heating maintenance, repair, or installation needs.</p>
                     <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
                         <a href="tel:+19403123081" class="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-xl bg-[#D90429] px-8 py-3.5 font-bold text-white shadow-md transition-colors hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B2545]">
-                            <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Pronto Air
+                            <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Now
                         </a>
                         <a href="mailto:prontoairdenton@hotmail.com" class="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-xl bg-[#0B2545] px-8 py-3.5 font-bold text-white shadow-md transition-colors hover:bg-[#134074] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D90429]">
-                            <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Pronto Air
+                            <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Us
                         </a>
                     </div>
                 </div>

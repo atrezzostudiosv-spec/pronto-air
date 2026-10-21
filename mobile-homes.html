@@ -134,9 +134,16 @@
             }
         }
     </style>
+    <!-- Keyboard-only skip navigation and reduced-motion preference. -->
+    <style>
+        .pronto-skip-link { position: absolute; top: -7rem; left: 1rem; z-index: 9999; padding: .75rem 1rem; background: #fff; color: #0B2545; border: 2px solid #D90429; border-radius: .625rem; font-weight: 700; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+        .pronto-skip-link:focus { top: 1rem; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto !important; } }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen selection:bg-brandRed selection:text-white">
+    <a href="#main-content" class="pronto-skip-link">Skip to main content</a>
 
     <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
     <div class="pronto-site-utility bg-navy-dark text-white text-xs sm:text-sm py-2 px-4 border-b border-navy-light/30">
@@ -214,7 +221,7 @@
         </div>
     </header>
 
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
 
             <!-- SECTION 01 — HERO -->
             <section class="relative overflow-hidden bg-navy text-white">
@@ -233,10 +240,10 @@
                         </div>
                         <div class="mt-7 flex flex-col sm:flex-row gap-3">
                             <a href="tel:+19403123081" class="bg-brandRed hover:bg-red-700 text-white text-center font-bold px-7 py-4 rounded-xl transition shadow-lg flex items-center justify-center gap-3 text-base">
-                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call (940) 312-3081
+                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Now
                             </a>
                             <a href="#mobile-services" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white text-center font-bold px-7 py-4 rounded-xl transition flex items-center justify-center gap-2 text-base backdrop-blur-sm">
-                                Explore Mobile Home Services <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                                Explore Services <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
                             </a>
                         </div>
                         <div class="mt-8 md:hidden rounded-2xl border border-white/10 bg-[#07182D] p-4 shadow-2xl">
@@ -390,12 +397,7 @@
                                     The company also offers air conditioning and heating system replacement for mobile homes and states that it keeps informed about newer developments to help customers consider appropriate options.
                                 </p>
                             </div>
-                            <div class="pt-4">
-                                <a href="tel:+19403123081" class="inline-flex items-center gap-3 bg-brandRed hover:bg-brandRed-hover text-white font-bold px-8 py-4 rounded-xl text-base transition-all shadow-lg">
-                                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                                    <span>Call to Discuss Your HVAC Needs</span>
-                                </a>
-                            </div>
+                            
                         </div>
 
                         <!-- Accent Column -->
@@ -470,10 +472,10 @@
                     <p class="mt-5 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-gray-700">Contact Pronto Air to discuss mobile home heating and air conditioning inspections, repairs, or replacement services.</p>
                     <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
                         <a href="tel:+19403123081" class="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-xl bg-[#D90429] px-8 py-3.5 font-bold text-white shadow-md transition-colors hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B2545]">
-                            <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Pronto Air
+                            <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Now
                         </a>
                         <a href="mailto:prontoairdenton@hotmail.com" class="inline-flex min-h-[56px] items-center justify-center gap-3 rounded-xl bg-[#0B2545] px-8 py-3.5 font-bold text-white shadow-md transition-colors hover:bg-[#134074] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D90429]">
-                            <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Pronto Air
+                            <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Us
                         </a>
                     </div>
                 </div>

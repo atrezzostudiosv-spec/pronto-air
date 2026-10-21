@@ -73,65 +73,7 @@
         }
     </style>
 
-    <!-- Heating category interactions: tablet/desktop hover and mobile active swipe cards. -->
-    <style>
-        .heating-category-card {
-            transition: transform .35s cubic-bezier(.22, 1, .36, 1),
-                        box-shadow .35s cubic-bezier(.22, 1, .36, 1),
-                        border-color .35s ease, background-color .35s ease;
-            transform-origin: center;
-        }
-        .heating-cards-rail:focus-visible {
-            outline: 2px solid #D90429;
-            outline-offset: 3px;
-            border-radius: 12px;
-        }
-        @media (min-width: 640px) and (hover: hover) {
-            .heating-category-card:hover {
-                position: relative;
-                z-index: 2;
-                transform: translateY(-7px) scale(1.025);
-                box-shadow: 0 20px 42px rgba(11, 37, 69, .18);
-            }
-        }
-        @media (max-width: 639px) {
-            .heating-cards-rail {
-                display: flex;
-                gap: 16px;
-                overflow-x: auto;
-                overflow-y: hidden;
-                scroll-snap-type: x mandatory;
-                scroll-padding-inline: 10px;
-                overscroll-behavior-x: contain;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                padding: 18px 10px 34px;
-                margin: -12px -10px 0;
-            }
-            .heating-cards-rail::-webkit-scrollbar { display: none; }
-            .heating-category-card {
-                flex: 0 0 min(82%, 340px);
-                scroll-snap-align: center;
-                transform: scale(.965);
-                box-shadow: 0 4px 12px rgba(11, 37, 69, .08);
-            }
-            .heating-category-card.is-active {
-                position: relative;
-                z-index: 1;
-                transform: translateY(-5px) scale(1.012);
-                box-shadow: 0 20px 38px rgba(11, 37, 69, .19);
-            }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .heating-category-card,
-            .heating-category-card:hover,
-            .heating-category-card.is-active {
-                transition: none !important;
-                transform: none !important;
-            }
-            .heating-cards-rail { scroll-behavior: auto; }
-        }
-    </style>
+    
 </head>
 
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
@@ -246,103 +188,116 @@
             </section>
 
             <!-- SECTION 02 — HEATING MAINTENANCE, REPAIR & INSTALLATION -->
-        <section id="heating-services-grid" class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-4">
-                        Heating Maintenance, Repair & Installation
-                    </h2>
-                    <p class="text-gray-600 leading-relaxed text-base md:text-lg">
-                        Pronto Air provides heating repairs and installations of new heating systems. Its technicians carry out inspections to assess heating problems and determine the repairs needed. The company reports over 20 years of experience and ongoing staff training.
-                    </p>
+        <section id="heating-services-grid" class="bg-white py-16 sm:py-20">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <!-- Editorial overview: verified service types, direct contact, illustrative photography -->
+                <div class="grid items-center gap-9 md:grid-cols-2 md:gap-10 lg:gap-14">
+                    <div>
+                        <div class="mb-4 flex items-center gap-3">
+                            <span class="h-0.5 w-8 bg-brandRed" aria-hidden="true"></span>
+                            <span class="text-xs font-extrabold uppercase tracking-[0.16em] text-brandRed">Heating Services</span>
+                        </div>
+                        <h2 class="max-w-xl text-3xl font-extrabold leading-tight tracking-tight text-navy sm:text-4xl lg:text-5xl">
+                            Heating Maintenance, Repair &amp; Installation
+                        </h2>
+                        <p class="mt-5 max-w-xl text-base leading-relaxed text-gray-700 sm:text-lg">
+                            Pronto Air provides residential heating repairs and new system installation. Its technicians inspect heating equipment to assess problems and identify necessary repairs.
+                        </p>
+                        <p class="mt-3 max-w-xl text-sm leading-relaxed text-gray-600 sm:text-base">
+                            The company reports over 20 years of experience and ongoing staff training.
+                        </p>
+
+                        <ul class="mt-7 max-w-xl divide-y divide-gray-200 border-y border-gray-200" aria-label="Residential heating services">
+                            <li class="flex items-center gap-3 py-3 text-sm font-semibold text-navy sm:text-base">
+                                <i class="fa-solid fa-circle-check text-brandRed" aria-hidden="true"></i> Inspections
+                            </li>
+                            <li class="flex items-center gap-3 py-3 text-sm font-semibold text-navy sm:text-base">
+                                <i class="fa-solid fa-circle-check text-brandRed" aria-hidden="true"></i> Heating Repairs
+                            </li>
+                            <li class="flex items-center gap-3 py-3 text-sm font-semibold text-navy sm:text-base">
+                                <i class="fa-solid fa-circle-check text-brandRed" aria-hidden="true"></i> New Equipment Installation
+                            </li>
+                        </ul>
+
+                        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                            <a href="tel:+19403123081" class="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-brandRed px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy">
+                                <i class="fa-solid fa-phone-volume" aria-hidden="true"></i> Call Pronto Air
+                            </a>
+                            <a href="mailto:prontoairdenton@hotmail.com" class="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-navy px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-brandBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandRed">
+                                <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Pronto Air
+                            </a>
+                        </div>
+                    </div>
+
+                    <figure class="heating-editorial-photo relative min-h-[310px] overflow-hidden rounded-3xl border border-[#dbe5ee] shadow-xl sm:min-h-[390px] md:h-full md:min-h-[455px]">
+                        <img src="images/home-maintenance-tuneup.webp" alt="Illustrative HVAC maintenance photograph, not an identified Pronto Air employee or project" loading="lazy" decoding="async" class="h-full w-full object-cover absolute inset-0">
+                        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#06162B]/25 to-transparent" aria-hidden="true"></div>
+                    </figure>
                 </div>
 
-                <!-- 8 Confirmed Heating Categories Grid -->
-                <div id="heating-cards-carousel" class="heating-cards-rail grid sm:grid-cols-2 lg:grid-cols-4 gap-6" role="region" aria-label="Residential heating service categories" tabindex="0">
-                    
-                    <!-- 01 -->
-                    <div id="cat-card-1" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group is-active">
-                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-temperature-arrow-up"></i>
-                        </div>
-                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 01</span>
-                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Central Air and Ductless Systems</h3>
-                        <p class="text-xs text-gray-500">Comprehensive options for both duct-based central heating and targeted ductless solutions.</p>
-                    </div>
-
-                    <!-- 02 -->
-                    <div id="cat-card-2" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
-                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-fire text-brandRed"></i>
-                        </div>
-                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 02</span>
-                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Furnaces</h3>
-                        <p class="text-xs text-gray-500">Central furnaces distributing warm air using electric power or natural gas sources.</p>
-                    </div>
-
-                    <!-- 03 -->
-                    <div id="cat-card-3" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
-                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-wind"></i>
-                        </div>
-                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 03</span>
-                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Forced Hot Air</h3>
-                        <p class="text-xs text-gray-500">Forced air circulation systems designed for prompt distribution across ductwork.</p>
-                    </div>
-
-                    <!-- 04 -->
-                    <div id="cat-card-4" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
-                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-box-open"></i>
-                        </div>
-                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 04</span>
-                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Gas and Electric Package Units</h3>
-                        <p class="text-xs text-gray-500">All-in-one outdoor combination heating and cooling packaged mechanical equipment.</p>
-                    </div>
-
-                    <!-- 05 -->
-                    <div id="cat-card-5" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
-                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-droplet"></i>
-                        </div>
-                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 05</span>
-                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Humidifiers, Air Quality, Air Cleaners & Filters</h3>
-                        <p class="text-xs text-gray-500">System integrations focused on humidity balance, air filtration, and indoor quality.</p>
-                    </div>
-
-                    <!-- 06 -->
-                    <div id="cat-card-6" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
-                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
+                <!-- Seven confirmed equipment categories; installation is presented above as a service. -->
+                <div class="mt-12 grid gap-8 rounded-3xl border border-[#dce7f0] bg-[#EEF4F8] p-6 sm:mt-16 sm:p-9 lg:grid-cols-12 lg:gap-12 lg:p-12">
+                    <div class="lg:col-span-4 lg:border-r lg:border-[#cbd8e4] lg:pr-10">
+                        <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl text-navy shadow-sm" aria-hidden="true">
                             <i class="fa-solid fa-gears"></i>
                         </div>
-                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 06</span>
-                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">New Equipment Installation</h3>
-                        <p class="text-xs text-gray-500">Complete replacement and new installation of modern residential heating hardware.</p>
+                        <h3 class="text-2xl font-extrabold leading-tight text-navy sm:text-3xl">Heating Systems &amp; Equipment</h3>
+                        <p class="mt-4 text-base leading-relaxed text-gray-600">
+                            An overview of the residential heating systems and equipment listed in Pronto Air's services.
+                        </p>
                     </div>
-
-                    <!-- 07 -->
-                    <div id="cat-card-7" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
-                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-fan"></i>
-                        </div>
-                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 07</span>
-                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Air Handlers</h3>
-                        <p class="text-xs text-gray-500">Essential components moving air through ductwork in both winter and summer.</p>
-                    </div>
-
-                    <!-- 08 -->
-                    <div id="cat-card-8" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
-                        <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
-                            <i class="fa-solid fa-arrows-spin"></i>
-                        </div>
-                        <span class="text-xs font-bold text-brandRed uppercase tracking-wider">Category 08</span>
-                        <h3 class="font-bold text-navy text-lg mt-1 mb-2">Heat Pumps</h3>
-                        <p class="text-xs text-gray-500">Dual-function systems offering efficient heating during winter and cooling in summer.</p>
-                    </div>
-
+                    <ul class="grid gap-x-7 sm:grid-cols-2 lg:col-span-8" aria-label="Heating equipment categories">
+                            <li class="heating-editorial-system flex items-start gap-3 border-b border-[#cfdae5] py-4 ">
+                                <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-navy shadow-sm" aria-hidden="true"><i class="fa-solid fa-temperature-arrow-up"></i></span>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-navy leading-snug">Central Air and Ductless Systems</h4>
+                                    <p class="mt-1 text-sm leading-relaxed text-gray-600">Duct-based central heating and targeted ductless solutions.</p>
+                                </div>
+                            </li>
+                            <li class="heating-editorial-system flex items-start gap-3 border-b border-[#cfdae5] py-4 ">
+                                <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-navy shadow-sm" aria-hidden="true"><i class="fa-solid fa-fire"></i></span>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-navy leading-snug">Furnaces</h4>
+                                    <p class="mt-1 text-sm leading-relaxed text-gray-600">Warm air distributed using electric power or natural gas.</p>
+                                </div>
+                            </li>
+                            <li class="heating-editorial-system flex items-start gap-3 border-b border-[#cfdae5] py-4 ">
+                                <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-navy shadow-sm" aria-hidden="true"><i class="fa-solid fa-wind"></i></span>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-navy leading-snug">Forced Hot Air</h4>
+                                    <p class="mt-1 text-sm leading-relaxed text-gray-600">Warm air circulation through ductwork.</p>
+                                </div>
+                            </li>
+                            <li class="heating-editorial-system flex items-start gap-3 border-b border-[#cfdae5] py-4 ">
+                                <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-navy shadow-sm" aria-hidden="true"><i class="fa-solid fa-box-open"></i></span>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-navy leading-snug">Gas and Electric Package Units</h4>
+                                    <p class="mt-1 text-sm leading-relaxed text-gray-600">Packaged equipment combining heating and cooling.</p>
+                                </div>
+                            </li>
+                            <li class="heating-editorial-system flex items-start gap-3 border-b border-[#cfdae5] py-4 ">
+                                <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-navy shadow-sm" aria-hidden="true"><i class="fa-solid fa-fan"></i></span>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-navy leading-snug">Air Handlers</h4>
+                                    <p class="mt-1 text-sm leading-relaxed text-gray-600">Components that move air through home ductwork.</p>
+                                </div>
+                            </li>
+                            <li class="heating-editorial-system flex items-start gap-3 border-b border-[#cfdae5] py-4 ">
+                                <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-navy shadow-sm" aria-hidden="true"><i class="fa-solid fa-arrows-spin"></i></span>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-navy leading-snug">Heat Pumps</h4>
+                                    <p class="mt-1 text-sm leading-relaxed text-gray-600">Heating in winter and cooling in summer.</p>
+                                </div>
+                            </li>
+                            <li class="heating-editorial-system flex items-start gap-3 border-b border-[#cfdae5] py-4 sm:col-span-2">
+                                <span class="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-navy shadow-sm" aria-hidden="true"><i class="fa-solid fa-droplet"></i></span>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-navy leading-snug">Humidifiers, Air Quality, Air Cleaners &amp; Filters</h4>
+                                    <p class="mt-1 text-sm leading-relaxed text-gray-600">Humidity balance, air cleaning and filtration.</p>
+                                </div>
+                            </li>
+                    </ul>
                 </div>
-
-                
             </div>
         </section>
 
@@ -617,36 +572,7 @@
             button.setAttribute('aria-expanded', String(isOpening));
         }
 
-        // Mobile-only: emphasize the card nearest the center of the swipe rail.
-        document.addEventListener('DOMContentLoaded', () => {
-            const rail = document.getElementById('heating-cards-carousel');
-            if (!rail) return;
-            const cards = Array.from(rail.querySelectorAll('.heating-category-card'));
-            let pending = false;
-            const update = () => {
-                pending = false;
-                if (window.innerWidth >= 640) return;
-                const box = rail.getBoundingClientRect();
-                const center = box.left + box.width / 2;
-                let closest = 0;
-                let minimum = Infinity;
-                cards.forEach((card, i) => {
-                    const rect = card.getBoundingClientRect();
-                    const distance = Math.abs(rect.left + rect.width / 2 - center);
-                    if (distance < minimum) { minimum = distance; closest = i; }
-                });
-                cards.forEach((card, i) => card.classList.toggle('is-active', i === closest));
-            };
-            const schedule = () => {
-                if (pending) return;
-                pending = true;
-                requestAnimationFrame(update);
-            };
-            rail.addEventListener('scroll', schedule, { passive: true });
-            window.addEventListener('resize', schedule);
-            update();
-        });
-            </script>
+        </script>
 
 </body>
 </html>

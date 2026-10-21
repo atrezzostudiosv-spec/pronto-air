@@ -94,9 +94,16 @@
             }
         }
     </style>
+    <!-- Keyboard-only skip navigation and reduced-motion preference. -->
+    <style>
+        .pronto-skip-link { position: absolute; top: -7rem; left: 1rem; z-index: 9999; padding: .75rem 1rem; background: #fff; color: #0B2545; border: 2px solid #D90429; border-radius: .625rem; font-weight: 700; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+        .pronto-skip-link:focus { top: 1rem; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto !important; } }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+    <a href="#main-content" class="pronto-skip-link">Skip to main content</a>
 
     <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
     <div class="pronto-site-utility bg-navy-dark text-white text-xs sm:text-sm py-2 px-4 border-b border-navy-light/30">
@@ -194,10 +201,10 @@
                             </p>
                             <div class="flex flex-col sm:flex-row gap-4">
                                 <a href="tel:+19403123081" class="bg-brandRed hover:bg-red-700 text-white font-bold px-6 py-3.5 rounded-xl text-center shadow-lg transition flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-phone"></i> Ask About Our Service Agreement
+                                    <i class="fa-solid fa-phone"></i> Call Now
                                 </a>
                                 <a href="#faqs-section" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-6 py-3.5 rounded-xl text-center transition flex items-center justify-center gap-2">
-                                    <i class="fa-solid fa-circle-question"></i> Explore Frequently Asked Questions
+                                    <i class="fa-solid fa-circle-question"></i> Explore FAQs
                                 </a>
                             </div>
                         </div>
@@ -239,11 +246,7 @@
                                     Contact Pronto Air to learn more about its service agreement and how it fits your household needs.
                                 </p>
 
-                                <div>
-                                    <a href="tel:+19403123081" class="inline-flex items-center gap-2 bg-brandRed hover:bg-red-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition">
-                                        <i class="fa-solid fa-phone"></i> Call to Learn More
-                                    </a>
-                                </div>
+                                
                             </div>
 
                             <!-- Visual Asset / Graphic Column -->
@@ -407,7 +410,7 @@
                         
                         <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
                             <a href="tel:+19403123081" class="w-full sm:w-auto bg-brandRed hover:bg-red-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-3 text-lg">
-                                <i class="fa-solid fa-phone"></i> Call Pronto Air: (940) 312-3081
+                                <i class="fa-solid fa-phone"></i> Call Now
                             </a>
                             <a href="contact-us.html" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/30 font-semibold px-8 py-4 rounded-xl transition flex items-center justify-center gap-2 text-lg">
                                 <i class="fa-solid fa-envelope"></i> Contact Us

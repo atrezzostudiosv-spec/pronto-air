@@ -69,62 +69,7 @@
         }
     </style>
 
-    <!-- Manual horizontal service carousel: native touch / trackpad scroll plus mouse drag. -->
-    <style>
-        .cooling-loop-viewport {
-            position: relative;
-            left: 50%;
-            width: 100vw;
-            max-width: 100vw;
-            transform: translateX(-50%);
-            overflow-x: auto;
-            overflow-y: hidden;
-            overscroll-behavior-x: contain;
-            scroll-snap-type: x proximity;
-            scrollbar-width: thin;
-            -webkit-overflow-scrolling: touch;
-            cursor: grab;
-            padding-block: 0.75rem 1.25rem;
-        }
-        .cooling-loop-viewport.is-dragging {
-            cursor: grabbing;
-            scroll-snap-type: none;
-            user-select: none;
-        }
-        .cooling-loop-track {
-            display: flex;
-            width: max-content;
-            align-items: stretch;
-        }
-        .cooling-loop-group {
-            display: flex;
-            flex: 0 0 auto;
-            align-items: stretch;
-            gap: 1.5rem;
-            padding-right: 1.5rem;
-        }
-        .cooling-loop-card {
-            box-sizing: border-box;
-            flex: 0 0 350px;
-            width: 350px;
-            min-height: 268px;
-            scroll-snap-align: start;
-        }
-        @media (min-width: 1024px) {
-            .cooling-loop-card { flex-basis: 370px; width: 370px; }
-        }
-        @media (max-width: 767px) {
-            .cooling-loop-card {
-                flex-basis: min(82vw, 328px);
-                width: min(82vw, 328px);
-                padding: 1.5rem;
-            }
-            .cooling-loop-group { gap: 1rem; padding-right: 1rem; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .cooling-loop-viewport { scroll-behavior: auto; }
-        }
-    </style>
+    
 </head>
 
 <body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
@@ -238,150 +183,39 @@
             </section>
 
             <!-- SECCIÓN 02 — RESIDENTIAL COOLING SERVICES -->
-            <section id="cooling-services" class="py-20 bg-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-prontoNavy">Residential Cooling Services &amp; Systems</h2>
-                        <p class="text-gray-600 text-lg leading-relaxed">
-                            Pronto Air offers residential air conditioning repair, service, system design, and installation. Cooling equipment checks also help homeowners prepare for hot summer weather.
-                        </p>
-                    </div>
+<section id="cooling-services" class="bg-white py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid items-center gap-9 md:grid-cols-2 md:gap-10 lg:gap-14">
+      <div>
+        <div class="mb-4 flex items-center gap-3"><span class="h-0.5 w-8 bg-prontoRed" aria-hidden="true"></span><span class="text-xs font-extrabold uppercase tracking-[0.16em] text-prontoRed">Cooling Services</span></div>
+        <h2 class="max-w-xl text-3xl font-extrabold leading-tight tracking-tight text-prontoNavy sm:text-4xl lg:text-5xl">Residential Cooling Services &amp; Systems</h2>
+        <p class="mt-5 max-w-xl text-base leading-relaxed text-gray-700 sm:text-lg">Pronto Air provides residential air conditioning repair, service, maintenance, system design and installation. Cooling equipment checks also help homeowners prepare for hot summer weather.</p>
+        <ul class="mt-7 max-w-xl divide-y divide-gray-200 border-y border-gray-200" aria-label="Residential cooling services"><li class="flex items-center gap-3 py-3 text-sm font-semibold text-prontoNavy sm:text-base"><i class="fa-solid fa-circle-check text-prontoRed" aria-hidden="true"></i>Air Conditioning Repairs &amp; Service</li>
+<li class="flex items-center gap-3 py-3 text-sm font-semibold text-prontoNavy sm:text-base"><i class="fa-solid fa-circle-check text-prontoRed" aria-hidden="true"></i>Cooling Maintenance &amp; Equipment Checks</li>
+<li class="flex items-center gap-3 py-3 text-sm font-semibold text-prontoNavy sm:text-base"><i class="fa-solid fa-circle-check text-prontoRed" aria-hidden="true"></i>New Cooling System Design &amp; Installation</li></ul>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="tel:+19403123081" class="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-prontoRed px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoNavy"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i>Call Pronto Air</a>
+          <a href="mailto:prontoairdenton@hotmail.com" class="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-prontoNavy px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-prontoBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Email Pronto Air</a>
+        </div>
+      </div>
+      <figure class="relative min-h-[310px] overflow-hidden rounded-3xl border border-[#dbe5ee] shadow-xl sm:min-h-[390px] md:h-full md:min-h-[455px]"><img src="images/home-service-cooling.webp" alt="Illustrative photograph of residential cooling equipment, not a documented Pronto Air project" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover object-center"></figure>
+    </div>
+    <div class="mt-12 grid gap-8 rounded-3xl border border-[#dce7f0] bg-prontoLight p-6 sm:mt-16 sm:p-9 lg:grid-cols-12 lg:gap-12 lg:p-12">
+      <div class="lg:col-span-4 lg:border-r lg:border-[#cbd8e4] lg:pr-10">
+        <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-snowflake"></i></div>
+        <h3 class="text-2xl font-extrabold leading-tight text-prontoNavy sm:text-3xl">Cooling Systems &amp; Equipment</h3>
+        <p class="mt-4 text-base leading-relaxed text-gray-600">Residential cooling systems and equipment included in Pronto Air's services.</p>
+      </div>
+      <ul class="grid gap-x-7 sm:grid-cols-2 lg:col-span-8" aria-label="Residential cooling systems and equipment"><li class="flex items-start gap-3 border-b border-[#d6e1eb] py-4"><span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-lg text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-fan"></i></span><div class="min-w-0"><h4 class="font-bold leading-snug text-prontoNavy">Central Air &amp; Ductless Systems</h4><p class="mt-1 text-sm leading-relaxed text-gray-600">Service and setup for central air conditioners and ductless cooling systems.</p></div></li>
+<li class="flex items-start gap-3 border-b border-[#d6e1eb] py-4"><span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-lg text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-box-open"></i></span><div class="min-w-0"><h4 class="font-bold leading-snug text-prontoNavy">Gas &amp; Electric Package Units</h4><p class="mt-1 text-sm leading-relaxed text-gray-600">Service and maintenance for residential gas and electric package units.</p></div></li>
+<li class="flex items-start gap-3 border-b border-[#d6e1eb] py-4"><span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-lg text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-wind"></i></span><div class="min-w-0"><h4 class="font-bold leading-snug text-prontoNavy">Humidifiers, Air Quality, Air Cleaners &amp; Filters</h4><p class="mt-1 text-sm leading-relaxed text-gray-600">Whole-house humidifiers, air cleaning systems and filter maintenance.</p></div></li>
+<li class="flex items-start gap-3 border-b border-[#d6e1eb] py-4"><span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-lg text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-gears"></i></span><div class="min-w-0"><h4 class="font-bold leading-snug text-prontoNavy">Air Handlers</h4><p class="mt-1 text-sm leading-relaxed text-gray-600">Inspection, repair and installation of units that circulate conditioned air.</p></div></li>
+<li class="flex items-start gap-3 border-b border-[#d6e1eb] py-4"><span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-lg text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-temperature-arrow-down"></i></span><div class="min-w-0"><h4 class="font-bold leading-snug text-prontoNavy">Heat Pumps</h4><p class="mt-1 text-sm leading-relaxed text-gray-600">Repair and installation of systems used for heating in winter and cooling in summer.</p></div></li></ul>
+    </div>
+  </div>
+</section>
 
-                    <p class="mb-5 text-right text-xs sm:text-sm font-bold uppercase tracking-widest text-prontoRed">SWIPE TO EXPLORE SERVICES</p>
-
-                    <!-- Carrusel horizontal manual: las siete tarjetas originales, sin duplicados ni animación automática. -->
-                    <div class="cooling-loop-viewport" role="region" aria-label="Residential Cooling Services & Systems — scroll horizontally or drag to explore 7 services" tabindex="0">
-                        <div class="cooling-loop-track">
-                            <div class="cooling-loop-group">
-                                <!-- 01 Air Conditioning Repair/Service -->
-                        <div class="cooling-loop-card bg-prontoLight border border-gray-200/80 p-8 rounded-2xl transition hover:shadow-lg hover:border-prontoRed flex flex-col justify-between group">
-                            <div>
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="w-12 h-12 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-xl transition-colors">
-                                        <i class="fa-solid fa-wrench" aria-hidden="true"></i>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-600 tracking-widest uppercase">01 / System Service</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-prontoNavy mb-3">Air Conditioning Repair/Service</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Professional repair and routine diagnostic service for home air conditioning units to ensure reliable cooling performance during peak heat.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- 02 Central Air and Ductless Systems -->
-                        <div class="cooling-loop-card bg-prontoLight border border-gray-200/80 p-8 rounded-2xl transition hover:shadow-lg hover:border-prontoRed flex flex-col justify-between group">
-                            <div>
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="w-12 h-12 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-xl transition-colors">
-                                        <i class="fa-solid fa-fan" aria-hidden="true"></i>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-600 tracking-widest uppercase">02 / Cooling Systems</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-prontoNavy mb-3">Central Air & Ductless Systems</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Comprehensive service and setup for traditional whole-home central air conditioners as well as flexible ductless mini-split cooling options.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- 03 Gas and Electric Package Units -->
-                        <div class="cooling-loop-card bg-prontoLight border border-gray-200/80 p-8 rounded-2xl transition hover:shadow-lg hover:border-prontoRed flex flex-col justify-between group">
-                            <div>
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="w-12 h-12 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-xl transition-colors">
-                                        <i class="fa-solid fa-box-open" aria-hidden="true"></i>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-600 tracking-widest uppercase">03 / Package Units</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-prontoNavy mb-3">Gas & Electric Package Units</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Service and maintenance for self-contained gas and electric package units designed for streamlined residential cooling and heating efficiency.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- 04 Humidifiers/Air Quality/Air Cleaners and Filters -->
-                        <div class="cooling-loop-card bg-prontoLight border border-gray-200/80 p-8 rounded-2xl transition hover:shadow-lg hover:border-prontoRed flex flex-col justify-between group">
-                            <div>
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="w-12 h-12 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-xl transition-colors">
-                                        <i class="fa-solid fa-wind" aria-hidden="true"></i>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-600 tracking-widest uppercase">04 / Indoor Air Quality</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-prontoNavy mb-3">Humidifiers, Air Quality, Air Cleaners & Filters</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Indoor air quality solutions including whole-house humidifiers, air cleaning systems, and filter maintenance for healthier indoor air.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- 05 New Equipment Installation -->
-                        <div class="cooling-loop-card bg-prontoLight border border-gray-200/80 p-8 rounded-2xl transition hover:shadow-lg hover:border-prontoRed flex flex-col justify-between group">
-                            <div>
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="w-12 h-12 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-xl transition-colors">
-                                        <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-600 tracking-widest uppercase">05 / Replacement</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-prontoNavy mb-3">New Equipment Installation</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    System design and professional installation of new residential air conditioning equipment tailored to your home's layout.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- 06 Air Handlers -->
-                        <div class="cooling-loop-card bg-prontoLight border border-gray-200/80 p-8 rounded-2xl transition hover:shadow-lg hover:border-prontoRed flex flex-col justify-between group">
-                            <div>
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="w-12 h-12 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-xl transition-colors">
-                                        <i class="fa-solid fa-gears" aria-hidden="true"></i>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-600 tracking-widest uppercase">06 / Air Distribution</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-prontoNavy mb-3">Air Handlers</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Inspection, repair, and installation of indoor air handler units responsible for circulating conditioned air throughout your entire home.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- 07 Heat Pumps -->
-                        <div class="cooling-loop-card bg-prontoLight border border-gray-200/80 p-8 rounded-2xl transition hover:shadow-lg hover:border-prontoRed flex flex-col justify-between group ">
-                            <div>
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="w-12 h-12 bg-prontoNavy group-hover:bg-prontoRed text-white rounded-xl flex items-center justify-center text-xl transition-colors">
-                                        <i class="fa-solid fa-temperature-arrow-down" aria-hidden="true"></i>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-600 tracking-widest uppercase">07 / Dual Climate</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-prontoNavy mb-3">Heat Pumps</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">
-                                    Energy-efficient heat pump repairs and installations that supply year-round cooling during summer and heating in winter.
-                                </p>
-                            </div>
-                        </div>
-                            </div>
-                                                    </div>
-                    </div>
-                    <div class="mt-4 flex items-center justify-end gap-4">
-                        <div class="flex shrink-0 items-center gap-2" aria-label="Cooling service carousel controls">
-                            <button type="button" id="cooling-carousel-prev" onclick="moveCoolingCarousel(-1)" disabled aria-label="Previous cooling services" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-prontoNavy transition hover:border-prontoRed hover:text-prontoRed focus-visible:outline focus-visible:outline-2 focus-visible:outline-prontoRed disabled:cursor-not-allowed disabled:opacity-40">
-                                <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                            </button>
-                            <button type="button" id="cooling-carousel-next" onclick="moveCoolingCarousel(1)" aria-label="Next cooling services" class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-prontoNavy transition hover:border-prontoRed hover:text-prontoRed focus-visible:outline focus-visible:outline-2 focus-visible:outline-prontoRed disabled:cursor-not-allowed disabled:opacity-40">
-                                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- SECCIÓN 03 — AIR CONDITIONING MAINTENANCE TIPS -->
+<!-- SECCIÓN 03 — AIR CONDITIONING MAINTENANCE TIPS -->
             <section class="py-20 bg-prontoLight border-y border-gray-200">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -622,62 +456,7 @@
             menuIcon.className = isOpening ? 'fa-solid fa-xmark text-2xl' : 'fa-solid fa-bars text-2xl';
             button.setAttribute('aria-expanded', String(isOpening));
         }
-        // Manual card navigation only. No autoplay or timed motion.
-        function getCoolingViewport() {
-            return document.querySelector('.cooling-loop-viewport');
-        }
-        function updateCoolingCarouselButtons() {
-            const rail = getCoolingViewport();
-            if (!rail) return;
-            const previous = document.getElementById('cooling-carousel-prev');
-            const next = document.getElementById('cooling-carousel-next');
-            const end = Math.max(0, rail.scrollWidth - rail.clientWidth);
-            if (previous) previous.disabled = rail.scrollLeft <= 2;
-            if (next) next.disabled = rail.scrollLeft >= end - 2;
-        }
-        function moveCoolingCarousel(direction) {
-            const rail = getCoolingViewport();
-            if (!rail) return;
-            const card = rail.querySelector('.cooling-loop-card');
-            const distance = card ? card.getBoundingClientRect().width + (window.innerWidth < 768 ? 16 : 24) : 350;
-            rail.scrollBy({
-                left: direction * distance,
-                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
-            });
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            const rail = getCoolingViewport();
-            if (!rail) return;
-            let dragging = false;
-            let pointerStart = 0;
-            let scrollStart = 0;
-            rail.addEventListener('pointerdown', (event) => {
-                if (event.pointerType !== 'mouse' || event.button !== 0 || event.target.closest('button, a, input')) return;
-                dragging = true;
-                pointerStart = event.clientX;
-                scrollStart = rail.scrollLeft;
-                rail.classList.add('is-dragging');
-                rail.setPointerCapture(event.pointerId);
-            });
-            rail.addEventListener('pointermove', (event) => {
-                if (!dragging) return;
-                rail.scrollLeft = scrollStart - (event.clientX - pointerStart);
-            });
-            function finishDrag(event) {
-                if (!dragging) return;
-                dragging = false;
-                rail.classList.remove('is-dragging');
-                if (rail.hasPointerCapture(event.pointerId)) rail.releasePointerCapture(event.pointerId);
-                updateCoolingCarouselButtons();
-            }
-            rail.addEventListener('pointerup', finishDrag);
-            rail.addEventListener('pointercancel', finishDrag);
-            rail.addEventListener('scroll', updateCoolingCarouselButtons, { passive: true });
-            window.addEventListener('resize', updateCoolingCarouselButtons);
-            updateCoolingCarouselButtons();
-        });
-
-    </script>
+        </script>
 
 </body>
 </html>

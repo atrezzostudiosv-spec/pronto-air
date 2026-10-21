@@ -72,6 +72,66 @@
             }
         }
     </style>
+
+    <!-- Heating category interactions: tablet/desktop hover and mobile active swipe cards. -->
+    <style>
+        .heating-category-card {
+            transition: transform .35s cubic-bezier(.22, 1, .36, 1),
+                        box-shadow .35s cubic-bezier(.22, 1, .36, 1),
+                        border-color .35s ease, background-color .35s ease;
+            transform-origin: center;
+        }
+        .heating-cards-rail:focus-visible {
+            outline: 2px solid #D90429;
+            outline-offset: 3px;
+            border-radius: 12px;
+        }
+        @media (min-width: 640px) and (hover: hover) {
+            .heating-category-card:hover {
+                position: relative;
+                z-index: 2;
+                transform: translateY(-7px) scale(1.025);
+                box-shadow: 0 20px 42px rgba(11, 37, 69, .18);
+            }
+        }
+        @media (max-width: 639px) {
+            .heating-cards-rail {
+                display: flex;
+                gap: 16px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-snap-type: x mandatory;
+                scroll-padding-inline: 10px;
+                overscroll-behavior-x: contain;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding: 18px 10px 34px;
+                margin: -12px -10px 0;
+            }
+            .heating-cards-rail::-webkit-scrollbar { display: none; }
+            .heating-category-card {
+                flex: 0 0 min(82%, 340px);
+                scroll-snap-align: center;
+                transform: scale(.965);
+                box-shadow: 0 4px 12px rgba(11, 37, 69, .08);
+            }
+            .heating-category-card.is-active {
+                position: relative;
+                z-index: 1;
+                transform: translateY(-5px) scale(1.012);
+                box-shadow: 0 20px 38px rgba(11, 37, 69, .19);
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .heating-category-card,
+            .heating-category-card:hover,
+            .heating-category-card.is-active {
+                transition: none !important;
+                transform: none !important;
+            }
+            .heating-cards-rail { scroll-behavior: auto; }
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
@@ -198,10 +258,10 @@
                 </div>
 
                 <!-- 8 Confirmed Heating Categories Grid -->
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div id="heating-cards-carousel" class="heating-cards-rail grid sm:grid-cols-2 lg:grid-cols-4 gap-6" role="region" aria-label="Residential heating service categories" tabindex="0">
                     
                     <!-- 01 -->
-                    <div onclick="selectCategory(1)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(1); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-1" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div id="cat-card-1" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group is-active">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-temperature-arrow-up"></i>
                         </div>
@@ -211,7 +271,7 @@
                     </div>
 
                     <!-- 02 -->
-                    <div onclick="selectCategory(2)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(2); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="true" id="cat-card-2" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div id="cat-card-2" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-fire text-brandRed"></i>
                         </div>
@@ -221,7 +281,7 @@
                     </div>
 
                     <!-- 03 -->
-                    <div onclick="selectCategory(3)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(3); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-3" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div id="cat-card-3" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-wind"></i>
                         </div>
@@ -231,7 +291,7 @@
                     </div>
 
                     <!-- 04 -->
-                    <div onclick="selectCategory(4)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(4); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-4" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div id="cat-card-4" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-box-open"></i>
                         </div>
@@ -241,7 +301,7 @@
                     </div>
 
                     <!-- 05 -->
-                    <div onclick="selectCategory(5)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(5); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-5" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div id="cat-card-5" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-droplet"></i>
                         </div>
@@ -251,7 +311,7 @@
                     </div>
 
                     <!-- 06 -->
-                    <div onclick="selectCategory(6)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(6); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-6" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div id="cat-card-6" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-gears"></i>
                         </div>
@@ -261,7 +321,7 @@
                     </div>
 
                     <!-- 07 -->
-                    <div onclick="selectCategory(7)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(7); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-7" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div id="cat-card-7" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-fan"></i>
                         </div>
@@ -271,7 +331,7 @@
                     </div>
 
                     <!-- 08 -->
-                    <div onclick="selectCategory(8)" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCategory(8); }" role="button" tabindex="0" aria-controls="category-detail-panel" aria-pressed="false" id="cat-card-8" class="border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue transition-all cursor-pointer group">
+                    <div id="cat-card-8" class="heating-category-card border border-gray-200 rounded-xl p-6 bg-lightBlue/30 hover:border-brandBlue group">
                         <div class="w-12 h-12 bg-white text-navy rounded-lg flex items-center justify-center text-xl shadow-sm mb-4 group-hover:bg-navy group-hover:text-white transition-colors">
                             <i class="fa-solid fa-arrows-spin"></i>
                         </div>
@@ -282,22 +342,7 @@
 
                 </div>
 
-                <!-- Interactive Category Detail Display Panel -->
-                <div id="category-detail-panel" class="mt-8 bg-navy text-white p-6 md:p-8 rounded-2xl shadow-md border border-navy">
-                    <div class="flex items-start gap-4">
-                        <div id="detail-icon" class="text-3xl text-brandRed bg-white/10 p-3 rounded-lg">
-                            <i class="fa-solid fa-fire"></i>
-                        </div>
-                        <div>
-                            <span class="text-xs text-lightBlue font-bold uppercase tracking-wider">Selected Category Overview</span>
-                            <h3 id="detail-title" class="text-xl md:text-2xl font-bold mt-1 mb-2">Furnaces</h3>
-                            <p id="detail-text" class="text-gray-200 text-sm md:text-base leading-relaxed">
-                                Central furnaces distribute warm air through a home's ductwork. According to the original website, these systems can operate using electricity or natural gas.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
+                
             </div>
         </section>
 
@@ -580,80 +625,36 @@
             button.setAttribute('aria-expanded', String(isOpening));
         }
 
-        // Residential Heating: original interactive category selector
-        const categoriesData = {
-            1: {
-                title: "Central Air and Ductless Systems",
-                text: "Pronto Air offers diagnostics, repair, and replacement for central air and ductless heating configurations tailored for residential homes in Denton.",
-                icon: "fa-temperature-arrow-up"
-            },
-            2: {
-                title: "Furnaces",
-                text: "Central furnaces distribute warm air through a home's ductwork. According to the original website, these systems can operate using electricity or natural gas.",
-                icon: "fa-fire"
-            },
-            3: {
-                title: "Forced Hot Air",
-                text: "Forced hot air systems rely on ductwork and blower fans to circulate warm air evenly throughout living spaces.",
-                icon: "fa-wind"
-            },
-            4: {
-                title: "Gas and Electric Package Units",
-                text: "Gas and electric package units combine heating and cooling components into a single outdoor cabinet for efficient space utilization.",
-                icon: "fa-box-open"
-            },
-            5: {
-                title: "Humidifiers, Air Quality, Air Cleaners and Filters",
-                text: "Indoor air quality solutions help maintain humidity levels and filter airborne particles to enhance overall home comfort during heating season.",
-                icon: "fa-droplet"
-            },
-            6: {
-                title: "New Equipment Installation",
-                text: "Pronto Air installs new residential heating systems, helping homeowners upgrade outdated or failing heating equipment.",
-                icon: "fa-gears"
-            },
-            7: {
-                title: "Air Handlers",
-                text: "Air handlers contain components that move air through a home's duct system, supporting heating in winter and cooling during summer.",
-                icon: "fa-fan"
-            },
-            8: {
-                title: "Heat Pumps",
-                text: "Heat pumps provide both heating and cooling. They transfer heat to help maintain indoor temperatures throughout the year.",
-                icon: "fa-arrows-spin"
-            }
-        };
-
-        function selectCategory(id) {
-            const data = categoriesData[id];
-            if (!data) return;
-
-            // Highlight chosen card visually
-            for (let i = 1; i <= 8; i++) {
-                const card = document.getElementById(`cat-card-${i}`);
-                if (card) {
-                    card.setAttribute('aria-pressed', String(i === id));
-                    if (i === id) {
-                        card.classList.add('ring-2', 'ring-brandRed', 'bg-white');
-                        card.classList.remove('bg-lightBlue/30');
-                    } else {
-                        card.classList.remove('ring-2', 'ring-brandRed', 'bg-white');
-                        card.classList.add('bg-lightBlue/30');
-                    }
-                }
-            }
-
-            // Update details panel
-            document.getElementById('detail-title').textContent = data.title;
-            document.getElementById('detail-text').textContent = data.text;
-            document.getElementById('detail-icon').innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
-        }
-
-        // Initialize Phase 3 category detail
-        window.onload = function() {
-            selectCategory(2); // Default selected category: Furnaces
-        };
-    </script>
+        // Mobile-only: emphasize the card nearest the center of the swipe rail.
+        document.addEventListener('DOMContentLoaded', () => {
+            const rail = document.getElementById('heating-cards-carousel');
+            if (!rail) return;
+            const cards = Array.from(rail.querySelectorAll('.heating-category-card'));
+            let pending = false;
+            const update = () => {
+                pending = false;
+                if (window.innerWidth >= 640) return;
+                const box = rail.getBoundingClientRect();
+                const center = box.left + box.width / 2;
+                let closest = 0;
+                let minimum = Infinity;
+                cards.forEach((card, i) => {
+                    const rect = card.getBoundingClientRect();
+                    const distance = Math.abs(rect.left + rect.width / 2 - center);
+                    if (distance < minimum) { minimum = distance; closest = i; }
+                });
+                cards.forEach((card, i) => card.classList.toggle('is-active', i === closest));
+            };
+            const schedule = () => {
+                if (pending) return;
+                pending = true;
+                requestAnimationFrame(update);
+            };
+            rail.addEventListener('scroll', schedule, { passive: true });
+            window.addEventListener('resize', schedule);
+            update();
+        });
+            </script>
 
 </body>
 </html>

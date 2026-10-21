@@ -124,9 +124,16 @@
             }
         }
     </style>
+    <!-- Keyboard-only skip navigation and reduced-motion preference. -->
+    <style>
+        .pronto-skip-link { position: absolute; top: -7rem; left: 1rem; z-index: 9999; padding: .75rem 1rem; background: #fff; color: #0B2545; border: 2px solid #D90429; border-radius: .625rem; font-weight: 700; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+        .pronto-skip-link:focus { top: 1rem; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto !important; } }
+    </style>
 </head>
 
 <body class="min-h-screen flex flex-col antialiased selection:bg-brandRed selection:text-white">
+    <a href="#main-content" class="pronto-skip-link">Skip to main content</a>
 
     <!-- TOP ANNOUNCEMENT / UTILITY BAR -->
     <div class="pronto-site-utility bg-[#06162B] text-white text-xs sm:text-sm py-2 px-4 border-b border-[#134074]/30">
@@ -204,7 +211,7 @@
         </div>
     </header>
 
-    <main class="flex-grow">
+    <main id="main-content" class="flex-grow">
         <div id="page-contact-us" class="page-view active">
             
             <!-- SECCIÓN 01 — HERO -->
@@ -225,7 +232,7 @@
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a href="tel:+19403123081" class="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-white bg-brandRed hover:bg-brandRed-hover shadow-lg hover:shadow-brandRed/30 transition-all text-center group">
-                                <i class="fa-solid fa-phone mr-2.5 group-hover:animate-pulse"></i> Call (940) 312-3081
+                                <i class="fa-solid fa-phone mr-2.5 group-hover:animate-pulse"></i> Call Now
                             </a>
                             <a href="#contact-form-section" onclick="scrollToForm(event)" class="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-all text-center">
                                 <i class="fa-solid fa-paper-plane mr-2 text-brandRed"></i> Send Us a Message
@@ -515,10 +522,10 @@
                         </p>
                         <div class="flex flex-col sm:flex-row justify-center gap-4">
                             <a href="tel:+19403123081" class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-white bg-brandRed hover:bg-brandRed-hover shadow-lg transition-all text-center">
-                                <i class="fa-solid fa-phone mr-2"></i> Call (940) 312-3081
+                                <i class="fa-solid fa-phone mr-2"></i> Call Now
                             </a>
                             <a href="mailto:prontoairdenton@hotmail.com" class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-white border-2 border-white/30 hover:bg-white/10 transition-all text-center">
-                                <i class="fa-solid fa-envelope mr-2 text-brandRed"></i> Email Pronto Air
+                                <i class="fa-solid fa-envelope mr-2 text-brandRed"></i> Email Us
                             </a>
                         </div>
                     </div>

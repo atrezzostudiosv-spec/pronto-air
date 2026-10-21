@@ -70,6 +70,54 @@
     </style>
 
     
+    <!-- Responsive Cooling-specific horizontal equipment rail; never use Heating's two-column list. -->
+    <style>
+        .cooling-equipment-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+        }
+        .cooling-equipment-intro { padding-bottom: 1.25rem; }
+        .cooling-equipment-items {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .cooling-system-item {
+            min-width: 0;
+            border-top: 1px solid #cedbe7;
+        }
+        .cooling-system-icon { transition: transform .3s ease, box-shadow .3s ease; }
+        @media (hover: hover) {
+            .cooling-system-item:hover .cooling-system-icon {
+                transform: translateY(-3px);
+                box-shadow: 0 9px 22px rgba(11, 37, 69, .14);
+            }
+        }
+        @media (min-width: 640px) {
+            .cooling-equipment-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .cooling-system-item { padding-inline: 1rem; }
+            .cooling-system-item:nth-child(even) { border-left: 1px solid #cedbe7; }
+        }
+        @media (min-width: 1024px) {
+            .cooling-equipment-items { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+            .cooling-system-item { padding-inline: .7rem; border-top: 0; }
+            .cooling-system-item + .cooling-system-item { border-left: 1px solid #cedbe7; }
+            .cooling-system-item:nth-child(even) { border-left: 1px solid #cedbe7; }
+        }
+        @media (min-width: 1280px) {
+            .cooling-equipment-panel { grid-template-columns: minmax(215px, 1.5fr) minmax(0, 5fr); }
+            .cooling-equipment-intro { border-right: 1px solid #cedbe7; padding-right: 1.25rem; padding-bottom: 0; }
+            .cooling-equipment-items { padding-left: .5rem; }
+            .cooling-system-item { padding-inline: .72rem; }
+            .cooling-system-item:first-child { border-left: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cooling-system-icon { transition: none; }
+            .cooling-system-item:hover .cooling-system-icon { transform: none; }
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
@@ -183,39 +231,90 @@
             </section>
 
             <!-- SECCIÓN 02 — RESIDENTIAL COOLING SERVICES -->
-<section id="cooling-services" class="bg-white py-16 sm:py-20">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid items-center gap-9 md:grid-cols-2 md:gap-10 lg:gap-14">
-      <div>
-        <div class="mb-4 flex items-center gap-3"><span class="h-0.5 w-8 bg-prontoRed" aria-hidden="true"></span><span class="text-xs font-extrabold uppercase tracking-[0.16em] text-prontoRed">Cooling Services</span></div>
-        <h2 class="max-w-xl text-3xl font-extrabold leading-tight tracking-tight text-prontoNavy sm:text-4xl lg:text-5xl">Residential Cooling Services &amp; Systems</h2>
-        <p class="mt-5 max-w-xl text-base leading-relaxed text-gray-700 sm:text-lg">Pronto Air provides residential air conditioning repair, service, maintenance, system design and installation. Cooling equipment checks also help homeowners prepare for hot summer weather.</p>
-        <ul class="mt-7 max-w-xl divide-y divide-gray-200 border-y border-gray-200" aria-label="Residential cooling services"><li class="flex items-center gap-3 py-3 text-sm font-semibold text-prontoNavy sm:text-base"><i class="fa-solid fa-circle-check text-prontoRed" aria-hidden="true"></i>Air Conditioning Repairs &amp; Service</li>
-<li class="flex items-center gap-3 py-3 text-sm font-semibold text-prontoNavy sm:text-base"><i class="fa-solid fa-circle-check text-prontoRed" aria-hidden="true"></i>Cooling Maintenance &amp; Equipment Checks</li>
-<li class="flex items-center gap-3 py-3 text-sm font-semibold text-prontoNavy sm:text-base"><i class="fa-solid fa-circle-check text-prontoRed" aria-hidden="true"></i>New Cooling System Design &amp; Installation</li></ul>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="tel:+19403123081" class="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-prontoRed px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoNavy"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i>Call Pronto Air</a>
-          <a href="mailto:prontoairdenton@hotmail.com" class="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-prontoNavy px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-prontoBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed"><i class="fa-solid fa-envelope" aria-hidden="true"></i>Email Pronto Air</a>
-        </div>
-      </div>
-      <figure class="relative min-h-[310px] overflow-hidden rounded-3xl border border-[#dbe5ee] shadow-xl sm:min-h-[390px] md:h-full md:min-h-[455px]"><img src="images/home-service-cooling.webp" alt="Illustrative photograph of residential cooling equipment, not a documented Pronto Air project" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full object-cover object-center"></figure>
-    </div>
-    <div class="mt-12 grid gap-8 rounded-3xl border border-[#dce7f0] bg-prontoLight p-6 sm:mt-16 sm:p-9 lg:grid-cols-12 lg:gap-12 lg:p-12">
-      <div class="lg:col-span-4 lg:border-r lg:border-[#cbd8e4] lg:pr-10">
-        <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-snowflake"></i></div>
-        <h3 class="text-2xl font-extrabold leading-tight text-prontoNavy sm:text-3xl">Cooling Systems &amp; Equipment</h3>
-        <p class="mt-4 text-base leading-relaxed text-gray-600">Residential cooling systems and equipment included in Pronto Air's services.</p>
-      </div>
-      <ul class="grid gap-x-7 sm:grid-cols-2 lg:col-span-8" aria-label="Residential cooling systems and equipment"><li class="flex items-start gap-3 border-b border-[#d6e1eb] py-4"><span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-lg text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-fan"></i></span><div class="min-w-0"><h4 class="font-bold leading-snug text-prontoNavy">Central Air &amp; Ductless Systems</h4><p class="mt-1 text-sm leading-relaxed text-gray-600">Service and setup for central air conditioners and ductless cooling systems.</p></div></li>
-<li class="flex items-start gap-3 border-b border-[#d6e1eb] py-4"><span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-lg text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-box-open"></i></span><div class="min-w-0"><h4 class="font-bold leading-snug text-prontoNavy">Gas &amp; Electric Package Units</h4><p class="mt-1 text-sm leading-relaxed text-gray-600">Service and maintenance for residential gas and electric package units.</p></div></li>
-<li class="flex items-start gap-3 border-b border-[#d6e1eb] py-4"><span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-lg text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-wind"></i></span><div class="min-w-0"><h4 class="font-bold leading-snug text-prontoNavy">Humidifiers, Air Quality, Air Cleaners &amp; Filters</h4><p class="mt-1 text-sm leading-relaxed text-gray-600">Whole-house humidifiers, air cleaning systems and filter maintenance.</p></div></li>
-<li class="flex items-start gap-3 border-b border-[#d6e1eb] py-4"><span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-lg text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-gears"></i></span><div class="min-w-0"><h4 class="font-bold leading-snug text-prontoNavy">Air Handlers</h4><p class="mt-1 text-sm leading-relaxed text-gray-600">Inspection, repair and installation of units that circulate conditioned air.</p></div></li>
-<li class="flex items-start gap-3 border-b border-[#d6e1eb] py-4"><span class="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-lg text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-temperature-arrow-down"></i></span><div class="min-w-0"><h4 class="font-bold leading-snug text-prontoNavy">Heat Pumps</h4><p class="mt-1 text-sm leading-relaxed text-gray-600">Repair and installation of systems used for heating in winter and cooling in summer.</p></div></li></ul>
-    </div>
-  </div>
-</section>
+            <section id="cooling-services" class="bg-white py-16 sm:py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <!-- Distinctive Cooling editorial layout, faithful to verified services. -->
+                    <div class="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.06fr)] md:items-center md:gap-10 lg:gap-14">
+                        <div>
+                            <div class="mb-5 inline-flex items-center gap-3">
+                                <span class="text-xs font-extrabold uppercase tracking-[.18em] text-prontoRed">Cooling Services</span>
+                                <span class="h-0.5 w-9 bg-prontoRed" aria-hidden="true"></span>
+                            </div>
+                            <h2 class="max-w-2xl text-4xl font-extrabold leading-[1.1] tracking-tight text-prontoNavy sm:text-5xl lg:text-[3.25rem]">
+                                Residential Cooling Services &amp; Systems
+                            </h2>
+                            <p class="mt-6 max-w-xl text-base leading-relaxed text-gray-700 sm:text-lg">
+                                Pronto Air provides residential air conditioning repairs, maintenance, system design and installation. Cooling equipment checks help homeowners prepare for hot summer weather.
+                            </p>
+                            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                                <a href="tel:+19403123081" class="inline-flex min-h-[54px] items-center justify-center gap-3 rounded-xl bg-prontoRed px-6 py-3 font-bold text-white shadow-md transition hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoNavy">
+                                    <i class="fa-solid fa-phone" aria-hidden="true"></i> Call Pronto Air
+                                </a>
+                                <a href="mailto:prontoairdenton@hotmail.com" class="inline-flex min-h-[54px] items-center justify-center gap-3 rounded-xl bg-prontoNavy px-6 py-3 font-bold text-white shadow-md transition hover:bg-prontoBlue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-prontoRed">
+                                    <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email Pronto Air
+                                </a>
+                            </div>
+                        </div>
 
-<!-- SECCIÓN 03 — AIR CONDITIONING MAINTENANCE TIPS -->
+                        <figure class="cooling-showcase-photo relative min-h-[300px] overflow-hidden rounded-3xl border border-[#dbe5ee] bg-prontoLight shadow-xl sm:min-h-[390px] md:h-full md:min-h-[430px]">
+                            <img src="images/home-service-cooling.webp" alt="Illustrative residential cooling equipment photograph, not a verified Pronto Air project" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" decoding="async">
+                        </figure>
+                    </div>
+
+                    <!-- Five categories presented as a horizontal icon strip on desktop;
+                         reorganized into accessible rows on mobile, not miniature desktop cards. -->
+                    <div class="mt-12 rounded-3xl border border-[#dce7f0] bg-prontoLight px-6 py-7 shadow-sm sm:mt-14 sm:px-8 sm:py-9 xl:px-9 xl:py-10">
+                        <div class="cooling-equipment-panel">
+                            <div class="cooling-equipment-intro">
+                                <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-snowflake"></i></div>
+                                <h3 class="text-2xl font-extrabold leading-tight text-prontoNavy sm:text-3xl">Cooling Systems<br class="hidden xl:block"> We Service</h3>
+                                <p class="mt-4 max-w-sm text-sm leading-relaxed text-gray-600 sm:text-base">
+                                    Residential cooling systems and equipment included in Pronto Air's services.
+                                </p>
+                            </div>
+                            <ul class="cooling-equipment-items" aria-label="Residential cooling systems and equipment">
+                        <li class="cooling-system-item flex items-start gap-4 py-5 sm:flex-col sm:items-center sm:gap-0 sm:text-center lg:py-4">
+                            <span class="cooling-system-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xl text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-fan"></i></span>
+                            <div class="min-w-0 sm:mt-4">
+                                <h4 class="text-base font-bold leading-snug text-prontoNavy">Central Air &amp; Ductless Systems</h4>
+                                <p class="mt-2 text-sm leading-relaxed text-gray-600">Service and setup for central air conditioners and ductless cooling systems.</p>
+                            </div>
+                        </li>
+                        <li class="cooling-system-item flex items-start gap-4 py-5 sm:flex-col sm:items-center sm:gap-0 sm:text-center lg:py-4">
+                            <span class="cooling-system-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xl text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-box-open"></i></span>
+                            <div class="min-w-0 sm:mt-4">
+                                <h4 class="text-base font-bold leading-snug text-prontoNavy">Gas &amp; Electric Package Units</h4>
+                                <p class="mt-2 text-sm leading-relaxed text-gray-600">Service and maintenance for residential gas and electric package units.</p>
+                            </div>
+                        </li>
+                        <li class="cooling-system-item flex items-start gap-4 py-5 sm:flex-col sm:items-center sm:gap-0 sm:text-center lg:py-4">
+                            <span class="cooling-system-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xl text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-wind"></i></span>
+                            <div class="min-w-0 sm:mt-4">
+                                <h4 class="text-base font-bold leading-snug text-prontoNavy">Humidifiers, Air Quality, Air Cleaners &amp; Filters</h4>
+                                <p class="mt-2 text-sm leading-relaxed text-gray-600">Whole-house humidifiers, air cleaning systems and filter maintenance.</p>
+                            </div>
+                        </li>
+                        <li class="cooling-system-item flex items-start gap-4 py-5 sm:flex-col sm:items-center sm:gap-0 sm:text-center lg:py-4">
+                            <span class="cooling-system-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xl text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-gears"></i></span>
+                            <div class="min-w-0 sm:mt-4">
+                                <h4 class="text-base font-bold leading-snug text-prontoNavy">Air Handlers</h4>
+                                <p class="mt-2 text-sm leading-relaxed text-gray-600">Inspection, repair and installation of units that circulate conditioned air.</p>
+                            </div>
+                        </li>
+                        <li class="cooling-system-item flex items-start gap-4 py-5 sm:flex-col sm:items-center sm:gap-0 sm:text-center lg:py-4">
+                            <span class="cooling-system-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-xl text-prontoNavy shadow-sm" aria-hidden="true"><i class="fa-solid fa-temperature-arrow-down"></i></span>
+                            <div class="min-w-0 sm:mt-4">
+                                <h4 class="text-base font-bold leading-snug text-prontoNavy">Heat Pumps</h4>
+                                <p class="mt-2 text-sm leading-relaxed text-gray-600">Repair and installation of systems used for heating in winter and cooling in summer.</p>
+                            </div>
+                        </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 03 — AIR CONDITIONING MAINTENANCE TIPS -->
             <section class="py-20 bg-prontoLight border-y border-gray-200">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">

@@ -502,23 +502,23 @@
                     <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Name <span class="text-prontoRed">*</span></label>
-                                <input type="text" id="fieldName" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition" placeholder="Your full name">
+                                <label class="block text-sm font-bold text-gray-700 mb-2" for="fieldName">Name <span class="text-prontoRed">*</span></label>
+                                <input type="text" id="fieldName" name="name" autocomplete="name" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition" placeholder="Your full name">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Phone <span class="text-prontoRed">*</span></label>
-                                <input type="tel" id="fieldPhone" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition" placeholder="(940) 000-0000">
+                                <label class="block text-sm font-bold text-gray-700 mb-2" for="fieldPhone">Phone <span class="text-prontoRed">*</span></label>
+                                <input type="tel" id="fieldPhone" name="phone" autocomplete="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition" placeholder="(940) 000-0000">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Email <span class="text-prontoRed">*</span></label>
-                                <input type="email" id="fieldEmail" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition" placeholder="yourname@example.com">
+                                <label class="block text-sm font-bold text-gray-700 mb-2" for="fieldEmail">Email <span class="text-prontoRed">*</span></label>
+                                <input type="email" id="fieldEmail" name="email" autocomplete="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition" placeholder="yourname@example.com">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-gray-700 mb-2">Service Needed <span class="text-prontoRed">*</span></label>
-                                <select id="fieldService" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition bg-white">
+                                <label class="block text-sm font-bold text-gray-700 mb-2" for="fieldService">Service Needed <span class="text-prontoRed">*</span></label>
+                                <select id="fieldService" name="service" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition bg-white">
                                     <option value="">Select a service...</option>
                                     <option value="Residential Cooling">Residential Cooling</option>
                                     <option value="Residential Heating">Residential Heating</option>
@@ -529,21 +529,23 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-2">Message <span class="text-prontoRed">*</span></label>
-                            <textarea id="fieldMessage" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition" placeholder="Tell us about your heating or cooling request..."></textarea>
+                            <label class="block text-sm font-bold text-gray-700 mb-2" for="fieldMessage">Message <span class="text-prontoRed">*</span></label>
+                            <textarea id="fieldMessage" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition" placeholder="Tell us about your heating or cooling request..."></textarea>
+                        </div>
+
+                        <!-- Preview disclosure: no backend or live message delivery configured. -->
+                        <div id="formNotice" class="bg-amber-50 border border-amber-200 text-amber-900 p-4 rounded-xl text-sm" role="status" aria-live="polite">
+                            <p class="font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1" aria-hidden="true"></i> Demo Form — No Messages Sent</p>
+                            <p class="mt-1">This form is only a preview and does not send requests. Call <a href="tel:+19403123081" class="font-semibold underline">(940) 312-3081</a> or email <a href="mailto:prontoairdenton@hotmail.com" class="font-semibold underline">prontoairdenton@hotmail.com</a> to contact Pronto Air directly.</p>
                         </div>
 
                         <div>
                             <button type="submit" class="w-full bg-prontoRed hover:bg-red-700 text-white font-bold py-4 rounded-xl transition shadow-lg text-base">
-                                Submit Request
+                                Preview Request
                             </button>
                         </div>
 
-                        <!-- Aviso importante de Demostración del Formulario -->
-                        <div id="formNotice" class="hidden bg-amber-50 border border-amber-200 text-amber-800 p-4 rounded-xl text-sm">
-                            <p class="font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Modo de Demostración</p>
-                            <p class="mt-1">Este formulario es una demostración interactiva y no envía mensajes automáticamente. Para una atención inmediata, por favor contáctenos directamente al teléfono <strong>(940) 312-3081</strong> o al correo <strong>prontoairdenton@hotmail.com</strong>.</p>
-                        </div>
+                        
                     </form>
                 </div>
             </div>

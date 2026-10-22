@@ -1,0 +1,29 @@
+name: Read-only Pronto Air protocol audit
+on:
+  push:
+    branches: [audit/full-site-protocol-20261022]
+permissions:
+  contents: read
+jobs:
+  audit-live-site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install headless browser and accessibility analyzer
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1 @axe-core/playwright@4.10.2
+          npx playwright install --with-deps chromium
+      - name: Audit deployed eight-page preview at four widths
+        run: node tools/audit-full-site-playwright.cjs
+      - name: Preserve audit results for diagnosis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pronto-air-protocol-browser-results
+          path: audit/protocol-browser-results.json
+          if-no-files-found: warn
+          retention-days: 7

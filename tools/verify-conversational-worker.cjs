@@ -29,6 +29,34 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
  const drift=await worker.fetch(post('Tell me about heating services'),{...env,AI:{run:async()=>({response:'Pronto Air offers services on their website.'})}});
  assert.equal((await drift.json()).mode,'safe-fallback','Third-person voice should not be shown');
  assert.ok(JSON.stringify(modelMessages[0]).includes('FACTS:'));
+ // Current visitor language overrides older turns and model responses.
+ const previousSpanish=[
+  {role:'user',content:'Hola, necesito ayuda con la calefacción'},
+  {role:'assistant',content:'Podemos ayudarte con nuestros servicios de calefacción.'}
+ ];
+ const switched=await worker.fetch(post('My AC is not cooling. Can you help me?',previousSpanish),env);
+ const switchedBody=await switched.json();
+ assert.equal(switchedBody.mode,'conversational-ai');
+ assert.equal(switchedBody.lang,'en');
+ assert.match(switchedBody.reply,/We provide residential cooling/i);
+ const switchedMessages=modelMessages.at(-1);
+ assert.match(switchedMessages[0].content,/RESPONSE LANGUAGE: ENGLISH/);
+ assert.equal(switchedMessages.length,2,'Spanish messages leaked into the English model prompt');
+ const spanishEnv={...env,AI:{run:async(_model,args)=>{
+  assert.match(args.messages[0].content,/RESPONSE LANGUAGE: SPANISH/);
+  return {response:'Podemos ayudarte con nuestros servicios de calefacción.'};
+ }}};
+ const spanishAnswer=await worker.fetch(post('Hola, necesito ayuda con la calefacción'),spanishEnv);
+ const spanishJson=await spanishAnswer.json();
+ assert.equal(spanishJson.lang,'es');assert.equal(spanishJson.mode,'conversational-ai');
+ const wrongLang=await worker.fetch(post('My AC is not cooling. Can you help me?'),
+  {...env,AI:{run:async()=>({response:'Puedes dejarnos un mensaje para nuestro equipo.'})}});
+ const wrongJson=await wrongLang.json();
+ assert.equal(wrongJson.mode,'safe-fallback','Spanish generated for English visitor must be rejected');
+ assert.equal(wrongJson.lang,'en');
+ assert.match(wrongJson.reply,/our confirmed services/i);
+ const explicit=await worker.fetch(post('Please answer in Spanish: what heating services do you offer?'),spanishEnv);
+ assert.equal((await explicit.json()).lang,'es');
  assert.equal((await worker.fetch(post('My phone is 9403123081'),env)).status,422);
  assert.equal((await worker.fetch(post('Hello',[{role:'user',content:'john@example.com'}]),env)).status,422);
  assert.equal((await worker.fetch(post('Hello',[],'https://evil.example'),env)).status,403);
@@ -42,5 +70,5 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
  const opt=await worker.fetch(new Request('https://pronto.example.workers.dev/chat',{method:'OPTIONS',headers:{'Origin':origin}}),env);assert.equal(opt.status,204);
  const health=await worker.fetch(new Request('https://pronto.example.workers.dev/health'),env);
  assert.equal((await health.json()).modelConfigured,true);
- console.log('PASS 12 Worker conversational tests: grounded prompt, model response, PII, CORS, limits, quota, suspicious output and safety');
+ console.log('PASS Worker conversational tests including language switching, wrong-language fallback, grounded prompt, model response, PII, CORS, limits, quota, suspicious output and safety');
 })().catch(e=>{console.error(e);process.exit(1)});

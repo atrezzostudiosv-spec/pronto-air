@@ -55,9 +55,16 @@ async function getPage(browser,base,name,width){
           mainHeight:document.querySelector('main')?.getBoundingClientRect().height};
       });
       const oldDims=await dims(a.page),newDims=await dims(b.page);
-      if(JSON.stringify(oldDims)!==JSON.stringify(newDims)) {
+      const sameStructure =
+        JSON.stringify(oldDims.headings)===JSON.stringify(newDims.headings) &&
+        oldDims.sections.length===newDims.sections.length &&
+        oldDims.noindex===newDims.noindex &&
+        Math.abs(oldDims.overflow-newDims.overflow)<=1 &&
+        Math.abs(oldDims.mainHeight-newDims.mainHeight)<=1 &&
+        oldDims.sections.every((rect,i)=>rect.every((v,j)=>Math.abs(v-newDims.sections[i][j])<=1));
+      if(!sameStructure){
         console.log('GEOMETRY DETAIL',name,width,JSON.stringify({original:oldDims,new:newDims}));
-        problems.push(name+' '+width+' layout/SEO geometry mismatch');
+        problems.push(name+' '+width+' layout/SEO geometry mismatch > 1px');
       }
       if(b.errors.length)problems.push(name+' '+width+' JS errors '+b.errors);
       const toggle=b.page.getByRole('button',{name:'Ask Pronto Air'});

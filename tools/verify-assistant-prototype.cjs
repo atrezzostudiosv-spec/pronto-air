@@ -33,7 +33,8 @@ async function getPage(browser,base,name,width){
   const errors=[];
   page.on('pageerror',e=>errors.push(String(e)));
   await page.goto(base+'/'+name,{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForTimeout(100);
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForTimeout(220);
   return {page,context,errors};
 }
 (async()=>{
@@ -54,7 +55,10 @@ async function getPage(browser,base,name,width){
           mainHeight:document.querySelector('main')?.getBoundingClientRect().height};
       });
       const oldDims=await dims(a.page),newDims=await dims(b.page);
-      if(JSON.stringify(oldDims)!==JSON.stringify(newDims))problems.push(name+' '+width+' layout/SEO geometry mismatch');
+      if(JSON.stringify(oldDims)!==JSON.stringify(newDims)) {
+        console.log('GEOMETRY DETAIL',name,width,JSON.stringify({original:oldDims,new:newDims}));
+        problems.push(name+' '+width+' layout/SEO geometry mismatch');
+      }
       if(b.errors.length)problems.push(name+' '+width+' JS errors '+b.errors);
       const toggle=b.page.getByRole('button',{name:'Ask Pronto Air'});
       if(await toggle.count()!==1||!(await toggle.isVisible()))problems.push(name+' '+width+' launcher missing');

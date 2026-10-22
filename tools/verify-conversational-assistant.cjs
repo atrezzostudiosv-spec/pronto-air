@@ -37,6 +37,7 @@ const mkServer=dir=>new Promise(resolve=>{
    await p1.goto(before.url+'/'+file,{waitUntil:'domcontentloaded'});
    await p2.goto(after.url+'/'+file,{waitUntil:'domcontentloaded'});
    await p1.evaluate(()=>document.fonts.ready);await p2.evaluate(()=>document.fonts.ready);
+   await p1.waitForTimeout(200);await p2.waitForTimeout(200);
    const a=await geom(p1),b=await geom(p2);
    assert.equal(JSON.stringify(a.h1),JSON.stringify(b.h1),'H1 changed: '+file);
    assert.equal(a.robots,'noindex, nofollow');assert.equal(b.robots,a.robots);
@@ -45,7 +46,7 @@ const mkServer=dir=>new Promise(resolve=>{
    assert.ok(Math.abs(a.overflow-b.overflow)<=1,'Unexpected scroll change: '+file+'/'+width);
    assert.ok(b.overflow<=2,'Horizontal overflow: '+file+'/'+width);
    for(let i=0;i<a.sections.length;i++)for(let j=0;j<4;j++){
-     assert.ok(Math.abs(a.sections[i][j]-b.sections[i][j])<=1,'Layout modified: '+file+'/'+width);
+     assert.ok(Math.abs(a.sections[i][j]-b.sections[i][j])<=1,'Layout modified: '+file+'/'+width+' section '+i+' coordinate '+j+' baseline '+a.sections[i][j]+' new '+b.sections[i][j]);
    }
    const launcher=p2.getByRole('button',{name:'Ask Pronto Air'});
    assert.equal(await launcher.isVisible(),true);

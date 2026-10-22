@@ -1,51 +1,35 @@
-# Pronto Air — Asistente portable ATREZZO
+# Pronto Air — Asistente conversacional ATREZZO
 
-## Estado real
-**Versión integrada:** guía interactiva local basada en servicios verificados; funciona sin suscripciones y sin conexión a una API de IA.
-**IA real:** backend Cloudflare Workers AI preparado en `assistant-worker/`, **no desplegado ni conectado**; no existe acceso a una cuenta Cloudflare del cliente o ATREZZO en este proyecto. La interfaz no debe presentarse como IA generativa ya operativa hasta habilitar y probar el Worker.
+## Estado real (22 octubre 2026)
+- **Implementación web preparada en rama de revisión:** interfaz de chat natural con alternativa guiada, botón de llamada `tel:+19403123081` y formulario de seguimiento integrado.
+- **IA generativa real:** preparada en el Worker `assistant-worker/src/index.js`, pero **no conectada, desplegada ni verificada en Cloudflare**. Hasta que haya una cuenta y se activen las llamadas a `/chat`, la interfaz se identifica como guía local, no como IA generativa.
+- **Seguimientos:** se envían por AJAX al servicio FormSubmit ya usado por Home y Contact, a `atrezzostudiosv@gmail.com` provisionalmente. El envío solo se da por aceptado tras respuesta positiva del proveedor; recibirlo en Gmail exige prueba real, que no se hace en test automatizado.
+- **Privacidad:** el borrador de política se conserva como está hasta la contratación. El formulario integrado exige consentimiento específico y revela que el receptor temporal es Atrezzo. Las conversaciones de IA **no reciben nombres, teléfonos ni correos** si pasan los controles de interfaz y servidor; filtros de patrones no garantizan detección de toda información personal.
+- **Web de demostración:** conserva `noindex, nofollow`.
 
-Esta solución es portable: funciona en GitHub Pages, hosting HTML estático, VPS u otro dominio que permita archivos HTML/CSS/JS. El sitio actual mantiene `noindex, nofollow`.
+## Experiencia prevista
+1. El visitante hace una pregunta normal sobre servicios de Pronto Air en inglés o español.
+2. **Con el Worker activo**, la IA genera una respuesta breve basada solo en datos comerciales auditados incluidos en el prompt de sistema. El sistema intenta limitar las afirmaciones no confirmadas y rechaza algunas promesas sospechosas; **no puede garantizar ausencia total de errores del modelo**. El contacto humano sigue siendo la vía para detalles no publicados.
+3. Si la IA no está configurada, falla o agota su cuota, aparece una respuesta guiada de alcance limitado, sin pretender que es IA conversacional.
+4. El visitante puede tocar **Call** (abre el marcador; no se inicia una llamada automáticamente), **Leave a Message** o **Request a call back**.
+5. El formulario integrado recoge nombre, teléfono, correo opcional, servicio, mensaje y consentimiento. Envía al FormSubmit existente; indica que solicita seguimiento, **no reserva cita**.
+6. Horario publicado: lunes a viernes 8:00–18:00 en `America/Chicago`, fin de semana por cita. El asistente indica el contexto, pero no puede confirmar si alguien está atendiendo en este instante ni prometer alertas inmediatas. Fuera del horario de días laborables, etiqueta el correo como solicitud fuera de horario.
+7. Incidentes potencialmente peligrosos (fuga de gas, humo, etc.) derivan a emergencias o distribuidora de gas y no se presentan como servicio técnico de urgencia de Pronto Air.
 
-## Qué hace el widget
-- Se añade de forma aislada a las ocho páginas con `assets/css/pronto-assistant.css` y `assets/js/pronto-assistant.js`; no toca el CSS compilado, fuentes, iconos, secciones ni formularios.
-- Seis botones de orientación, entrada de pregunta en inglés/español básico, respuestas deterministas y links a servicios auténticos.
-- Las respuestas se basan exclusivamente en `residential-cooling.html`, `residential-heating.html`, `mobile-homes.html`, `light-commercial.html`, `service-agreement-faqs.html` y `contact-us.html`.
-- Ofrece `Request Service` hacia `contact-us.html#contact-form-section` y botón de llamada `(940) 312-3081`.
-- No diagnostica, no ofrece citas, precios o disponibilidad ni inventa condiciones comerciales.
-- Bloquea formatos evidentes de correo, teléfono o direcciones antes de procesar un texto. No guarda historial en navegador ni servidor, no solicita datos personales y limita a 12 mensajes por sesión de widget. Estos filtros no sustituyen auditoría de privacidad.
-- Funciona sin API externa. El modo local reconoce términos y orienta; **NO es IA generativa**.
+## Cómo activar la IA real, sin contratar planes de pago
+1. Crear o conectar una cuenta **Cloudflare Workers Free** en https://dash.cloudflare.com/.
+2. Desde `assistant-worker/`, ejecutar `npx wrangler login` y `npx wrangler deploy`, usando el binding `AI` y limitador de `wrangler.jsonc`.
+3. Verificar que `@cf/meta/llama-3.1-8b-instruct-fp8-fast` esté disponible en la asignación gratuita de esa cuenta (https://developers.cloudflare.com/workers-ai/platform/pricing/).
+4. Probar la URL real del Worker, por ejemplo **solo como estructura** `https://TU-WORKER.TU-SUBDOMINIO.workers.dev/chat`; no inventar un endpoint ni incluir claves en el HTML.
+5. Una vez probado, añadir `data-ai-endpoint="URL_REAL/chat"` a la referencia a `assets/js/pronto-assistant.js` de las ocho páginas. El chat comenzará a pedir respuestas a la IA generativa.
+6. Probar con 20–30 preguntas (servicios, idiomas, precios, citas, emergencias, información fuera de alcance, inyección de instrucciones, limitaciones), y comparar también respuestas incorrectas.
+7. Al migrar de GitHub Pages al hosting oficial, copiar archivos HTML/CSS/JS y autorizar el nuevo dominio en `ALLOWED_ORIGINS`, desplegar y verificar. Mantener el correo de Atrezzo **hasta que autoricen** cambiar destinatarios en Home, Contact, formulario del asistente y documentación de privacidad.
 
-## Conectar IA real — cuando el titular autorice el Worker
+Cloudflare Workers Free incluye una asignación diaria de 10.000 Neurons que se agota sin ampliar el plan automáticamente; el número de respuestas depende del modelo/tokens. El servidor controla cuota y límite por IP, pero CORS no impide llamadas automatizadas directas. Cuando la web tenga tráfico real, revisar protección antiabuso, límites y Turnstile según las necesidades.
 
-1. Crear o conectar una cuenta **Cloudflare Workers Free**. No cambiar a plan de pago ni activar facturación de consumo sin autorización.
-2. Entrar en `assistant-worker/`, instalar Wrangler (puede usarse `npx wrangler` sin dependencia local persistente), ejecutar `npx wrangler login` y `npx wrangler deploy`.
-3. Comprobar en la cuenta que el modelo `@cf/meta/llama-3.1-8b-instruct-fp8-fast` está disponible en Free; algunas ofertas/modelos cambian o tienen restricciones. `wrangler.jsonc` incluye `AI` y `REQUEST_LIMITER` (10 peticiones/minuto por IP aproximadas).
-4. Obtener la URL real `https://<nombre>.<subdominio>.workers.dev/classify`. Solo entonces añadir `data-ai-endpoint="https://.../classify"` a los **ocho** scripts `assets/js/pronto-assistant.js` en HTML. **No inventar ni adivinar una URL o clave**.
-5. Probar `/health` y `/classify`, confirmar el modelo y la cuota, 20–30 preguntas, rechazo de PII y funcionamiento sin IA.
-6. Actualizar la divulgación de privacidad (el chat mandará la pregunta sin nombre/contacto a Cloudflare cuando se configure) y obtener aprobación del negocio antes de la publicación final.
-7. Al cambiar a dominio/hosting oficial, añadir el nuevo origen a `ALLOWED_ORIGINS` del Worker y redesplegar. El JS/CSS se traslada sin reconstruirlo. Probar CORS y enlaces relativos.
-8. Si Free agota cuota o hay un error, el widget vuelve a ayuda local. No hay facturación automática en Workers Free, pero límites y políticas cambian; monitorizarlos en Cloudflare.
-
-**Nota de seguridad:** CORS protege solicitudes de sitios no autorizados en navegadores, pero no equivale a autenticación de servidor. El Worker además tiene limitación aproximada por IP, un límite de longitud, rechazo básico de PII y presupuesto de cuota Free; para exposición pública seria, evaluar Turnstile, protección antiabuso y supervisión.
-
-**La IA solo clasifica intención** entre 11 etiquetas permitidas. No genera texto comercial al visitante. La respuesta visible sigue saliendo de la tabla de hechos local; esto reduce considerablemente la posibilidad de inventar servicios.
-
-## Pruebas mínimas antes de presentación
-- 8 páginas, 375 / 768 / 1024 / 1440 px; launcher abre/cierra, tecla Escape, controles de 44px, foco y overlay.
-- Estado cerrado no altera el diseño ni genera scroll horizontal.
-- Preguntas sobre cooling/heating/mobile/commercial/mantenimiento/FAQ enlazan página correcta.
-- Consultas ajenas ("plumbing", "roofing") no inventan servicios; precio y citas no tienen promesas.
-- PII no se envía al endpoint, incluso cuando se configure. Servidor bloquea datos personales evidentes.
-- Probar con IA conectada y desconectada, errores 429 / 503 / red.
-- No publicar como chatbot de IA conectado mientras no se despliegue el Worker; no presentar un falso modelo.
-
-## Coste de referencia (Cloudflare oficial, 22 octubre 2026)
-- Workers AI Free: **10.000 Neurons/día**; al llegar al límite, falla la inferencia; continuar con modo local. No equivalen a un número fijo de conversaciones.
-- Workers Free: hasta **100.000 requests/día**, separado de cuota IA.
-- Modelos seleccionados exigen Paid; verificar siempre el modelo exacto y estado de la cuenta.
-- Fuentes: https://developers.cloudflare.com/workers-ai/platform/pricing/ , https://developers.cloudflare.com/workers/platform/limits/ , https://developers.cloudflare.com/workers-ai/models/llama-3.1-8b-instruct-fp8/ , https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
-
-## Puntos pendientes de aprobación
-- Política de privacidad: se conserva como borrador hasta que el negocio contrate; el chat local no sustituye consentimiento del cliente al procesamiento externo cuando haya Worker.
-- Correo FormSubmit temporal `atrezzostudiosv@gmail.com` sin cambios. Cambiar al del cliente solo al migrar con aprobación.
-- Endpoint Worker y prueba real IA de Cloudflare: **pendiente de conexión a cuenta gratuita**.
+## Requisitos de mantenimiento
+- El contenido comercial verificado y la lista de servicios viven en el frontend y en el prompt del Worker. Toda modificación debe actualizar **ambas** fuentes y tener respaldo en web original/cliente.
+- No adjuntar PII a consultas de IA; los datos del formulario van directamente a FormSubmit. El navegador no transmite datos del formulario al modelo.
+- Revisar tasa de errores, cuota, spam y entrega de FormSubmit. Ningún sistema de email o Worker garantiza la lectura inmediata del correo.
+- Mantener el diseño original y auditar 375, 768, 1024 y 1440 px.
+- Las pruebas automatizadas de IA usan respuestas **simuladas**. Una prueba real de Cloudflare y recepción real de email queda pendiente hasta conectar las cuentas.

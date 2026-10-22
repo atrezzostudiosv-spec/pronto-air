@@ -114,7 +114,7 @@ const mkServer=dir=>new Promise(resolve=>{
   assert.equal(await page.locator('.pa-guide-message').count(),n,'Personal info accepted into chat');
   await page.getByRole('button',{name:'Leave a Message'}).click();
   assert.equal(await page.locator('.pa-guide-lead').isVisible(),true);
-  await page.locator('.pa-guide-lead-send').click();
+  await page.locator('.pa-guide-lead-form button[type="submit"]').click();
   assert.equal(deliveryCount,0,'Empty lead submitted');
   await page.locator('.pa-guide-lead-form [name="name"]').fill('QA Visitor');
   await page.locator('.pa-guide-lead-form [name="phone"]').fill('9403123081');
@@ -123,12 +123,12 @@ const mkServer=dir=>new Promise(resolve=>{
   await page.locator('.pa-guide-lead-form [name="service"]').selectOption('Residential Cooling');
   await page.locator('.pa-guide-lead-form [name="consent"]').check();
   // Even HTTP 200 is NOT success if the relay's JSON says success:false.
-  await page.locator('.pa-guide-lead-send').click();
+  await page.locator('.pa-guide-lead-form button[type="submit"]').click();
   await page.waitForFunction(()=>document.querySelector('.pa-guide-lead-status')?.textContent?.includes('We could not verify the request.'));
   assert.equal(deliveryCount,1,'Rejection did not reach the mocked provider');
   assert.equal(await page.locator('.pa-guide-lead-form [name="message"]').inputValue(),'Test only, please do not call.',
     'Failed request should preserve visitor data for retry');
-  assert.equal(await page.locator('.pa-guide-lead-send').isEnabled(),true,
+  assert.equal(await page.locator('.pa-guide-lead-form button[type="submit"]').isEnabled(),true,
     'Failed request should release the submit button');
   assert.equal(await page.locator('.pa-guide-message.is-guide').count(),1,
     'Failed request displayed a false success message');
@@ -147,7 +147,7 @@ const mkServer=dir=>new Promise(resolve=>{
   await directPage.close();
   // Reattempt with a mocked positive FormSubmit response. No actual email is sent.
   deliveryMode='accept';
-  await page.locator('.pa-guide-lead-send').click();
+  await page.locator('.pa-guide-lead-form button[type="submit"]').click();
   await page.waitForFunction(()=>document.querySelector('.pa-guide-lead-status')?.textContent?.includes('accepted by the form service'));
   assert.equal(deliveryCount,2);
   assert.equal(preflightCount,0,'Unexpected AJAX CORS preflight');

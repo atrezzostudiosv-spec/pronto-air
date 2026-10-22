@@ -107,6 +107,7 @@ root.innerHTML=[
  '<button type="submit" class="pa-guide-send" aria-label="Send question"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>',
  '<div class="pa-guide-warning" role="status"></div>',
  '<div class="pa-guide-footer-links"><a href="'+phoneHref+'" class="pa-guide-phone">Call '+phone+'</a><button type="button" class="pa-guide-contact">Leave a Message</button></div>',
+ '<p class="pa-guide-ai-disclosure" hidden>AI demo: chat questions are processed by Cloudflare Workers AI. Please do not share personal details in the chat; use Leave a Message instead.</p>',
  '<p class="pa-guide-footnote">Information only · No diagnosis, emergency service or confirmed booking</p></form>',
  '</section>'
 ].join('');
@@ -118,6 +119,7 @@ const launcher=one('.pa-guide-launcher'),panel=one('.pa-guide-panel'),close=one(
  chatForm=one('.pa-guide-form'),lead=one('.pa-guide-lead'),leadForm=one('.pa-guide-lead-form'),
  leadStatus=one('.pa-guide-lead-status');
 one('.pa-guide-mode').textContent=endpoint?'AI-powered assistance':'Service assistant · guided mode';
+if(endpoint)one('.pa-guide-ai-disclosure').hidden=false;
 one('.pa-guide-hours').textContent=availability().note;
 const history=[];let request=null,turns=0,requestCount=0;
 function open(){panel.hidden=false;launcher.setAttribute('aria-expanded','true');launcher.classList.add('is-open');input.focus({preventScroll:true});}

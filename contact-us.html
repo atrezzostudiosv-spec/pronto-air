@@ -606,6 +606,7 @@
         </div>
     </footer>
 
+    <script src="assets/js/pronto-form-inline.js"></script>
     <script>
         // Header shared between standalone HTML pages.
         function toggleMobileMenu() {
@@ -649,7 +650,7 @@
         }
 
         // JS validation; submit through FormSubmit only when fields are valid.
-        function handleFormSubmit(e) {
+        async function handleFormSubmit(e) {
             e.preventDefault();
             let isValid = true;
 
@@ -712,11 +713,8 @@
                 return;
             }
 
-            // Never announce email delivery as successful: provider activation and delivery are not verified.
-            statusBanner.className = 'mb-6 p-4 rounded-xl text-sm font-medium bg-amber-50 border border-amber-300 text-amber-900 block';
-            statusBanner.textContent = 'Opening the form service for submission and verification. This is not an appointment confirmation.';
-            // Native POST preserves FormSubmit's default spam checks / reCAPTCHA.
-            HTMLFormElement.prototype.submit.call(e.currentTarget);
+            // AJAX keeps visitors on Pronto Air. Only the provider's positive response confirms acceptance.
+            await window.prontoSubmitInline(e.currentTarget, statusBanner);
         }
     </script>
 

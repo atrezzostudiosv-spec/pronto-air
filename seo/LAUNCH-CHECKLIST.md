@@ -50,3 +50,10 @@
 - No publicar la demo como la web oficial del negocio: conservar `noindex, nofollow` hasta aprobación del negocio. Los avisos amarillos se retiraron solo de los formularios; el borrador de privacidad conserva las notas de revisión comercial.
 
 - **Estado AJAX:** mensaje de confirmación breve debajo del botón únicamente cuando FormSubmit responde con éxito; este estado no reserva una cita. Si hay fallo, aviso dentro de la página con el contacto directo de la empresa. El usuario confirmó funcionamiento, sin acceso independiente al buzón para verificar entrega.
+
+## Asistente IA Cloudflare — estado de demo (22 oct 2026)
+- Worker Free verificado: `https://pronto-air-assistant.atrezzostudiosv.workers.dev/chat`, health/CORS/IA real OK; siete preguntas seguras EN/ES superadas. La conexión de las ocho páginas se realiza en una rama de revisión y requiere QA antes del merge.
+- El chat declara que las preguntas se procesan mediante Cloudflare Workers AI y recomienda no compartir datos personales. Los datos del formulario de seguimiento van directamente a FormSubmit, no al modelo.
+- **Pendiente antes de entregar oficialmente:** aprobación empresarial y jurídica de la información de privacidad, test exhaustivo 20–30 prompts, revisión manual WCAG y correo definitivo para Home, Contact y el formulario del asistente.
+- Al migrar dominio/hosting: actualizar `ALLOWED_ORIGINS` en Cloudflare, URLs del frontend si cambian, el correo FormSubmit **en las tres entradas** y sus activaciones; repetir pruebas.
+- Evitar que el acceso público a la demo se confunda con sitio oficial: conservar `noindex, nofollow` y no presentar una IA como garantía de diagnóstico o reserva.

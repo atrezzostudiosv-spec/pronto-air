@@ -16,7 +16,47 @@
 6. Horario publicado: lunes a viernes 8:00–18:00 en `America/Chicago`, fin de semana por cita. El asistente indica el contexto, pero no puede confirmar si alguien está atendiendo en este instante ni prometer alertas inmediatas. Fuera del horario de días laborables, etiqueta el correo como solicitud fuera de horario.
 7. Incidentes potencialmente peligrosos (fuga de gas, humo, etc.) derivan a emergencias o distribuidora de gas y no se presentan como servicio técnico de urgencia de Pronto Air.
 
-## Cómo activar la IA real, sin contratar planes de pago
+## Activación guiada con GitHub Actions — sin compartir credenciales
+
+**IMPORTANTE:** en esta entrega todavía no hay un Worker activo ni credenciales Cloudflare conectadas. La web de GitHub Pages sigue en modo guiado y no se debe afirmar lo contrario. Ningún cambio del pipeline activa automáticamente facturación, ni actualiza los ocho HTML sin validación.
+
+### Paso A. Configurar la cuenta gratuita (acción del propietario)
+
+1. Acceder a [Cloudflare Dashboard](https://dash.cloudflare.com/) con una cuenta **Workers Free**. No elegir Workers Paid ni activar recargas automáticas. La cuota gratuita de Workers AI está documentada en https://developers.cloudflare.com/workers-ai/platform/pricing/ .
+2. Identificar el **Cloudflare Account ID** (no es una contraseña).
+3. En el panel de Cloudflare, crear un **API Token limitado a esta cuenta** con permisos para editar/desplegar Workers, siguiendo https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/ .
+4. En GitHub, repositorio `atrezzostudiosv-spec/pronto-air` → **Settings → Secrets and variables → Actions → New repository secret**. Crear exactamente:
+   - `CLOUDFLARE_ACCOUNT_ID`
+   - `CLOUDFLARE_API_TOKEN`
+   Nunca escribir esos valores en archivos del repositorio, capturas ni en un chat.
+
+### Paso B. Desplegar y verificar
+
+5. En el repositorio, abrir **Actions → Deploy Pronto Air AI — Cloudflare Free (manual) → Run workflow** (rama `main`).
+6. La acción primero ejecuta tests de reglas, compila el Worker con Wrangler, comprueba que existen los secretos, despliega con `cloudflare/wrangler-action@v4` y prueba **una pregunta real** al modelo y la autorización de origen CORS.
+7. Si falla la comprobación del modelo, no conectar la web. Revisar en el panel los errores, la cuota y si el modelo `@cf/meta/llama-3.1-8b-instruct-fp8-fast` sigue disponible en Workers Free. Nunca cambiar automáticamente a un modelo de pago.
+8. Si pasa, la acción muestra en el resumen de ejecución la URL real `https://...workers.dev/chat`. Se puede compartir **la URL pública**, pero nunca el API token.
+
+### Paso C. Conectar al website, después de verificar
+
+9. Activar el endpoint en las ocho páginas mediante `node tools/attach-pronto-ai-endpoint.mjs URL_REAL/chat --check` y luego `--apply` tras revisar la modificación. Este comando solo edita localmente las referencias al JS del asistente; conserva el resto del HTML, el `noindex` y el correo temporal.
+10. Probar 20–30 conversaciones reales en inglés/español, preguntas ajenas al negocio, precios, citas, seguridad, mantenimiento, fallo 429/cuota, responsive, teclado y envío real de una solicitud de seguimiento. La implementación usa defensas parciales frente a afirmaciones inventadas, **no garantiza exactitud total**.
+11. Publicar en la demo solo tras aprobar el tratamiento de datos mediante terceros y comprobar que no hay fallos críticos. El borrador de privacidad de la demo se mantiene provisional por decisión del proyecto; debe actualizarse antes del sitio oficial.
+
+**Portabilidad:** para la migración al hosting del cliente, mantener los archivos JS/CSS, configurar el dominio definitivo en `ALLOWED_ORIGINS`, desplegar el Worker, actualizar las URLs de las páginas y probar. FormSubmit cambia al correo empresarial cuando se autorice.
+
+### Procedimientos de diagnóstico
+
+- `GET /health`: el servidor debe devolver `status=ready` y `modelConfigured=true`.
+- `OPTIONS /chat` con origen `https://atrezzostudiosv-spec.github.io`: debe devolver 204 y su cabecera CORS correspondiente.
+- `POST /chat` con pregunta inocua: debe devolver `mode=conversational-ai`, no `safe-fallback`; puede fallar legítimamente por falta de cuota, modelo no disponible o rechazo de respuesta.
+- `node tools/verify-cloudflare-live.mjs` verifica lo anterior, no envía información personal y utiliza una sola consulta real.
+- **GitHub Actions no publica los cambios de la web al desplegar el Worker.** Ese cambio se hace después, separadamente.
+- Al agotar 10.000 Neurons/día en Workers Free, inferencia no disponible y widget usa modo guiado. No permite asegurar cuántas visitas/respuestas se admitirán.
+- El formulario de callback sigue dirigiéndose a `atrezzostudiosv@gmail.com` provisional y debe revisarse en Gmail con una prueba real. Un resultado HTTP exitoso de FormSubmit no equivale a una cita.
+
+
+## Alternativa: activar desde un ordenador mediante Wrangler
 1. Crear o conectar una cuenta **Cloudflare Workers Free** en https://dash.cloudflare.com/.
 2. Desde `assistant-worker/`, ejecutar `npx wrangler login` y `npx wrangler deploy`, usando el binding `AI` y limitador de `wrangler.jsonc`.
 3. Verificar que `@cf/meta/llama-3.1-8b-instruct-fp8-fast` esté disponible en la asignación gratuita de esa cuenta (https://developers.cloudflare.com/workers-ai/platform/pricing/).

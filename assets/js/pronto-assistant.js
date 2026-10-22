@@ -234,7 +234,9 @@
       const intent = outOfScope.test(input) ? 'unknown' : await getIntent(input,controller.signal);
       if (!controller.signal.aborted) answer(intent);
     } catch (_) {
-      if (!controller.signal.aborted) {
+      // Timeouts also fall back to useful local guidance. Do not reply after the
+      // visitor has explicitly closed the panel.
+      if (!panel.hidden) {
         answer(localIntent(input));
         if (endpoint) warning.textContent = 'AI assistance is temporarily unavailable. Guided information is still available.';
       }

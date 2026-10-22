@@ -10,19 +10,45 @@ if(!input || !/^https:\/\/[a-z0-9.-]+\.workers\.dev\/?$/i.test(input)){
 }
 const base=input.replace(/\/$/,'');
 const allowedOrigin='https://atrezzostudiosv-spec.github.io';
-async function withRetries(url,opts){
-  for(let i=0;i<5;i++){
+// Initial Workers.dev routes may not be reachable immediately after the first deploy.
+// Poll only the non-inference health endpoint. Never repeat an AI query just to
+// cover DNS propagation, and never treat a 404 as proof of a successful deploy.
+async function waitForHealth() {
+  let lastDetail='not attempted';
+  const maxAttempts=30;
+  for(let attempt=1;attempt<=maxAttempts;attempt++){
     try{
-      const controller=AbortSignal.timeout(14000);
-      const response=await fetch(url,{...opts,signal:controller});
-      if(response.status<500||i===4)return response;
-    }catch(error){if(i===4)throw error;}
-    await new Promise(resolve=>setTimeout(resolve,1200));
+      const response=await fetch(base+'/health',{
+        headers:{'Accept':'application/json'},
+        signal:AbortSignal.timeout(10000)
+      });
+      if(response.ok) {
+        const body=await response.json();
+        if(body?.status==='ready')return body;
+        throw new Error('Unexpected /health JSON response');
+      }
+      const text=(await response.text()).slice(0,180).replace(/\s+/g,' ');
+      lastDetail='HTTP '+response.status+'; '+text;
+      if(![404,429,500,502,503,520,522,523].includes(response.status)){
+        throw new Error('Unrecoverable /health response: '+lastDetail);
+      }
+    } catch (error) {
+      lastDetail=String(error?.message||error).slice(0,220);
+      if(lastDetail.startsWith('Unrecoverable'))throw error;
+    }
+    console.log('Worker route not ready ('+attempt+'/'+maxAttempts+'): '+lastDetail);
+    if(attempt<maxAttempts)await new Promise(resolve=>setTimeout(resolve,5000));
   }
+  throw new Error('Worker /health not ready after first-deploy checks: '+lastDetail+
+    '. Verify that the workers.dev route is enabled in Cloudflare Workers & Pages,'+
+    ' and that Wrangler deployed this Worker in the correct account.');
 }
-const health=await withRetries(base+'/health',{headers:{'Accept':'application/json'}});
-assert.equal(health.status,200,'Worker /health is not responding');
-const healthJson=await health.json();
+async function withRetries(url,opts){
+  // This helper is used only after the health endpoint responds successfully.
+  // Keep AI queries to a single real call so Free Neurons are not consumed by retries.
+  return fetch(url,{...opts,signal:AbortSignal.timeout(22000)});
+}
+const healthJson=await waitForHealth();
 assert.equal(healthJson.status,'ready');
 assert.equal(healthJson.modelConfigured,true,'Cloudflare Workers AI binding is missing or disabled');
 assert.equal(healthJson.conversationPath,'/chat');

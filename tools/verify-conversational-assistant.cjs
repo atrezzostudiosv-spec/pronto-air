@@ -144,12 +144,18 @@ const mkServer=dir=>new Promise(resolve=>{
   await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===1);
   assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/explain heating and cooling/i);
   assert.equal(modelCount,1);
+  // A quick topic must call the real AI route, not display a local canned answer.
+  await p.waitForFunction(()=>!document.querySelector('.pa-guide-send').disabled);
+  await p.getByRole('button',{name:'Cooling',exact:true}).click();
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===2);
+  assert.equal(modelCount,2,'Quick Cooling topic bypassed the conversational endpoint');
+  assert.match(sentQuestions[1].question,/residential cooling/i);
   mode='fail';
   await p.locator('#pa-guide-question').fill('My furnace is not heating');
   await p.locator('.pa-guide-send').click();
-  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===2);
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===3);
   assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/Pronto Air lists residential heating/i);
-  assert.equal(modelCount,2);
+  assert.equal(modelCount,3);
   const requestsBefore=modelCount;
   await p.locator('#pa-guide-question').fill('My phone number is 9403123081');
   await p.locator('.pa-guide-send').click();

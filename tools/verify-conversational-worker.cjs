@@ -7,16 +7,27 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
  const origin='https://atrezzostudiosv-spec.github.io';
  const modelMessages=[];
  const env={ALLOWED_ORIGINS:origin,
-  AI:{run:async(model,options)=>{modelMessages.push(options.messages);assert.equal(options.temperature<=.2,true);return {response:'Hello! Pronto Air provides residential cooling repairs and maintenance. Would you like to call or leave a request?'};}},
+  AI:{run:async(model,options)=>{modelMessages.push(options.messages);assert.equal(options.temperature<=.2,true);return {response:'Hello! We provide residential cooling repairs and maintenance. Would you like to call us or leave our team a request?'};}},
   REQUEST_LIMITER:{limit:async()=>({success:true})}
  };
  const post=(question,history=[],site=origin)=>new Request('https://pronto.example.workers.dev/chat',{method:'POST',headers:{'Content-Type':'application/json','Origin':site},body:JSON.stringify({question,history})});
  const ok=await worker.fetch(post('Do you repair home AC?'),env);
  assert.equal(ok.status,200);const value=await ok.json();
- assert.match(value.reply,/Pronto Air provides residential cooling/i);
+ assert.match(value.reply,/We provide residential cooling/i);
  assert.equal(value.topic,'cooling');assert.equal(value.offerContact,true);
  assert.equal(ok.headers.get('Access-Control-Allow-Origin'),origin);
  assert.equal(modelMessages.length,1);
+ assert.match(JSON.stringify(modelMessages[0]),/Your name is Ari/);
+ assert.match(JSON.stringify(modelMessages[0]),/company voice/);
+ const follow=await worker.fetch(post('sí quiero dejar un mensaje'),env);
+ const followJson=await follow.json();
+ assert.equal(followJson.mode,'guided-contact');
+ assert.equal(followJson.offerContact,true);
+ assert.equal(followJson.lang,'es');
+ assert.match(followJson.reply,/dejarnos un mensaje a nuestro equipo/i);
+ assert.equal(modelMessages.length,1,'Contact request unnecessarily used AI model');
+ const drift=await worker.fetch(post('Tell me about heating services'),{...env,AI:{run:async()=>({response:'Pronto Air offers services on their website.'})}});
+ assert.equal((await drift.json()).mode,'safe-fallback','Third-person voice should not be shown');
  assert.ok(JSON.stringify(modelMessages[0]).includes('FACTS:'));
  assert.equal((await worker.fetch(post('My phone is 9403123081'),env)).status,422);
  assert.equal((await worker.fetch(post('Hello',[{role:'user',content:'john@example.com'}]),env)).status,422);

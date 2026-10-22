@@ -48,10 +48,10 @@ const mkServer=dir=>new Promise(resolve=>{
    for(let i=0;i<a.sections.length;i++)for(let j=0;j<4;j++){
      assert.ok(Math.abs(a.sections[i][j]-b.sections[i][j])<=1,'Layout modified: '+file+'/'+width+' section '+i+' coordinate '+j+' baseline '+a.sections[i][j]+' new '+b.sections[i][j]);
    }
-   const launcher=p2.getByRole('button',{name:'Ask Pronto Air'});
+   const launcher=p2.getByRole('button',{name:'Chat with Ari'});
    assert.equal(await launcher.isVisible(),true);
    await launcher.click();
-   const dialog=p2.getByRole('dialog',{name:'Pronto Air service assistant'});
+   const dialog=p2.getByRole('dialog',{name:'Ari, Pronto Air virtual assistant'});
    assert.equal(await dialog.isVisible(),true);
    const rect=await dialog.boundingBox();
    assert.ok(rect && rect.x>=0 && rect.y>=0 && rect.x+rect.width<=width+1 && rect.y+rect.height<=901,
@@ -90,11 +90,11 @@ const mkServer=dir=>new Promise(resolve=>{
     await route.fulfill({status:200,contentType:'text/html',body:html});
   });
   await page.goto(after.url+'/index.html',{waitUntil:'domcontentloaded'});
-  await page.getByRole('button',{name:'Ask Pronto Air'}).click();
+  await page.getByRole('button',{name:'Chat with Ari'}).click();
   await page.locator('#pa-guide-question').fill('¿Qué puedes explicarme tú?');
   await page.locator('.pa-guide-send').click();
   await page.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length>0);
-  assert.match(await page.locator('.pa-guide-message.is-guide').last().innerText(),/Puedo explicarte/i);
+  assert.match(await page.locator('.pa-guide-message.is-guide').last().innerText(),/Soy Ari/i);
   await page.locator('#pa-guide-question').fill('john.smith@example.com');
   const n=await page.locator('.pa-guide-message').count();
   await page.locator('.pa-guide-send').click();
@@ -138,17 +138,23 @@ const mkServer=dir=>new Promise(resolve=>{
      body:mode==='answer'?'{"reply":"Hi! I can explain heating and cooling options and help you reach the team. Would you like me to arrange a contact request?","topic":null,"offerContact":true,"lang":"en"}':'{"error":"quota"}'});
   });
   await p.goto(after.url+'/index.html?assistant-ai-test',{waitUntil:'domcontentloaded'});
-  await p.getByRole('button',{name:'Ask Pronto Air'}).click();
+  await p.getByRole('button',{name:'Chat with Ari'}).click();
   await p.locator('#pa-guide-question').fill('What can you do?');
   await p.locator('.pa-guide-send').click();
   await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===1);
   assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/explain heating and cooling/i);
   assert.equal(modelCount,1);
+  await p.waitForFunction(()=>!document.querySelector('.pa-guide-send').disabled);
+  await p.locator('#pa-guide-question').fill('sí quiero dejar un mensaje');
+  await p.locator('.pa-guide-send').click();
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===2);
+  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/nuestro equipo/i);
+  assert.equal(modelCount,1,'Contact action should not use AI or depend on Cloudflare redeploy');
   mode='fail';
   await p.locator('#pa-guide-question').fill('My furnace is not heating');
   await p.locator('.pa-guide-send').click();
-  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===2);
-  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/Pronto Air lists residential heating/i);
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===3);
+  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/Our residential heating services/i);
   assert.equal(modelCount,2);
   const requestsBefore=modelCount;
   await p.locator('#pa-guide-question').fill('My phone number is 9403123081');

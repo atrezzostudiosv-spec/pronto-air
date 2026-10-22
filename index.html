@@ -496,7 +496,7 @@
 
                 <!-- Contact form: temporary Atrezzo testing inbox; provider activation required. -->
                 <div class="lg:col-span-2 bg-white p-8 lg:p-10 rounded-3xl shadow-xl border border-gray-100">
-                    <form id="contactForm" action="https://formsubmit.co/atrezzostudiosv@gmail.com" method="POST" class="space-y-6">
+                    <form id="contactForm" action="https://formsubmit.co/atrezzostudiosv@gmail.com" method="POST" onsubmit="handleFormSubmit(event)" class="space-y-6">
                         <input type="hidden" name="_subject" value="Pronto Air — Website request (Home)">
                         <input type="hidden" name="_url" value="https://atrezzostudiosv-spec.github.io/pronto-air/index.html">
                         <div class="hidden" aria-hidden="true"><label for="homeTrap">Leave this field blank</label><input id="homeTrap" type="text" name="_honey" autocomplete="off" tabindex="-1"></div>
@@ -540,6 +540,7 @@
                             <p class="mt-2">Your contact details and message are handled by a third-party form service. See the <a href="privacy-policy.html" class="font-semibold underline">draft privacy information</a>.</p>
                         </div>
 
+                        <div id="homeFormStatus" class="hidden p-4 rounded-xl text-sm border" role="status" aria-live="polite"></div>
                         <div>
                             <button type="submit" class="w-full bg-prontoRed hover:bg-red-700 text-white font-bold py-4 rounded-xl transition shadow-lg text-base">
                                 Send Request
@@ -658,6 +659,7 @@
     </footer>
 
     <!-- Scripts de Interactividad -->
+    <script src="assets/js/pronto-form-inline.js"></script>
     <script>
         // Menú móvil compartido (diseño Mobile Homes, enlaces reales)
         function toggleMobileMenu() {
@@ -783,6 +785,13 @@
             updateServicesCarouselControls();
         });
 
+        // Keep users on Pronto Air instead of navigating to FormSubmit.
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.currentTarget;
+            if (!form.reportValidity()) return;
+            await window.prontoSubmitInline(form, document.getElementById('homeFormStatus'));
+        }
     </script>
 </body>
 </html>

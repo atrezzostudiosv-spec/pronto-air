@@ -32,3 +32,12 @@
 - https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
 - https://developers.google.com/search/docs/appearance/google-images
 - https://v3.tailwindcss.com/docs/installation/play-cdn
+
+## Pendiente posterior al lanzamiento — Asistente IA (propuesta; NO implementado)
+- **Prioridad:** después de completar SEO técnico, responsive y conexión y pruebas reales de los formularios. Requiere aprobación de Pronto Air antes de incorporarlo.
+- Evaluar un asistente ligero para responder únicamente preguntas sobre servicios, horarios y cobertura **confirmados** de Pronto Air, y recoger solicitudes de servicio fuera de horario.
+- Flujo de captación: tipo de problema HVAC, nombre, teléfono, ubicación aproximada y descripción; pedir consentimiento para transmitir los datos. No solicitar información sensible innecesaria.
+- Ofrecer **solicitud de cita** (fecha preferida) sin confirmar disponibilidad. Reservar automáticamente solo cuando exista calendario conectado, permisos, disponibilidad real y proceso de confirmación probado.
+- Prohibir al asistente inventar diagnósticos técnicos, precios, garantías, urgencias 24/7, servicios, zonas, tiempos de respuesta o citas confirmadas.
+- Antes de activar: definir proveedor, costos y límites, fuente de conocimiento verificada, privacidad y almacenamiento de datos, traspaso a una persona y pruebas de seguridad y funcionamiento en móvil.
+- Mantener el sitio actual como HTML/CSS/JS estático; un widget integrado **no exige Next.js**. No agregar scripts externos hasta confirmar que el negocio desea este servicio.

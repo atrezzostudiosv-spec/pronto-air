@@ -1,0 +1,30 @@
+name: Verify six WCAG contrast corrections
+on:
+  push:
+    branches: [fix/a11y-contrast-20261022]
+permissions:
+  contents: read
+jobs:
+  wcag-contrast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install audit dependencies
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1 @axe-core/playwright@4.10.2
+          npx playwright install --with-deps chromium
+      - name: Recover old baseline HTML and link shared assets
+        run: |
+          git fetch --depth=1 origin main
+          mkdir -p .a11y-baseline
+          for p in residential-cooling.html residential-heating.html; do
+            git show "origin/main:$p" > ".a11y-baseline/$p"
+          done
+          ln -s "$GITHUB_WORKSPACE/assets" .a11y-baseline/assets
+          ln -s "$GITHUB_WORKSPACE/images" .a11y-baseline/images
+      - name: Check original vs new axe accessibility and exact layout
+        run: node tools/verify-contrast-fixes.cjs

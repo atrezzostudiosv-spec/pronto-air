@@ -1,0 +1,28 @@
+name: One-off Ari FormSubmit smoke test
+
+on:
+  push:
+    branches:
+      - qa/ari-live-lead-smoke-20261022
+    paths:
+      - .github/workflows/qa-ari-live-once.yml
+
+permissions:
+  contents: read
+
+jobs:
+  live-form:
+    name: Test real demo form once
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install minimal browser tooling
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install chromium
+      - name: Submit one synthetic QA lead to Atrezzo temporary inbox
+        run: node tools/qa-ari-live-form-submit.cjs

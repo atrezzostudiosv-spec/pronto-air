@@ -321,18 +321,7 @@
                                 Thank you for your interest in Pronto Air. To schedule an appointment or speak with our technicians, call or email us. You can also complete the contact form to provide information about your heating or air conditioning needs.
                             </p>
 
-                            <!-- Preview notice: FormSubmit provider, temporary Atrezzo recipient, delivery activation pending. -->
-                            <div class="mb-6 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm flex items-start gap-3">
-                                <i class="fa-solid fa-circle-info text-amber-600 text-lg shrink-0 mt-0.5"></i>
-                                <div>
-                                    <strong class="font-bold block text-amber-900 mb-0.5">Preview Form — Delivery Not Yet Verified</strong>
-                                    This test form uses FormSubmit to route messages to a temporary Atrezzo project inbox. Email activation and end-to-end delivery still need confirmation. For service requests, call <a href="tel:+19403123081" class="underline font-bold hover:text-brandRed">(940) 312-3081</a> or email <a href="mailto:prontoairdenton@hotmail.com" class="underline font-bold hover:text-brandRed">prontoairdenton@hotmail.com</a> directly.
-                                    <span class="block mt-1">Your form details are processed by a third-party service. Read the <a href="privacy-policy.html" class="underline font-bold">draft privacy information</a>.</span>
-                                </div>
-                            </div>
 
-                            <!-- SUBMISSION DEMO STATUS FEEDBACK MESSAGE -->
-                            <div id="formStatusBanner" class="hidden mb-6 p-4 rounded-xl text-sm font-medium transition-all"></div>
 
                             <!-- CONTACT FORM -->
                             <form id="prontoContactForm" action="https://formsubmit.co/atrezzostudiosv@gmail.com" method="POST" onsubmit="handleFormSubmit(event)" class="space-y-5" novalidate>
@@ -454,6 +443,8 @@
                                     <span>Send Message</span>
                                     <i class="fa-solid fa-paper-plane text-sm"></i>
                                 </button>
+                                <div id="formStatusBanner" class="hidden p-4 rounded-xl text-sm font-medium transition-all" role="status" aria-live="polite"></div>
+                                <p class="text-xs text-gray-500">Your information is processed to handle your request. <a href="privacy-policy.html" class="underline hover:text-brandRed">Privacy information</a>.</p>
 
                             </form>
                         </div>

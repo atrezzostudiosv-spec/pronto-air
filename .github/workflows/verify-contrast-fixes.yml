@@ -16,7 +16,7 @@ jobs:
       - name: Install audit dependencies
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1 @axe-core/playwright@4.10.2
-          npx playwright install --with-deps chromium
+          npx playwright install chromium
       - name: Recover old baseline HTML and link shared assets
         run: |
           git fetch --depth=1 origin main

@@ -44,9 +44,10 @@ async function capture(browser, port, pageName, width) {
   const pageErrors = [];
   page.on('pageerror', e => pageErrors.push(String(e)));
   await page.goto('http://127.0.0.1:' + port + '/' + pageName, {waitUntil:'domcontentloaded', timeout:45000});
+  console.log('Checking', pageName, width + 'px', 'port', port);
   await page.waitForFunction(() => {
-    const target = document.querySelector('.hidden');
-    return target && getComputedStyle(target).display === 'none';
+    const targets = [...document.querySelectorAll('.hidden')];
+    return targets.some(el => getComputedStyle(el).display === 'none');
   }, null, {timeout:30000});
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(450);

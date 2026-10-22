@@ -1,4 +1,4 @@
-name: Verify portable Pronto Air assistant
+name: Verify Pronto Air conversational assistant
 on:
   pull_request:
     branches: [main]
@@ -6,7 +6,7 @@ on:
       - 'assets/js/pronto-assistant.js'
       - 'assets/css/pronto-assistant.css'
       - 'assistant-worker/**'
-      - 'tools/verify-assistant-*.cjs'
+      - 'tools/verify-conversational-*.cjs'
       - '.github/workflows/verify-portable-assistant.yml'
   workflow_dispatch:
 permissions:
@@ -33,7 +33,7 @@ jobs:
           done
           ln -s "$GITHUB_WORKSPACE/assets" .assistant-qa-baseline/assets
           ln -s "$GITHUB_WORKSPACE/images" .assistant-qa-baseline/images
-      - name: Test Cloudflare Worker without external inference
-        run: node tools/verify-assistant-worker.cjs
-      - name: Test all eight pages and four widths without external forms or AI
-        run: node tools/verify-assistant-prototype.cjs
+      - name: Test grounded bilingual Cloudflare Worker without external inference
+        run: node tools/verify-conversational-worker.cjs
+      - name: Test conversation, callback form and responsive page geometry
+        run: node tools/verify-conversational-assistant.cjs

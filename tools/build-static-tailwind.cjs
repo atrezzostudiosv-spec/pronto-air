@@ -53,8 +53,14 @@ for (const page of pages) {
   execFileSync(path.join(root, 'node_modules', '.bin', 'tailwindcss'), [
     '-i', cssInput, '-o', cssPath, '-c', configPath, '--minify'
   ], {cwd: root, stdio: 'inherit'});
-  const result = html.replace(cdn, '<link rel="stylesheet" href="assets/css/' + cssName + '">')
-    .replace(cfg, '<!-- Tailwind CSS compiled for production; original theme in tools/build-static-tailwind.cjs -->');
+  // The Play CDN injects its generated CSS AFTER Font Awesome. Loading the
+  // compiled stylesheet before Font Awesome changes icon line-heights and
+  // shifts entire card grids. Preserve the original cascade intentionally.
+  const fa = /<link\b[^>]*href=["']https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\/font-awesome\/[^"']+["'][^>]*>/i;
+  if (!fa.test(html)) throw new Error('Font Awesome stylesheet not found: ' + page);
+  const result = html.replace(cdn, '')
+    .replace(cfg, '<!-- Tailwind CSS compiled for production; original theme in tools/build-static-tailwind.cjs -->')
+    .replace(fa, tag => tag + '\n    <link rel="stylesheet" href="assets/css/' + cssName + '">');
   if (result === html || result.includes('cdn.tailwindcss.com') || result.includes('tailwind.config =')) {
     throw new Error('Incomplete replacement: ' + page);
   }

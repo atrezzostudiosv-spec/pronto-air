@@ -1,6 +1,6 @@
 # ATREZZO — Pronto Air: asistente IA gratuito antes de presentación
 
-**Estado al 22 octubre 2026:** prototipo de guía local implementado en las ocho páginas; backend Cloudflare Workers AI escrito y probado de forma simulada, **NO desplegado ni conectado a una cuenta real**. La clasificación mediante IA de Cloudflare sigue desactivada hasta su configuración.
+**Estado al 22 octubre 2026:** asistente conversacional con llamadas y solicitudes de contacto implementado, Cloudflare Workers AI **desplegado y probado con respuestas reales** en inglés y español. La conexión a las ocho páginas de la demo se valida en una rama separada. Este plan inicial de clasificación fue reemplazado por generación conversacional con límites de afirmaciones; la arquitectura actual está documentada en `assistant-worker/README.md`. La aprobación de privacidad y publicación oficial siguen pendientes.
 
 ## Decisión propuesta
 
@@ -105,14 +105,14 @@ Documentación oficial Cloudflare:
 - **32/32:** ocho páginas en 375, 768, 1024 y 1440 px con launcher, panel, tecla Escape, ausencia de cambios de geometría del sitio y sin nuevos desbordamientos.
 - **16 análisis axe automatizados:** widget sin infracciones detectadas en 375 y 1440 px. No sustituye auditoría WCAG manual completa.
 - Consultas básicas, fuera de alcance, precios, citas, bloqueo de PII y CTA de contacto, todas probadas con respuestas locales.
-- Worker verificado **solo con IA simulada**, incluyendo whitelist de respuestas, CORS, rate limit, rechazo de datos personales y cuota agotada; no se ha probado el modelo externo con una cuenta Cloudflare.
+- Worker con pruebas de seguridad simuladas **y siete consultas reales** de Cloudflare Workers AI verificadas en inglés/español. Se rechazaron afirmaciones de precio y reserva no confirmadas; aún es necesario un banco más extenso de pruebas adversariales.
 - Consulta el detalle técnico y la configuración en `assistant-worker/README.md`.
 
 ## Siguientes pasos técnicos
 
 1. **Completado:** integrar una guía local en las ocho páginas con información procedente de la web confirmada; no presentarla como IA generativa mientras no exista endpoint real.
-2. Crear endpoint Worker, protección de abuso y binding Workers AI en una cuenta Cloudflare Free conectada por su titular.
-3. Conectar únicamente al endpoint desplegado, auditar 20–30 preguntas, rendimiento/privacidad, presentar al cliente.
+2. **Completado:** Worker desplegado con binding AI, límite por IP, CORS y Free quota.
+3. **En prueba:** conectar endpoint a las ocho páginas y validar responsive y preguntas reales; realizar después 20–30 preguntas adversariales, actualizar información de privacidad al aprobar el cliente.
 4. Mantener FormSubmit con correo temporal hasta contrato y migración aprobados.
 
-**El prototipo local sí está implementado. La IA generativa en Cloudflare todavía NO está desplegada ni se han medido costes/cuotas en una cuenta real.**
+**El Worker generativo ya está desplegado en una cuenta Cloudflare Free y funciona. No se han medido costes reales detallados ni aprobado el tratamiento de datos para el sitio oficial.**

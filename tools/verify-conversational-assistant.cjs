@@ -147,7 +147,7 @@ const mkServer=dir=>new Promise(resolve=>{
   await p.locator('#pa-guide-question').fill('What can you do?');
   await p.locator('.pa-guide-send').click();
   await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===1);
-  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/explain heating and cooling/i);
+  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/explain (?:our )?heating and cooling/i);
   assert.equal(modelCount,1);
   await p.waitForFunction(()=>!document.querySelector('.pa-guide-send').disabled);
   await p.locator('#pa-guide-question').fill('sí quiero dejar un mensaje');
@@ -191,7 +191,21 @@ const mkServer=dir=>new Promise(resolve=>{
   await p.locator('.pa-guide-send').click();
   assert.equal(modelCount,requestsBefore,'PII transferred to AI');
   assert.equal(sentQuestions.every(s=>!JSON.stringify(s).includes('9403123081')),true);
-  console.log('PASS bilingual switching, correct locale, wrong-language response fallback, AI 503 and PII exclusion');
+  // Exercise the real quick topic buttons via the same form/AI route.
+  mode='answer';
+  await p.waitForFunction(()=>!document.querySelector('.pa-guide-send').disabled);
+  await p.getByRole('button',{name:'Cooling',exact:true}).click();
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===7);
+  assert.equal(modelCount,6,'Cooling quick action bypassed the conversational backend');
+  assert.match(sentQuestions[5].question,/residential cooling services/i);
+  assert.equal(sentQuestions[5].language,'en');
+  mode='fail';
+  await p.waitForFunction(()=>!document.querySelector('.pa-guide-send').disabled);
+  await p.getByRole('button',{name:'Maintenance',exact:true}).click();
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===8);
+  assert.equal(modelCount,7,'Maintenance quick action did not attempt the backend');
+  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/maintenance service agreement/i);
+  console.log('PASS bilingual switching, quick topics AI and 503 fallback, correct locale and PII exclusion');
   await ai.close();
   console.log('PASS ALL',checks,'viewport checks + 16 axe scans and follow-up / mocked AI flow');
  }finally{await browser.close();before.server.close();after.server.close();}

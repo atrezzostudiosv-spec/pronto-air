@@ -1,0 +1,11 @@
+{
+  "name": "pronto-air-static-site",
+  "private": true,
+  "description": "Static CSS build tools for Pronto Air site",
+  "scripts": {
+    "build:css": "node tools/build-static-tailwind.cjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

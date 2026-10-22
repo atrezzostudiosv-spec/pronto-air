@@ -144,10 +144,16 @@ const mkServer=dir=>new Promise(resolve=>{
   await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===1);
   assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/explain heating and cooling/i);
   assert.equal(modelCount,1);
+  await p.waitForFunction(()=>!document.querySelector('.pa-guide-send').disabled);
+  await p.locator('#pa-guide-question').fill('sí quiero dejar un mensaje');
+  await p.locator('.pa-guide-send').click();
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===2);
+  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/nuestro equipo/i);
+  assert.equal(modelCount,1,'Contact action should not use AI or depend on Cloudflare redeploy');
   mode='fail';
   await p.locator('#pa-guide-question').fill('My furnace is not heating');
   await p.locator('.pa-guide-send').click();
-  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===2);
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===3);
   assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/Our residential heating services/i);
   assert.equal(modelCount,2);
   const requestsBefore=modelCount;

@@ -183,7 +183,9 @@ chatForm.addEventListener('submit',async e=>{
  message('user',q);input.value='';turns++;const controller=new AbortController();request=controller;send.disabled=true;
  const fallback=localResponse(q,history);const timer=setTimeout(()=>controller.abort(),8000);
  try{
-  const reply=safety.test(q)?fallback:await respond(q,controller.signal);
+  // Handle message requests locally: the integrated form is verified and available
+  // immediately, even before the live AI Worker has been redeployed.
+  const reply=(safety.test(q)||msgFollow.test(q))?fallback:await respond(q,controller.signal);
   if(!panel.hidden){message('assistant',reply.reply,reply.topic,reply.offerContact);history.push({role:'user',content:q,lang:reply.lang},{role:'assistant',content:reply.reply,lang:reply.lang});history.splice(0,Math.max(0,history.length-8));}
  }catch{
   if(!panel.hidden){message('assistant',fallback.reply,fallback.topic,fallback.offerContact);

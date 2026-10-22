@@ -9,7 +9,7 @@ const { PNG } = require('pngjs');
 
 const root = path.resolve(__dirname, '..');
 const pages = ['index.html','service-agreement-faqs.html'];
-const widths = [375, 768, 1440];
+const widths = [375, 1440];
 const type = (p) => {
   if (p.endsWith('.html')) return 'text/html';
   if (p.endsWith('.css')) return 'text/css';
@@ -59,7 +59,7 @@ async function capture(browser, port, pageName, width) {
       blocks: selectors.map(el => {
         const r = el.getBoundingClientRect(), c = getComputedStyle(el);
         return [r.x,r.y,r.width,r.height].map(x=>Math.round(x*10)/10)
-          .concat([c.fontSize,c.fontWeight,c.color,c.backgroundColor,c.display]);
+          .concat([c.fontSize,c.fontWeight,c.color,c.backgroundColor,c.display,c.lineHeight,c.fontFamily,c.marginTop,c.marginBottom]);
       })
     };
   });

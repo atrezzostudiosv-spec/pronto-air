@@ -1,0 +1,29 @@
+name: Read-only Pronto Air visual audit captures
+on:
+  push:
+    branches: [audit/full-site-protocol-20261022]
+permissions:
+  contents: read
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prepare browser
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Capture live first view and selected full pages
+        run: node tools/audit-screenshots.cjs
+      - name: Save visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pronto-air-visual-audit-screenshots
+          path: audit/screenshots
+          if-no-files-found: warn
+          retention-days: 7

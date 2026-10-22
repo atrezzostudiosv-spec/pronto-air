@@ -11,7 +11,11 @@ const url='https://atrezzostudiosv-spec.github.io/pronto-air/index.html';
  try {
   const context=await browser.newContext({viewport:{width:375,height:850},reducedMotion:'reduce'});
   const page=await context.newPage();
-  const responses=[];
+  const responses=[],requestFailures=[],browserErrors=[];
+  page.on('requestfailed',request=>{
+   if(request.url().startsWith('https://formsubmit.co/'))requestFailures.push(request.failure()?.errorText||'network failure');
+  });
+  page.on('pageerror',err=>browserErrors.push(err.message));
   page.on('response',r=>{
    if(r.url().startsWith('https://formsubmit.co/ajax/')&&r.request().method()==='POST'){
     responses.push({status:r.status(),urlMatched:r.url().includes('atrezzostudiosv'),type:r.headers()['content-type']||''});
@@ -33,13 +37,22 @@ const url='https://atrezzostudiosv-spec.github.io/pronto-air/index.html';
   await form.locator('[name="consent"]').check();
   await form.getByRole('button',{name:'Send Request'}).click();
   const status=page.locator('.pa-guide-lead-status');
-  try{
-   await status.getByText(/Your request was accepted by the form service/i).waitFor({timeout:25000});
-  }catch(e){
-   console.error('ARI_LIVE_FORM_STATUS:',JSON.stringify((await status.innerText()).slice(0,230)));
-   console.error('FORM_RELAY_RESPONSE:',JSON.stringify(responses));
-   throw e;
+  try {
+   // Watch the status element itself, not its children (which it does not have).
+   await page.waitForFunction(()=>{
+    const message=document.querySelector('.pa-guide-lead-status')?.textContent||'';
+    return /accepted by the form service|could not verify the request/i.test(message);
+   },null,{timeout:25000});
+  } catch(e) {
+   console.error('ARI_TEST_TIMEOUT:',e.message);
   }
+  const finalStatus=(await status.innerText()).trim();
+  console.log('ARI_FORM_STATUS:',JSON.stringify(finalStatus.slice(0,300)));
+  console.log('FORM_RELAY_RESPONSES:',JSON.stringify(responses));
+  console.log('FORM_REQUEST_FAILURES:',JSON.stringify(requestFailures));
+  console.log('BROWSER_ERRORS:',JSON.stringify(browserErrors.slice(0,3)));
+  assert.match(finalStatus,/Your request was accepted by the form service/i,
+   'The live Ari form did not report FormSubmit acceptance');
   assert.equal(responses.length,1,'Expected exactly one submission to the real form service');
   assert.equal(responses[0].status,200,'Provider failed to accept the submission');
   assert.equal(responses[0].urlMatched,true,'Unexpected form destination');

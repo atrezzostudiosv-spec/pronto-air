@@ -153,14 +153,21 @@ function openLead(){
 function returnToChat(){lead.hidden=true;chatForm.hidden=false;options.hidden=false;input.focus({preventScroll:true});}
 one('.pa-guide-contact').addEventListener('click',openLead);
 one('.pa-guide-lead-cancel').addEventListener('click',returnToChat);
-const quick=[['Cooling','cooling'],['Heating','heating'],['Mobile Homes','mobile'],['Commercial','commercial'],['Maintenance','maintenance']];
-quick.forEach(([name,key])=>{
+// Quick topics use the same conversational path as a typed question. When the
+// Worker is offline, respond() still uses the existing guided local fallback.
+const quick=[
+ ['Cooling','What residential cooling services does Pronto Air offer?'],
+ ['Heating','What residential heating services does Pronto Air offer?'],
+ ['Mobile Homes','What HVAC services does Pronto Air provide for mobile homes?'],
+ ['Commercial','What light commercial HVAC services does Pronto Air offer?'],
+ ['Maintenance','What does the Pronto Air maintenance service agreement include?']
+];
+quick.forEach(([name,question])=>{
  const button=document.createElement('button');button.type='button';button.textContent=name;
  button.addEventListener('click',()=>{
-  const result=localResponse(name==='Commercial'?'light commercial':name,history);
-  message('user',name);message('assistant',result.reply,key,true);
-  history.push({role:'user',content:name,lang:result.lang},{role:'assistant',content:result.reply,lang:result.lang});
-  history.splice(0,Math.max(0,history.length-8));
+  if(send.disabled || panel.hidden || !lead.hidden)return;
+  input.value=question;
+  chatForm.requestSubmit();
  });options.append(button);
 });
 const callback=document.createElement('button');callback.type='button';callback.textContent='Request a call back';callback.addEventListener('click',openLead);options.append(callback);

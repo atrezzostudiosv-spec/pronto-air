@@ -25,7 +25,8 @@ function makeServer(dir){return new Promise(resolve=>{
   for(const f of targets)for(const width of widths){
     const views=[];
     for(const server of [old,now]){
-      const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});
+      const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
+      const page=await context.newPage();
       const jsErrors=[];page.on('pageerror',e=>jsErrors.push(String(e)));
       await page.goto('http://127.0.0.1:'+server.port+'/'+f,{waitUntil:'domcontentloaded'});
       await page.evaluate(()=>document.fonts.ready);
@@ -36,7 +37,7 @@ function makeServer(dir){return new Promise(resolve=>{
       });
       const scan=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']).analyze();
       views.push({metrics,scan:scan.violations.map(v=>({id:v.id,impact:v.impact,count:v.nodes.length,targets:v.nodes.map(n=>n.target)})),jsErrors});
-      await page.close();
+      await context.close();
     }
     const [a,b]=views;
     if(JSON.stringify(a.metrics)!==JSON.stringify(b.metrics))fail.push(f+' '+width+': layout/heading/overflow changed');

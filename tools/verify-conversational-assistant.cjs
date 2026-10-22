@@ -76,13 +76,25 @@ const mkServer=dir=>new Promise(resolve=>{
 
   const context=await browser.newContext({viewport:{width:375,height:900},reducedMotion:'reduce'});
   const page=await context.newPage();
-  let deliveryCount=0,lastPayload=null,deliveryMode='reject';
-  await page.route('https://formsubmit.co/ajax/**',async route=>{
-    if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'*','Access-Control-Allow-Methods':'POST,OPTIONS'}});
-    deliveryCount++;
-    lastPayload=JSON.parse(route.request().postData());
-    await route.fulfill({status:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},
-      body:deliveryMode==='reject'?'{"success":"false"}':'{"success":"true"}'});
+  let deliveryCount=0,lastPayload=null,deliveryMode='reject',preflightCount=0;
+  let directCount=0,directPayload=null;
+  await context.route('https://formsubmit.co/**',async route=>{
+    if(route.request().method()==='OPTIONS'){
+      preflightCount++;
+      return route.fulfill({status:204,headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'*','Access-Control-Allow-Methods':'POST,OPTIONS'}});
+    }
+    if(route.request().url().includes('/ajax/')){
+      deliveryCount++;
+      assert.match(route.request().headers()['content-type'],/application\/x-www-form-urlencoded/i,
+        'Ari should use simple form encoding without an OPTIONS preflight');
+      lastPayload=Object.fromEntries(new URLSearchParams(route.request().postData()));
+      return route.fulfill({status:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},
+        body:deliveryMode==='reject'?'{"success":"false"}':'{"success":"true"}'});
+    }
+    directCount++;
+    assert.equal(route.request().method(),'POST','Native fallback must not place customer information in URL');
+    directPayload=Object.fromEntries(new URLSearchParams(route.request().postData()));
+    return route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><title>Simulated FormSubmit page (test only)</title>'});
   });
   // This segment verifies offline guidance and lead intake; it must never call live AI.
   await page.route(after.url+'/index.html',async route=>{
@@ -120,11 +132,25 @@ const mkServer=dir=>new Promise(resolve=>{
     'Failed request should release the submit button');
   assert.equal(await page.locator('.pa-guide-message.is-guide').count(),1,
     'Failed request displayed a false success message');
+  assert.equal(preflightCount,0,'URL-encoded AJAX still triggered a blocked CORS preflight');
+  const direct=page.locator('.pa-guide-lead-direct');
+  assert.equal(await direct.isVisible(),true,'Direct fallback missing after provider rejected AJAX');
+  const popupEvent=context.waitForEvent('page');
+  await direct.click();
+  const directPage=await popupEvent;
+  await directPage.waitForLoadState('domcontentloaded');
+  assert.equal(directCount,1,'Native fallback did not submit to FormSubmit');
+  assert.equal(directPayload.name,'QA Visitor');
+  assert.match(directPayload.message,/Test only/);
+  assert.equal(directPayload.phone,'9403123081');
+  assert.equal(await direct.isVisible(),false,'Direct fallback should hide after use');
+  await directPage.close();
   // Reattempt with a mocked positive FormSubmit response. No actual email is sent.
   deliveryMode='accept';
   await page.locator('.pa-guide-lead-send').click();
   await page.waitForFunction(()=>document.querySelector('.pa-guide-lead-status')?.textContent?.includes('accepted by the form service'));
   assert.equal(deliveryCount,2);
+  assert.equal(preflightCount,0,'Unexpected AJAX CORS preflight');
   assert.equal(lastPayload.name,'QA Visitor');
   assert.equal(lastPayload.phone,'9403123081');
   assert.equal(lastPayload.email,'qa@example.com');
@@ -133,7 +159,7 @@ const mkServer=dir=>new Promise(resolve=>{
   assert.equal(lastPayload.callbackRequested.startsWith('Yes'),true);
   assert.equal(lastPayload._subject.includes('Pronto Air'),true);
   assert.equal(page.url(),after.url+'/index.html');
-  console.log('PASS callback intake: rejection preserves data; simulated retry succeeds; no actual email sent');
+  console.log('PASS contact: no CORS preflight; native fallback POST; rejection preserves data; AJAX retry succeeds; no actual email sent');
   await context.close();
 
   const ai=await browser.newContext({viewport:{width:375,height:900},reducedMotion:'reduce'});

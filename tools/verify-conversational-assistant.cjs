@@ -76,12 +76,13 @@ const mkServer=dir=>new Promise(resolve=>{
 
   const context=await browser.newContext({viewport:{width:375,height:900},reducedMotion:'reduce'});
   const page=await context.newPage();
-  let deliveryCount=0,lastPayload=null;
+  let deliveryCount=0,lastPayload=null,deliveryMode='reject';
   await page.route('https://formsubmit.co/ajax/**',async route=>{
     if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'*','Access-Control-Allow-Methods':'POST,OPTIONS'}});
     deliveryCount++;
     lastPayload=JSON.parse(route.request().postData());
-    await route.fulfill({status:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},body:'{"success":"true"}'});
+    await route.fulfill({status:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},
+      body:deliveryMode==='reject'?'{"success":"false"}':'{"success":"true"}'});
   });
   // This segment verifies offline guidance and lead intake; it must never call live AI.
   await page.route(after.url+'/index.html',async route=>{
@@ -109,9 +110,21 @@ const mkServer=dir=>new Promise(resolve=>{
   await page.locator('.pa-guide-lead-form [name="message"]').fill('Test only, please do not call.');
   await page.locator('.pa-guide-lead-form [name="service"]').selectOption('Residential Cooling');
   await page.locator('.pa-guide-lead-form [name="consent"]').check();
+  // Even HTTP 200 is NOT success if the relay's JSON says success:false.
+  await page.locator('.pa-guide-lead-send').click();
+  await page.waitForFunction(()=>document.querySelector('.pa-guide-lead-status')?.textContent?.includes('We could not verify the request.'));
+  assert.equal(deliveryCount,1,'Rejection did not reach the mocked provider');
+  assert.equal(await page.locator('.pa-guide-lead-form [name="message"]').inputValue(),'Test only, please do not call.',
+    'Failed request should preserve visitor data for retry');
+  assert.equal(await page.locator('.pa-guide-lead-send').isEnabled(),true,
+    'Failed request should release the submit button');
+  assert.equal(await page.locator('.pa-guide-message.is-guide').count(),1,
+    'Failed request displayed a false success message');
+  // Reattempt with a mocked positive FormSubmit response. No actual email is sent.
+  deliveryMode='accept';
   await page.locator('.pa-guide-lead-send').click();
   await page.waitForFunction(()=>document.querySelector('.pa-guide-lead-status')?.textContent?.includes('accepted by the form service'));
-  assert.equal(deliveryCount,1);
+  assert.equal(deliveryCount,2);
   assert.equal(lastPayload.name,'QA Visitor');
   assert.equal(lastPayload.phone,'9403123081');
   assert.equal(lastPayload.email,'qa@example.com');
@@ -120,7 +133,7 @@ const mkServer=dir=>new Promise(resolve=>{
   assert.equal(lastPayload.callbackRequested.startsWith('Yes'),true);
   assert.equal(lastPayload._subject.includes('Pronto Air'),true);
   assert.equal(page.url(),after.url+'/index.html');
-  console.log('PASS callback intake: validated, consented POST intercepted; no actual email sent');
+  console.log('PASS callback intake: rejection preserves data; simulated retry succeeds; no actual email sent');
   await context.close();
 
   const ai=await browser.newContext({viewport:{width:375,height:900},reducedMotion:'reduce'});

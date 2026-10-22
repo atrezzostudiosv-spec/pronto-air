@@ -1,0 +1,27 @@
+name: Diagnose Ari FormSubmit connectivity
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-ari-formsubmit.yml'
+permissions:
+  contents: read
+jobs:
+  connectivity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Public FormSubmit and CORS preflight, no form data
+        shell: bash
+        run: |
+          set +e
+          echo 'OPTIONS preflight application/json'
+          curl --max-time 12 --connect-timeout 7 -sS -o /tmp/preflight.json -D /tmp/headers-preflight.txt -w '\nstatus=%{http_code}\n' -X OPTIONS 'https://formsubmit.co/ajax/atrezzostudiosv@gmail.com' -H 'Origin: https://atrezzostudiosv-spec.github.io' -H 'Access-Control-Request-Method: POST' -H 'Access-Control-Request-Headers: content-type'
+          grep -Ei '^(HTTP|access-control|content-type|location|server|cf-ray|allow:)' /tmp/headers-preflight.txt
+          echo '--- Body status fragment (untrusted, no secrets) ---'
+          head -c 140 /tmp/preflight.json
+          echo
+          echo 'FormSubmit health GET homepage'
+          curl --max-time 12 --connect-timeout 7 -sS -o /dev/null -w 'http=%{http_code}\n' https://formsubmit.co/
+          echo 'GitHub Pages demo GET'
+          curl --max-time 12 --connect-timeout 7 -sS -o /dev/null -w 'http=%{http_code}\n' https://atrezzostudiosv-spec.github.io/pronto-air/index.html

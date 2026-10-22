@@ -30,7 +30,7 @@ function identify(q){
  if(/\b(commercial|business|office|rooftop)\b|comercial|negocio/i.test(q))return 'commercial';
  if(/\b(maintenance|tune.?up|service agreement)\b|mantenimiento|revisi[oó]n/i.test(q))return 'maintenance';
  if(/\b(heating|heater|furnace|heat pump)\b|calefacci[oó]n/i.test(q))return 'heating';
- if(/\b(cooling|air conditioning|air conditioner|a\/c|ductless)\b|aire acondicionado|enfri/i.test(q))return 'cooling';
+ if(/\b(cooling|air conditioning|air conditioner|a\/c|ac|ductless)\b|aire acondicionado|enfri/i.test(q))return 'cooling';
  if(/\b(faq|air quality|efficiency|seer)\b|preguntas frecuentes/i.test(q))return 'faqs';
  return null;
 }

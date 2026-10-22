@@ -33,14 +33,11 @@
 - https://developers.google.com/search/docs/appearance/google-images
 - https://v3.tailwindcss.com/docs/installation/play-cdn
 
-## Pendiente posterior al lanzamiento — Asistente IA (propuesta; NO implementado)
-- **Prioridad:** después de completar SEO técnico, responsive y conexión y pruebas reales de los formularios. Requiere aprobación de Pronto Air antes de incorporarlo.
-- Evaluar un asistente ligero para responder únicamente preguntas sobre servicios, horarios y cobertura **confirmados** de Pronto Air, y recoger solicitudes de servicio fuera de horario.
-- Flujo de captación: tipo de problema HVAC, nombre, teléfono, ubicación aproximada y descripción; pedir consentimiento para transmitir los datos. No solicitar información sensible innecesaria.
-- Ofrecer **solicitud de cita** (fecha preferida) sin confirmar disponibilidad. Reservar automáticamente solo cuando exista calendario conectado, permisos, disponibilidad real y proceso de confirmación probado.
-- Prohibir al asistente inventar diagnósticos técnicos, precios, garantías, urgencias 24/7, servicios, zonas, tiempos de respuesta o citas confirmadas.
-- Antes de activar: definir proveedor, costos y límites, fuente de conocimiento verificada, privacidad y almacenamiento de datos, traspaso a una persona y pruebas de seguridad y funcionamiento en móvil.
-- Mantener el sitio actual como HTML/CSS/JS estático; un widget integrado **no exige Next.js**. No agregar scripts externos hasta confirmar que el negocio desea este servicio.
+## Asistente Ari — implementado en la demo, no autorizado para producción
+- **Completado en código:** IA conversacional real con Cloudflare Workers AI, nombre Ari, voz de Pronto Air, idioma según pregunta, orientación de servicios auditados y opciones de llamada/formulario.
+- **Completado y validado en CI:** acceso rápido de 5 categorías a través del flujo de IA (PR #17), 32 comprobaciones en cuatro anchos por ocho páginas, 16 análisis automatizados de accesibilidad del widget y pruebas simuladas de formulario. Las comprobaciones no equivalen a auditoría manual WCAG completa.
+- **Pendiente:** prueba real de entrega y recepción del formulario integrado de Ari, 20–30 preguntas de IA más exigentes, aprobación de privacidad y tratamientos con Cloudflare/FormSubmit y revisión comercial del cliente.
+- **Regla comercial:** no presentar al asistente como técnico humano ni confirmar precios, garantías, urgencias, citas o tiempos de respuesta sin datos acreditados.
 
 ## Configuración temporal de correo — pendiente de activación
 - Los formularios conservan `action=https://formsubmit.co/atrezzostudiosv@gmail.com` como alternativa HTML. Con JavaScript activo, usan `POST https://formsubmit.co/ajax/atrezzostudiosv@gmail.com` para mostrar el resultado dentro de la web y no salir a la página de FormSubmit. Sin JavaScript se utiliza el envío HTML del proveedor, que puede redirigir fuera del sitio. No hay SMTP ni claves en GitHub.
@@ -52,7 +49,7 @@
 - **Estado AJAX:** mensaje de confirmación breve debajo del botón únicamente cuando FormSubmit responde con éxito; este estado no reserva una cita. Si hay fallo, aviso dentro de la página con el contacto directo de la empresa. El usuario confirmó funcionamiento, sin acceso independiente al buzón para verificar entrega.
 
 ## Asistente IA Cloudflare — estado de demo (22 oct 2026)
-- Worker Free verificado: `https://pronto-air-assistant.atrezzostudiosv.workers.dev/chat`, health/CORS/IA real OK; siete preguntas seguras EN/ES superadas. La conexión de las ocho páginas se realiza en una rama de revisión y requiere QA antes del merge.
+- Worker Free verificado: `https://pronto-air-assistant.atrezzostudiosv.workers.dev/chat`, health/CORS/IA real OK; siete preguntas seguras EN/ES superadas. La conexión de ocho páginas y las acciones rápidas de Ari ya están integradas en main tras pasar QA automatizada; faltan pruebas reales de correo del asistente y revisión legal/comercial.
 - El chat declara que las preguntas se procesan mediante Cloudflare Workers AI y recomienda no compartir datos personales. Los datos del formulario de seguimiento van directamente a FormSubmit, no al modelo.
 - **Pendiente antes de entregar oficialmente:** aprobación empresarial y jurídica de la información de privacidad, test exhaustivo 20–30 prompts, revisión manual WCAG y correo definitivo para Home, Contact y el formulario del asistente.
 - Al migrar dominio/hosting: actualizar `ALLOWED_ORIGINS` en Cloudflare, URLs del frontend si cambian, el correo FormSubmit **en las tres entradas** y sus activaciones; repetir pruebas.

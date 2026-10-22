@@ -11,23 +11,23 @@ const formRelay='https://formsubmit.co/ajax/'+tempDestination;
 const endpoint=(document.currentScript?.dataset.aiEndpoint||'').trim();
 const topics={
  cooling:{name:'Residential Cooling',href:'residential-cooling.html',
-  en:'Pronto Air lists residential air conditioning repair, maintenance and installation, including central and ductless systems.',
-  es:'Pronto Air ofrece reparación, mantenimiento e instalación de aire acondicionado residencial, incluidos sistemas centrales y sin conductos.'},
+  en:'We offer residential air conditioning repair, maintenance and installation, including central and ductless systems.',
+  es:'Ofrecemos reparación, mantenimiento e instalación de aire acondicionado residencial, incluidos sistemas centrales y sin conductos.'},
  heating:{name:'Residential Heating',href:'residential-heating.html',
-  en:'Pronto Air lists residential heating inspections, repair, maintenance and new system installation.',
-  es:'Pronto Air ofrece inspección, reparación, mantenimiento e instalación de sistemas de calefacción residencial.'},
+  en:'Our residential heating services include inspections, repair, maintenance and new system installation.',
+  es:'Nuestros servicios de calefacción residencial incluyen inspección, reparación, mantenimiento e instalación de sistemas nuevos.'},
  mobile:{name:'Mobile Home HVAC',href:'mobile-homes.html',
-  en:'Pronto Air provides heating and cooling inspections, repair and system replacement for mobile homes.',
-  es:'Pronto Air ofrece inspección, reparación y sustitución de sistemas de calefacción y aire acondicionado para casas móviles.'},
+  en:'We provide heating and cooling inspections, repairs and system replacement for mobile homes.',
+  es:'Ofrecemos inspecciones, reparación y sustitución de sistemas de calefacción y aire acondicionado para casas móviles.'},
  commercial:{name:'Light Commercial HVAC',href:'light-commercial.html',
-  en:'Pronto Air lists heating and cooling repair, service and new equipment installation for light commercial applications.',
-  es:'Pronto Air ofrece reparación y servicio de climatización e instalación de equipos para aplicaciones comerciales ligeras.'},
+  en:'We offer heating and cooling repair, service and new equipment installation for light commercial applications.',
+  es:'Ofrecemos reparación y servicio de climatización e instalación de equipos para aplicaciones comerciales ligeras.'},
  maintenance:{name:'Maintenance & Service Agreement',href:'service-agreement-faqs.html',
-  en:'Pronto Air describes a maintenance service agreement that includes two tune-ups per year.',
-  es:'Pronto Air describe un acuerdo de mantenimiento que incluye dos revisiones al año.'},
+  en:'Our maintenance service agreement includes two tune-ups per year.',
+  es:'Nuestro acuerdo de mantenimiento incluye dos revisiones al año.'},
  faqs:{name:'Frequently Asked Questions',href:'service-agreement-faqs.html',
-  en:'Pronto Air has answers about AC efficiency, equipment maintenance and indoor air quality.',
-  es:'Pronto Air responde preguntas sobre eficiencia del aire acondicionado, mantenimiento y calidad del aire interior.'}
+  en:'We have information about AC efficiency, equipment maintenance and indoor air quality.',
+  es:'Compartimos información sobre eficiencia del aire acondicionado, mantenimiento y calidad del aire interior.'}
 };
 const pii=/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}|(?:\+?\d[\d ()-]{7,}\d)|\b(?:my address|street address|i live at|my name is|social security|ssn|mi direcci[oó]n|vivo en la calle)\b/i;
 const forbiddenService=/\b(plumb(?:ing|er)|roof(?:ing|er)?|pest control|septic|landscap(?:ing|er)|pool cleaning|garage door)\b|fontaner[ií]a|techos y tejados/i;
@@ -60,30 +60,30 @@ function localResponse(input,history){
  const es=inSpanish(input)||history.slice(-2).some(x=>x.lang==='es');const lang=es?'es':'en';
  const av=availability();
  if(safety.test(input))return {reply:es?'Si hay peligro inmediato, por ejemplo posible fuga de gas, aléjate del área y llama a los servicios de emergencia o a la compañía de gas. Este chat no atiende emergencias.':'If there is immediate danger, such as a possible gas leak, leave the area and contact emergency services or the gas utility. This chat is not an emergency-response service.',topic:null,offerContact:true,lang};
- if(msgGreeting.test(input))return {reply:es?'Puedo explicarte los servicios confirmados de Pronto Air: aire acondicionado, calefacción, climatización de casas móviles, servicios comerciales ligeros y mantenimiento. También puedo ayudarte a contactar con el equipo. ¿Qué necesitas?':'I can explain Pronto Air’s verified services—cooling, heating, mobile home HVAC, light commercial HVAC and maintenance—and help you contact the team. What would you like help with?',topic:null,offerContact:false,lang};
- if(msgFollow.test(input))return {reply:es?'Puedes dejar tus datos y una descripción de tu solicitud para que el equipo tenga la información. Es una solicitud de contacto, no una cita confirmada.':'You can leave your contact details and a short description for follow-up. This sends a request; it does not book an appointment.',topic:null,offerContact:true,lang};
- if(msgCall.test(input))return {reply:(es?'Puedes llamar al '+phone+'. ¿Prefieres marcar ahora o dejar una solicitud para seguimiento?':'You can call '+phone+'. Would you prefer to dial now or leave a follow-up request?'),topic:null,offerContact:true,lang};
- if(msgPrice.test(input))return {reply:es?'No tengo un precio confirmado para tu caso. Pronto Air puede darte información si explicas tu solicitud. ¿Quieres llamar o dejar un mensaje?':'I do not have a verified price for your situation. Please contact Pronto Air with details so the team can respond. Would you like to call or leave a message?',topic:null,offerContact:true,lang};
- if(msgBooking.test(input))return {reply:es?'No puedo consultar disponibilidad ni reservar una cita. Puedes llamar o dejar una solicitud para que el equipo la revise.':'I cannot check real-time availability or book appointments. You can call or send a request for the team to review.',topic:null,offerContact:true,lang};
- if(forbiddenService.test(input))return {reply:es?'No encuentro ese servicio entre los servicios publicados de Pronto Air y prefiero no confirmarlo. ¿Quieres consultar directamente al equipo?':'That service is not among the published Pronto Air services I can verify, so I cannot confirm it. Would you like to contact the team?',topic:null,offerContact:true,lang};
+ if(msgGreeting.test(input))return {reply:es?'Soy Ari, el asistente virtual de Pronto Air. Puedo orientarte sobre nuestros servicios de climatización y ayudarte a contactar con nuestro equipo. ¿En qué podemos ayudarte?':"I'm Ari, Pronto Air's virtual assistant. I can explain our heating and cooling services and help you contact our team. How can we help?",topic:null,offerContact:true,lang};
+ if(msgFollow.test(input))return {reply:es?'Claro. Puedes dejarnos un mensaje a nuestro equipo aquí mismo. Pulsa «Leave a request» para abrir nuestro formulario. El envío solicita seguimiento, pero no confirma una cita ni un plazo de respuesta.':"Of course. You can leave our team a message right here. Select 'Leave a request' to open our form. Submitting it requests follow-up; it does not confirm an appointment or response time.",topic:null,offerContact:true,lang};
+ if(msgCall.test(input))return {reply:(es?'Puedes llamarnos al '+phone+'. ¿Prefieres llamar ahora o dejarnos una solicitud para que nuestro equipo la revise?':'You can call us at '+phone+'. Would you prefer to call now or leave a request for our team to review?'),topic:null,offerContact:true,lang};
+ if(msgPrice.test(input))return {reply:es?'No tengo un precio confirmado para tu caso. Puedes llamar o dejarnos un mensaje con los detalles para que nuestro equipo revise la solicitud.':'I don’t have a confirmed price for your situation. You can call us or leave our team a message with the details so they can review your request.',topic:null,offerContact:true,lang};
+ if(msgBooking.test(input))return {reply:es?'No puedo confirmar disponibilidad ni reservar una cita desde este chat. Puedes llamarnos o dejarnos una solicitud para que nuestro equipo la revise.':'I can’t confirm availability or book appointments in this chat. You can call us or leave a request for our team to review.',topic:null,offerContact:true,lang};
+ if(forbiddenService.test(input))return {reply:es?'No tengo confirmación de que ofrezcamos ese servicio. ¿Quieres dejarnos una consulta para nuestro equipo?':'I can’t confirm that we offer that service. Would you like to leave our team a question?',topic:null,offerContact:true,lang};
  for(const [key,rx] of list)if(rx.test(input)){
    const t=topics[key];
    return {reply:t[lang]+(es?' ¿Quieres más información, llamar o dejar una solicitud?':' Would you like more details, to call, or to leave a request?'),topic:key,offerContact:true,lang};
  }
- if(av.afterHours)return {reply:es?'No puedo confirmar esa información. Fuera del horario habitual indicado puedes dejar una solicitud para seguimiento o consultar los servicios disponibles.':'I cannot confirm that detail. Outside the published weekday hours, you can leave a follow-up request or explore the listed services.',offerContact:true,lang};
- return {reply:es?'No puedo confirmar ese detalle a partir de la información publicada. Cuéntame si necesitas aire acondicionado, calefacción u otro servicio listado; también puedes contactar al equipo.':'I cannot confirm that detail from the published information. Tell me whether you need cooling, heating or another listed service, or contact the team directly.',offerContact:true,lang};
+ if(av.afterHours)return {reply:es?'No puedo confirmar ese dato. Fuera del horario publicado puedes dejarnos una solicitud para que nuestro equipo la revise cuando esté disponible.':'I can’t confirm that detail. Outside our published hours, you can leave our team a request for review when available.',offerContact:true,lang};
+ return {reply:es?'No puedo confirmar ese detalle con nuestra información publicada. ¿Necesitas ayuda con aire acondicionado, calefacción u otro servicio que ofrecemos? También puedes dejarnos un mensaje.':'I can’t confirm that detail from our published information. Do you need help with cooling, heating or another listed service? You can also leave our team a message.',offerContact:true,lang};
 }
 const root=document.createElement('div');
 root.className='pa-guide';
 root.innerHTML=[
  '<button type="button" class="pa-guide-launcher" aria-haspopup="dialog" aria-expanded="false" aria-controls="pa-guide-panel">',
- '<span class="pa-guide-launcher-mark" aria-hidden="true"><i class="fa-regular fa-comments"></i></span><span>Ask Pronto Air</span></button>',
- '<section class="pa-guide-panel" id="pa-guide-panel" role="dialog" aria-label="Pronto Air service assistant" aria-modal="false" hidden>',
+ '<span class="pa-guide-launcher-mark" aria-hidden="true"><i class="fa-regular fa-comments"></i></span><span>Chat with Ari</span></button>',
+ '<section class="pa-guide-panel" id="pa-guide-panel" role="dialog" aria-label="Ari, Pronto Air virtual assistant" aria-modal="false" hidden>',
  '<header class="pa-guide-top"><span class="pa-guide-brand-icon" aria-hidden="true"><i class="fa-regular fa-comments"></i></span>',
- '<span class="pa-guide-heading"><strong>How can we help?</strong><small class="pa-guide-mode"></small></span>',
+ '<span class="pa-guide-heading"><strong>Ari</strong><small class="pa-guide-mode"></small></span>',
  '<button type="button" class="pa-guide-close" aria-label="Close assistant"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button></header>',
  '<div class="pa-guide-scroll" tabindex="0">',
- '<div class="pa-guide-intro">Ask a question about Pronto Air, call the team or leave a follow-up request. No appointments are confirmed in chat.</div>',
+ '<div class="pa-guide-intro">Hi, I’m Ari, Pronto Air’s virtual assistant. Ask me about our services, call us, or leave our team a message. Appointments aren’t confirmed in chat.</div>',
  '<div class="pa-guide-hours"></div>',
  '<div class="pa-guide-messages" aria-live="polite" aria-relevant="additions"></div>',
  '<div class="pa-guide-options" aria-label="Common questions"></div>',
@@ -118,7 +118,7 @@ const launcher=one('.pa-guide-launcher'),panel=one('.pa-guide-panel'),close=one(
  input=one('#pa-guide-question'),warning=one('.pa-guide-warning'),send=one('.pa-guide-send'),
  chatForm=one('.pa-guide-form'),lead=one('.pa-guide-lead'),leadForm=one('.pa-guide-lead-form'),
  leadStatus=one('.pa-guide-lead-status');
-one('.pa-guide-mode').textContent=endpoint?'AI-powered assistance':'Service assistant · guided mode';
+one('.pa-guide-mode').textContent=endpoint?'Pronto Air · Virtual AI assistant':'Pronto Air · Guided assistant';
 if(endpoint)one('.pa-guide-ai-disclosure').hidden=false;
 one('.pa-guide-hours').textContent=availability().note;
 const history=[];let request=null,turns=0,requestCount=0;
@@ -218,7 +218,7 @@ leadForm.addEventListener('submit',async e=>{
   if(!res.ok||!(result.success===true||result.success==='true'))throw new Error('relay rejected');
   requestCount++;leadForm.reset();
   leadStatus.textContent='Your request was accepted by the form service. This is not a confirmed appointment. For urgent concerns, call Pronto Air directly.';
-  message('assistant','A follow-up request was submitted to the form service. This does not confirm an appointment or response time.',null,false);
+  message('assistant','Your message was accepted by our contact form for follow-up. This does not confirm an appointment or response time.',null,false);
  }catch{leadStatus.textContent='We could not verify the request. Please call Pronto Air directly at '+phone+' or use the Contact page. Your information is still in the form.';}
  finally{button.disabled=false;}
 });

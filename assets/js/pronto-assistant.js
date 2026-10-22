@@ -8,6 +8,7 @@
 const site='Pronto Air',phone='(940) 312-3081',phoneHref='tel:+19403123081';
 const tempDestination='atrezzostudiosv@gmail.com';
 const formRelay='https://formsubmit.co/ajax/'+tempDestination;
+const formDirect='https://formsubmit.co/'+tempDestination;
 const endpoint=(document.currentScript?.dataset.aiEndpoint||'').trim();
 const topics={
  cooling:{name:'Residential Cooling',href:'residential-cooling.html',
@@ -117,6 +118,7 @@ root.innerHTML=[
  '<div class="pa-guide-honey" aria-hidden="true"><label>Leave blank<input name="_honey" type="text" autocomplete="off" tabindex="-1"></label></div>',
  '<button type="submit" class="pa-guide-lead-send">Send Request</button>',
  '<p class="pa-guide-lead-status" role="status" aria-live="polite"></p>',
+ '<button type="button" class="pa-guide-lead-send pa-guide-lead-direct" hidden>Submit directly with FormSubmit</button>',
  '</form></div></div>',
  '<form class="pa-guide-form" novalidate>',
  '<label class="pa-guide-input-label" for="pa-guide-question">Ask a question <span>(no personal details here)</span></label>',
@@ -134,11 +136,31 @@ const launcher=one('.pa-guide-launcher'),panel=one('.pa-guide-panel'),close=one(
  scroll=one('.pa-guide-scroll'),messages=one('.pa-guide-messages'),options=one('.pa-guide-options'),
  input=one('#pa-guide-question'),warning=one('.pa-guide-warning'),send=one('.pa-guide-send'),
  chatForm=one('.pa-guide-form'),lead=one('.pa-guide-lead'),leadForm=one('.pa-guide-lead-form'),
- leadStatus=one('.pa-guide-lead-status');
+ leadStatus=one('.pa-guide-lead-status'),directSubmit=one('.pa-guide-lead-direct');
 one('.pa-guide-mode').textContent=endpoint?'Pronto Air · Virtual AI assistant':'Pronto Air · Guided assistant';
 if(endpoint)one('.pa-guide-ai-disclosure').hidden=false;
 one('.pa-guide-hours').textContent=availability().note;
-const history=[];let request=null,turns=0,requestCount=0;
+const history=[];let request=null,turns=0,requestCount=0,pendingDirectPayload=null;
+// FormSubmit may reject cross-origin AJAX. A native POST is available only
+// after failure and only if the visitor chooses it; never submit twice unseen.
+function clearDirectFallback(){directSubmit.hidden=true;pendingDirectPayload=null;}
+leadForm.addEventListener('input',clearDirectFallback);
+leadForm.addEventListener('change',clearDirectFallback);
+directSubmit.addEventListener('click',()=>{
+ if(!pendingDirectPayload||!leadForm.reportValidity())return;
+ const form=document.createElement('form');
+ form.method='POST';form.action=formDirect;form.target='_blank';form.rel='noopener';
+ form.hidden=true;
+ for(const [name,value] of Object.entries(pendingDirectPayload)){
+  const field=document.createElement('input');field.type='hidden';field.name=name;field.value=String(value);
+  form.append(field);
+ }
+ document.body.append(form);
+ // Native form navigation is initiated synchronously by this user gesture.
+ form.submit();setTimeout(()=>form.remove(),3000);
+ leadStatus.textContent='Direct submission opened in another tab. Check the FormSubmit page for confirmation; this chat cannot verify delivery.';
+ clearDirectFallback();
+});
 function open(){panel.hidden=false;launcher.setAttribute('aria-expanded','true');launcher.classList.add('is-open');input.focus({preventScroll:true});}
 function closePanel(){panel.hidden=true;launcher.setAttribute('aria-expanded','false');launcher.classList.remove('is-open');request?.abort();request=null;send.disabled=false;launcher.focus({preventScroll:true});}
 launcher.addEventListener('click',()=>panel.hidden?open():closePanel());
@@ -159,7 +181,7 @@ function message(type,content,topic=null,actions=false){
  messages.append(box);box.scrollIntoView({block:'nearest',behavior:'instant'});
 }
 function openLead(){
- lead.hidden=false;chatForm.hidden=true;options.hidden=true;leadStatus.textContent='';
+ lead.hidden=false;chatForm.hidden=true;options.hidden=true;leadStatus.textContent='';clearDirectFallback();
  if(!leadForm.elements.message.value.trim()){
   const last=history.filter(m=>m.role==='user').slice(-1)[0];
   if(last)leadForm.elements.message.value=last.content.slice(0,300);
@@ -223,7 +245,7 @@ chatForm.addEventListener('submit',async e=>{
  }finally{clearTimeout(timer);send.disabled=false;if(request===controller)request=null;}
 });
 leadForm.addEventListener('submit',async e=>{
- e.preventDefault();leadStatus.textContent='';if(!leadForm.reportValidity())return;
+ e.preventDefault();leadStatus.textContent='';clearDirectFallback();if(!leadForm.reportValidity())return;
  if(requestCount>=2){leadStatus.textContent='For more requests, please contact Pronto Air directly.';return;}
  const data=Object.fromEntries(new FormData(leadForm).entries());
  if(data._honey)return;
@@ -244,13 +266,19 @@ leadForm.addEventListener('submit',async e=>{
  const button=leadForm.querySelector('button[type=submit]');button.disabled=true;
  leadStatus.textContent='Sending request…';
  try{
-  const res=await fetch(formRelay,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+  // FormSubmit accepts standard URL-encoded fields. This is a CORS-simple
+  // request, avoiding JSON's OPTIONS preflight that was challenged/blocked.
+  const res=await fetch(formRelay,{method:'POST',headers:{'Accept':'application/json'},body:new URLSearchParams(payload)});
   const result=await res.json();
   if(!res.ok||!(result.success===true||result.success==='true'))throw new Error('relay rejected');
   requestCount++;leadForm.reset();
   leadStatus.textContent='Your request was accepted by the form service. This is not a confirmed appointment. For urgent concerns, call Pronto Air directly.';
   message('assistant','Your message was accepted by our contact form for follow-up. This does not confirm an appointment or response time.',null,false);
- }catch{leadStatus.textContent='We could not verify the request. Please call Pronto Air directly at '+phone+' or use the Contact page. Your information is still in the form.';}
+ }catch{
+  pendingDirectPayload=payload;
+  directSubmit.hidden=false;
+  leadStatus.textContent='We could not verify the request. Your information is still here. You may submit directly with FormSubmit in a new tab or call us at '+phone+'. If your first request arrived, submitting again may create a duplicate.';
+ }
  finally{button.disabled=false;}
 });
 })();

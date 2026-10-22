@@ -1,0 +1,22 @@
+name: Verify Pronto Air inline form submissions
+on:
+  push:
+    branches:
+      - forms/inline-ajax-feedback-20261022
+permissions:
+  contents: read
+jobs:
+  test-ajax-forms:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Validate in-page FormSubmit handling without sending personal data
+        run: node tools/verify-inline-ajax-form.cjs

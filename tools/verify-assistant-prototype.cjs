@@ -105,6 +105,48 @@ async function getPage(browser,base,name,width){
     console.log('LOCAL GUIDANCE PASS: service, out-of-scope, pricing, booking, PII blocking and contact CTA');
     await obj.context.close();
 
+
+    // Simulate a deployed Worker endpoint without contacting Cloudflare.
+    const bridgeContext=await browser.newContext({viewport:{width:375,height:900},reducedMotion:'reduce'});
+    const bridge=await bridgeContext.newPage();
+    let bridgeRequests=0;
+    let bridgeMode='ok';
+    await bridge.route(newsite.url+'/index.html?ai-bridge-test=1',async route=>{
+      const html=fs.readFileSync(path.join(root,'index.html'),'utf8')
+        .replace('<script src="assets/js/pronto-assistant.js"></script>',
+                 '<script src="assets/js/pronto-assistant.js" data-ai-endpoint="https://assistant.example.test/classify"></script>');
+      await route.fulfill({status:200,contentType:'text/html',body:html});
+    });
+    await bridge.route('https://assistant.example.test/classify',async route=>{
+      const req=route.request();
+      const headers={'Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'Content-Type'};
+      if(req.method()==='OPTIONS')return route.fulfill({status:204,headers});
+      ++bridgeRequests;
+      if(bridgeMode==='fail')return route.fulfill({status:503,headers,contentType:'application/json',body:JSON.stringify({error:'quota'})});
+      await route.fulfill({status:200,headers,contentType:'application/json',body:JSON.stringify({intent:'heating'})});
+    });
+    await bridge.goto(newsite.url+'/index.html?ai-bridge-test=1',{waitUntil:'domcontentloaded'});
+    await bridge.getByRole('button',{name:'Ask Pronto Air'}).click();
+    assert.match(await bridge.locator('#pa-guide-mode').textContent(),/AI-assisted/);
+    await bridge.locator('#pa-guide-question').fill('I have a furnace problem');
+    await bridge.locator('.pa-guide-send').click();
+    await bridge.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===1);
+    assert.match(await bridge.locator('.pa-guide-message.is-guide').last().innerText(),/residential heating inspections/i);
+    assert.equal(bridgeRequests,1);
+    bridgeMode='fail';
+    await bridge.locator('#pa-guide-question').fill('My air conditioner is not cold');
+    await bridge.locator('.pa-guide-send').click();
+    await bridge.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===2);
+    assert.match(await bridge.locator('.pa-guide-message.is-guide').last().innerText(),/residential air-conditioning repair/i);
+    assert.match(await bridge.locator('#pa-guide-warning').innerText(),/AI assistance is temporarily unavailable/);
+    assert.equal(bridgeRequests,2);
+    const beforePII=bridgeRequests;
+    await bridge.locator('#pa-guide-question').fill('john.smith@example.com');
+    await bridge.locator('.pa-guide-send').click();
+    assert.equal(bridgeRequests,beforePII);
+    await bridgeContext.close();
+    console.log('AI BRIDGE PASS: mocked intent, 503 fallback, no PII sent to endpoint.');
+
     if(problems.length)throw new Error('REGRESSION FAILED:\n'+problems.join('\n'));
     console.log('PASS: 32/32 pages+widths with preserved geometry and usable widget; 16 Axe scans plus question tests.');
   } finally {

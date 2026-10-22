@@ -134,8 +134,13 @@ const mkServer=dir=>new Promise(resolve=>{
   await p.route('https://ai.example.test/chat',async route=>{
    if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'POST,OPTIONS','Access-Control-Allow-Headers':'Content-Type'}});
    modelCount++;sentQuestions.push(JSON.parse(route.request().postData()));
-   await route.fulfill({status:mode==='answer'?200:503,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},
-     body:mode==='answer'?'{"reply":"Hi! I can explain heating and cooling options and help you reach the team. Would you like me to arrange a contact request?","topic":null,"offerContact":true,"lang":"en"}':'{"error":"quota"}'});
+   const reply=mode==='spanish'
+    ? {reply:'Podemos ayudarte con nuestros servicios de calefacción.',topic:'heating',offerContact:true,lang:'es'}
+    : mode==='wrong-language'
+    ? {reply:'Puedes dejarnos un mensaje para nuestro equipo.',topic:null,offerContact:true,lang:'en'}
+    : {reply:'Hi! We can explain our heating and cooling services. Would you like to call us?',topic:null,offerContact:true,lang:'en'};
+   await route.fulfill({status:mode==='fail'?503:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},
+     body:mode==='fail'?'{"error":"quota"}':JSON.stringify(reply)});
   });
   await p.goto(after.url+'/index.html?assistant-ai-test',{waitUntil:'domcontentloaded'});
   await p.getByRole('button',{name:'Chat with Ari'}).click();
@@ -150,18 +155,43 @@ const mkServer=dir=>new Promise(resolve=>{
   await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===2);
   assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/nuestro equipo/i);
   assert.equal(modelCount,1,'Contact action should not use AI or depend on Cloudflare redeploy');
-  mode='fail';
-  await p.locator('#pa-guide-question').fill('My furnace is not heating');
+  // The previous Spanish exchange must not switch an English question to Spanish.
+  await p.waitForFunction(()=>!document.querySelector('.pa-guide-send').disabled);
+  await p.locator('#pa-guide-question').fill('My AC is not cooling. Can you help me?');
   await p.locator('.pa-guide-send').click();
   await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===3);
-  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/Our residential heating services/i);
+  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/We can explain our heating/i);
   assert.equal(modelCount,2);
+  assert.equal(sentQuestions[1].language,'en');
+  assert.equal(sentQuestions[1].history.every(m=>!/dejarnos|nuestro equipo/i.test(m.content)),true,
+    'Old Spanish history leaked into English request');
+  mode='spanish';
+  await p.waitForFunction(()=>!document.querySelector('.pa-guide-send').disabled);
+  await p.locator('#pa-guide-question').fill('Necesito ayuda con mi calefacción');
+  await p.locator('.pa-guide-send').click();
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===4);
+  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/Podemos ayudarte/i);
+  assert.equal(sentQuestions[2].language,'es');
+  mode='wrong-language';
+  await p.waitForFunction(()=>!document.querySelector('.pa-guide-send').disabled);
+  await p.locator('#pa-guide-question').fill('What heating services do you offer?');
+  await p.locator('.pa-guide-send').click();
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===5);
+  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/Our residential heating services/i);
+  assert.equal(sentQuestions[3].language,'en');
+  mode='fail';
+  await p.waitForFunction(()=>!document.querySelector('.pa-guide-send').disabled);
+  await p.locator('#pa-guide-question').fill('My furnace is not heating');
+  await p.locator('.pa-guide-send').click();
+  await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===6);
+  assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/Our residential heating services/i);
+  assert.equal(modelCount,5);
   const requestsBefore=modelCount;
   await p.locator('#pa-guide-question').fill('My phone number is 9403123081');
   await p.locator('.pa-guide-send').click();
   assert.equal(modelCount,requestsBefore,'PII transferred to AI');
   assert.equal(sentQuestions.every(s=>!JSON.stringify(s).includes('9403123081')),true);
-  console.log('PASS bilingual chat, mocked conversational reply, AI 503 fallback and PII exclusion');
+  console.log('PASS bilingual switching, correct locale, wrong-language response fallback, AI 503 and PII exclusion');
   await ai.close();
   console.log('PASS ALL',checks,'viewport checks + 16 axe scans and follow-up / mocked AI flow');
  }finally{await browser.close();before.server.close();after.server.close();}

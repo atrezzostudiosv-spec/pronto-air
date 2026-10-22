@@ -33,7 +33,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- images/home-hero-mobile-640.webp images/home-hero-mobile-820.webp images/pronto-home-family-team-840.webp images/pronto-home-family-team-1100.webp images/home-maintenance-tuneup-700.webp images/home-maintenance-tuneup-1000.webp
+          git add -- images/home-hero-mobile-640.webp images/home-hero-mobile-820.webp images/pronto-home-family-team-840.webp images/pronto-home-family-team-1100.webp images/home-maintenance-tuneup-700.webp
           if ! git diff --cached --quiet; then
             git commit -m "[assets-generated] Add responsive home image variants after visual QA"
             git push origin HEAD:performance/home-psi-mobile-images-20261022

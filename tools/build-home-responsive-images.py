@@ -13,7 +13,7 @@ images = root / "images"
 targets = {
     "home-hero-mobile.webp": (640, 820),
     "pronto-home-family-team.webp": (840, 1100),
-    "home-maintenance-tuneup.webp": (700, 1000),
+    "home-maintenance-tuneup.webp": (700,),
 }
 for filename, widths in targets.items():
     source = images / filename

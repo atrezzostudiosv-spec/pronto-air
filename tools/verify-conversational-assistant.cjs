@@ -137,7 +137,7 @@ const mkServer=dir=>new Promise(resolve=>{
   assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/explain heating and cooling/i);
   assert.equal(modelCount,1);
   mode='fail';
-  await p.locator('#pa-guide-question').fill('Residential heating maintenance help');
+  await p.locator('#pa-guide-question').fill('My furnace is not heating');
   await p.locator('.pa-guide-send').click();
   await p.waitForFunction(()=>document.querySelectorAll('.pa-guide-message.is-guide').length===2);
   assert.match(await p.locator('.pa-guide-message.is-guide').last().innerText(),/Pronto Air lists residential heating/i);

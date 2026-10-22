@@ -2,7 +2,7 @@
 
 ## Estado real (22 octubre 2026)
 - **Implementación web operativa en demo:** interfaz de chat natural con alternativa guiada, botón de llamada `tel:+19403123081` y formulario de seguimiento integrado.
-- **IA generativa real:** desplegada y verificada en Cloudflare Workers Free con endpoint `https://pronto-air-assistant.atrezzostudiosv.workers.dev/chat`. Health, CORS y una respuesta real de modelo pasaron en [GitHub Actions](https://github.com/atrezzostudiosv-spec/pronto-air/actions/runs/39822272548). La activación en las ocho páginas de la demo se está validando en la rama de revisión; no debe confundirse con la publicación oficial del cliente.
+- **IA generativa real:** desplegada y verificada en Cloudflare Workers Free con endpoint `https://pronto-air-assistant.atrezzostudiosv.workers.dev/chat`. Health, CORS y una respuesta real de modelo pasaron en [GitHub Actions](https://github.com/atrezzostudiosv-spec/pronto-air/actions/runs/39822272548). La integración está incorporada en las ocho páginas de la rama principal de la demo, y las pruebas automatizadas de Ari y responsive pasaron después de PR #17. Esto no es una publicación oficial del cliente.
 - **Seguimientos:** se envían por AJAX al servicio FormSubmit ya usado por Home y Contact, a `atrezzostudiosv@gmail.com` provisionalmente. El envío solo se da por aceptado tras respuesta positiva del proveedor; recibirlo en Gmail exige prueba real, que no se hace en test automatizado.
 - **Privacidad:** el borrador de política se conserva como está hasta la contratación. El formulario integrado exige consentimiento específico y revela que el receptor temporal es Atrezzo. Las conversaciones de IA **no reciben nombres, teléfonos ni correos** si pasan los controles de interfaz y servidor; filtros de patrones no garantizan detección de toda información personal.
 - **Web de demostración:** conserva `noindex, nofollow`.
@@ -18,7 +18,7 @@
 
 ## Activación guiada con GitHub Actions — sin compartir credenciales
 
-**IMPORTANTE:** en esta entrega todavía no hay un Worker activo ni credenciales Cloudflare conectadas. La web de GitHub Pages sigue en modo guiado y no se debe afirmar lo contrario. Ningún cambio del pipeline activa automáticamente facturación, ni actualiza los ocho HTML sin validación.
+**ESTADO ACTUAL:** el Worker de Cloudflare ya está desplegado y la demo conecta con el endpoint verificado. Los pasos A y B describen la configuración inicial **ya realizada** y sirven únicamente para recuperación/migración. Los secretos siguen protegidos en GitHub Actions. No volver a crear tokens ni cuentas sin necesidad; los despliegues posteriores del Worker requieren ejecutar manualmente el flujo autorizado. Ningún cambio del pipeline activa automáticamente facturación, ni publica el sitio oficial del cliente.
 
 ### Paso A. Configurar la cuenta gratuita (acción del propietario)
 
@@ -35,7 +35,7 @@
 5. En el repositorio, abrir **Actions → Deploy Pronto Air AI — Cloudflare Free (manual) → Run workflow** (rama `main`).
 6. La acción primero ejecuta tests de reglas, compila el Worker con Wrangler, comprueba que existen los secretos, despliega con `cloudflare/wrangler-action@v4` y prueba **una pregunta real** al modelo y la autorización de origen CORS.
 7. Si falla la comprobación del modelo, no conectar la web. Revisar en el panel los errores, la cuota y si el modelo `@cf/meta/llama-3.1-8b-instruct-fp8-fast` sigue disponible en Workers Free. Nunca cambiar automáticamente a un modelo de pago.
-8. Si pasa, la acción muestra en el resumen de ejecución la URL real `https://...workers.dev/chat`. Se puede compartir **la URL pública**, pero nunca el API token.
+8. Si pasa, la acción muestra en el resumen de ejecución la URL real `https://...workers.dev/chat`. Se puede compartir **la URL pública**, pero nunca el API token. Esta primera activación ya se hizo y posteriores cambios de prompt/modelo requieren un despliegue controlado.
 
 ### Paso C. Conectar al website, después de verificar
 
@@ -51,9 +51,9 @@
 - `OPTIONS /chat` con origen `https://atrezzostudiosv-spec.github.io`: debe devolver 204 y su cabecera CORS correspondiente.
 - `POST /chat` con pregunta inocua: debe devolver `mode=conversational-ai`, no `safe-fallback`; puede fallar legítimamente por falta de cuota, modelo no disponible o rechazo de respuesta.
 - `node tools/verify-cloudflare-live.mjs` verifica lo anterior, no envía información personal y utiliza una sola consulta real.
-- **GitHub Actions no publica los cambios de la web al desplegar el Worker.** Ese cambio se hace después, separadamente.
+- **GitHub Actions del Worker no publica por sí sola los cambios HTML/JS de la web.** Los commits en main y el despliegue del backend se verifican por separado.
 - Al agotar 10.000 Neurons/día en Workers Free, inferencia no disponible y widget usa modo guiado. No permite asegurar cuántas visitas/respuestas se admitirán.
-- El formulario de callback sigue dirigiéndose a `atrezzostudiosv@gmail.com` provisional y debe revisarse en Gmail con una prueba real. Un resultado HTTP exitoso de FormSubmit no equivale a una cita.
+- El formulario de callback sigue dirigiéndose a `atrezzostudiosv@gmail.com` provisional. Solo se ha probado con envío simulado: queda pendiente verificar la recepción real en el buzón autorizado. Un resultado HTTP exitoso de FormSubmit no equivale a una cita.
 
 
 ## Alternativa: activar desde un ordenador mediante Wrangler

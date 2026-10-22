@@ -47,7 +47,7 @@
 
 ### Procedimientos de diagnóstico
 
-- `GET /health`: el servidor debe devolver `status=ready` y `modelConfigured=true`.
+- `GET /health`: el servidor debe devolver `status=ready` y `modelConfigured=true`. Justo después del **primer** despliegue, el dominio `workers.dev` puede devolver transitoriamente HTTP 404; el verificador ahora espera y reintenta únicamente esta comprobación hasta unos 2,5 minutos. Si persiste, comprobar ruta pública, subdominio y dominio asignado en Cloudflare antes de conectar el sitio.
 - `OPTIONS /chat` con origen `https://atrezzostudiosv-spec.github.io`: debe devolver 204 y su cabecera CORS correspondiente.
 - `POST /chat` con pregunta inocua: debe devolver `mode=conversational-ai`, no `safe-fallback`; puede fallar legítimamente por falta de cuota, modelo no disponible o rechazo de respuesta.
 - `node tools/verify-cloudflare-live.mjs` verifica lo anterior, no envía información personal y utiliza una sola consulta real.

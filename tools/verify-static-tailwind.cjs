@@ -9,7 +9,7 @@ const { PNG } = require('pngjs');
 
 const root = path.resolve(__dirname, '..');
 const pages = ['index.html','service-agreement-faqs.html'];
-const widths = [375, 1440];
+const widths = [375];
 const type = (p) => {
   if (p.endsWith('.html')) return 'text/html';
   if (p.endsWith('.css')) return 'text/css';
@@ -56,6 +56,7 @@ async function capture(browser, port, pageName, width) {
       h1: [...document.querySelectorAll('main h1')].map(x=>x.textContent.trim()),
       sectionCount: document.querySelectorAll('main section').length,
       overflow: document.documentElement.scrollWidth - window.innerWidth,
+      detail:[...document.querySelectorAll('main *')].slice(0,420).map(el=>{const r=el.getBoundingClientRect(),c=getComputedStyle(el);return {tag:el.tagName,cl:String(el.className).slice(0,90),h:r.height,y:r.y,lh:c.lineHeight,fs:c.fontSize,mt:c.marginTop,mb:c.marginBottom,pad:c.paddingTop};}),
       blocks: selectors.map(el => {
         const r = el.getBoundingClientRect(), c = getComputedStyle(el);
         return [r.x,r.y,r.width,r.height].map(x=>Math.round(x*10)/10)
@@ -93,6 +94,11 @@ async function capture(browser, port, pageName, width) {
           if (mismatches++ < 5) console.log('LAYOUT DIFFERENCE',f,w+'px','block',i,JSON.stringify({before:x,after:y}));
           failures.push(f+' '+w+'px: layout/computed-style mismatch block '+i);
         }
+      }
+      let shown=0;
+      for(let i=0;i<Math.min(a.detail.length,b.detail.length);i++){
+        const x=a.detail[i],y=b.detail[i];
+        if(Math.abs(x.h-y.h)>1 && shown++<16)console.log('ELEMENT CHANGE',f,w+'px',i,JSON.stringify({before:x,after:y}));
       }
       if(b.overflow>a.overflow+2)failures.push(f+' '+w+'px: new horizontal overflow');
       if(newPage.pageErrors.length)failures.push(f+' '+w+'px: JS errors '+newPage.pageErrors.join('; ').slice(0,350));

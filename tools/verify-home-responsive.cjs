@@ -43,6 +43,7 @@ async function inspect(browser,port,width,isAfter){
   const imgs={};
   for(const filename of targets){
     const el=page.locator('img[src="images/'+filename+'"]');
+    if(!(await el.isVisible())){imgs[filename]={hidden:true};continue;}
     await el.scrollIntoViewIfNeeded();
     await el.evaluate(img=>img.decode().catch(()=>{}));
     const data=await el.evaluate(img=>({src:img.getAttribute('src'),srcset:img.getAttribute('srcset'),chosen:img.currentSrc,loaded:img.complete&&img.naturalWidth>0,width:img.getBoundingClientRect().width,height:img.getBoundingClientRect().height}));
@@ -70,6 +71,7 @@ async function inspect(browser,port,width,isAfter){
       if(b.errors.length)faults.push(w+' JS errors: '+b.errors.join('; '));
       for(const filename of targets){
         const u=a.imgs[filename],v=b.imgs[filename];
+        if(u.hidden||v.hidden){if(!!u.hidden!==!!v.hidden)faults.push(w+' responsive visibility changed '+filename);continue;}
         if(!u.loaded||!v.loaded)faults.push(w+' failed image load '+filename);
         if(!v.srcset||!v.chosen.includes('/images/'))faults.push(w+' no responsive source '+filename);
         if(Math.abs(u.width-v.width)>1||Math.abs(u.height-v.height)>1)faults.push(w+' image geometry changed '+filename);

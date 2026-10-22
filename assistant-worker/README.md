@@ -1,8 +1,8 @@
 # Pronto Air — Asistente conversacional ATREZZO
 
 ## Estado real (22 octubre 2026)
-- **Implementación web preparada en rama de revisión:** interfaz de chat natural con alternativa guiada, botón de llamada `tel:+19403123081` y formulario de seguimiento integrado.
-- **IA generativa real:** preparada en el Worker `assistant-worker/src/index.js`, pero **no conectada, desplegada ni verificada en Cloudflare**. Hasta que haya una cuenta y se activen las llamadas a `/chat`, la interfaz se identifica como guía local, no como IA generativa.
+- **Implementación web operativa en demo:** interfaz de chat natural con alternativa guiada, botón de llamada `tel:+19403123081` y formulario de seguimiento integrado.
+- **IA generativa real:** desplegada y verificada en Cloudflare Workers Free con endpoint `https://pronto-air-assistant.atrezzostudiosv.workers.dev/chat`. Health, CORS y una respuesta real de modelo pasaron en [GitHub Actions](https://github.com/atrezzostudiosv-spec/pronto-air/actions/runs/39822272548). La activación en las ocho páginas de la demo se está validando en la rama de revisión; no debe confundirse con la publicación oficial del cliente.
 - **Seguimientos:** se envían por AJAX al servicio FormSubmit ya usado por Home y Contact, a `atrezzostudiosv@gmail.com` provisionalmente. El envío solo se da por aceptado tras respuesta positiva del proveedor; recibirlo en Gmail exige prueba real, que no se hace en test automatizado.
 - **Privacidad:** el borrador de política se conserva como está hasta la contratación. El formulario integrado exige consentimiento específico y revela que el receptor temporal es Atrezzo. Las conversaciones de IA **no reciben nombres, teléfonos ni correos** si pasan los controles de interfaz y servidor; filtros de patrones no garantizan detección de toda información personal.
 - **Web de demostración:** conserva `noindex, nofollow`.
@@ -72,4 +72,4 @@ Cloudflare Workers Free incluye una asignación diaria de 10.000 Neurons que se 
 - No adjuntar PII a consultas de IA; los datos del formulario van directamente a FormSubmit. El navegador no transmite datos del formulario al modelo.
 - Revisar tasa de errores, cuota, spam y entrega de FormSubmit. Ningún sistema de email o Worker garantiza la lectura inmediata del correo.
 - Mantener el diseño original y auditar 375, 768, 1024 y 1440 px.
-- Las pruebas automatizadas de IA usan respuestas **simuladas**. Una prueba real de Cloudflare y recepción real de email queda pendiente hasta conectar las cuentas.
+- Las pruebas de regresión usan respuestas **simuladas** para no enviar datos reales. Adicionalmente, la IA real superó siete preguntas seguras EN/ES, precio, citas, alcance y seguridad en [GitHub Actions](https://github.com/atrezzostudiosv-spec/pronto-air/actions/runs/39823882278). Sigue pendiente la revisión exhaustiva de conversaciones (20–30 casos), la aprobación legal/comercial para el sitio oficial y una prueba real de recepción del formulario integrado.

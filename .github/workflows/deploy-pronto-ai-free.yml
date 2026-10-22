@@ -1,0 +1,65 @@
+name: Deploy Pronto Air AI — Cloudflare Free (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pronto-air-ai-cloudflare-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy and verify real conversational AI
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify grounded Worker rules without spending AI credits
+        run: node tools/verify-conversational-worker.cjs
+
+      - name: Validate Cloudflare Wrangler packaging offline
+        working-directory: assistant-worker
+        run: npx --yes wrangler@4 deploy --dry-run --outdir /tmp/pronto-ai-worker-build
+
+      - name: Verify owner has added restricted Cloudflare secrets
+        env:
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        shell: bash
+        run: |
+          if [[ -z "$CF_ACCOUNT" || -z "$CF_TOKEN" ]]; then
+            echo "::error::Configure CLOUDFLARE_ACCOUNT_ID and CLOUDFLARE_API_TOKEN as GitHub Actions repository secrets. Do not paste either into public code or the chat."
+            exit 1
+          fi
+
+      - name: Deploy with Cloudflare's official Wrangler action
+        id: deploy
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: assistant-worker
+          command: deploy
+
+      - name: Verify actual Cloudflare AI response and browser origin
+        env:
+          WORKER_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: node tools/verify-cloudflare-live.mjs
+
+      - name: Explain next step without changing the website automatically
+        env:
+          WORKER_URL: ${{ steps.deploy.outputs.deployment-url }}
+        shell: bash
+        run: |
+          echo "### Pronto Air AI deployed and verified" >> "$GITHUB_STEP_SUMMARY"
+          echo "Worker URL: $WORKER_URL/chat" >> "$GITHUB_STEP_SUMMARY"
+          echo "The website continues using guided mode until its eight script tags are explicitly configured." >> "$GITHUB_STEP_SUMMARY"
+          echo "Do not activate until business/data-processing approval and the final conversation review." >> "$GITHUB_STEP_SUMMARY"

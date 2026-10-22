@@ -1,0 +1,36 @@
+name: Verify Ari assistant interaction
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'assets/js/pronto-assistant.js'
+      - 'assistant-worker/src/index.js'
+      - 'tools/verify-ari-quick-actions.cjs'
+      - 'tools/verify-conversational-worker.cjs'
+      - '.github/workflows/verify-ari-assistant.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Check assistant interaction and Worker guards
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check assets/js/pronto-assistant.js
+          node --check assistant-worker/src/index.js
+          node --check tools/verify-ari-quick-actions.cjs
+          node --check tools/verify-conversational-worker.cjs
+      - name: Verify Ari quick-topic UX
+        run: node tools/verify-ari-quick-actions.cjs
+      - name: Verify conversational Worker safety and languages
+        run: node tools/verify-conversational-worker.cjs

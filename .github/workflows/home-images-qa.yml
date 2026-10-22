@@ -17,11 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install Pillow and browser validation tools
-        run: |
-          python -m pip install --user "Pillow>=10,<13"
-          npm install --no-save --no-package-lock playwright@1.56.1 pixelmatch@5.3.0 pngjs@7.0.0
-          npx playwright install --with-deps chromium
+      - name: Install Pillow
+        run: python -m pip install --user "Pillow>=10,<13"
       - name: Capture original Home and build image variants
         run: |
           git fetch --depth=1 origin main
@@ -30,8 +27,8 @@ jobs:
           ln -s "$GITHUB_WORKSPACE/images" .image-compare/before/images
           ln -s "$GITHUB_WORKSPACE/assets" .image-compare/before/assets
           python tools/build-home-responsive-images.py
-      - name: Compare Home image geometry and visible image quality
-        run: node tools/verify-home-responsive.cjs
+      - name: Verify dimensions, visual fidelity and unchanged indexation
+        run: python tools/verify-home-assets.py
       - name: Commit only validated new image variants
         run: |
           git config user.name "github-actions[bot]"

@@ -1,0 +1,39 @@
+name: Build and verify static Tailwind CSS
+
+on:
+  push:
+    branches:
+      - performance/tailwind-static-20261022
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-visual-check:
+    if: ${{ !contains(github.event.head_commit.message, '[css-compiled]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install production compiler and headless browser tools
+        run: |
+          npm install --no-save --no-package-lock tailwindcss@3.4.17 playwright@1.56.1 pixelmatch@5.3.0 pngjs@7.0.0
+          npx playwright install --with-deps chromium
+      - name: Build page-specific static Tailwind bundles
+        run: node tools/build-static-tailwind.cjs
+      - name: Compare original demo against compiled demo at four breakpoints
+        run: node tools/verify-static-tailwind.cjs
+      - name: Commit optimized HTML and compiled CSS only after checks pass
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html' assets/css
+          if ! git diff --cached --quiet; then
+            git commit -m "[css-compiled] Replace development Tailwind CDN with regression-tested static CSS"
+            git push origin HEAD:performance/tailwind-static-20261022
+          fi

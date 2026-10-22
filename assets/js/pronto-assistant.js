@@ -34,7 +34,7 @@ const forbiddenService=/\b(plumb(?:ing|er)|roof(?:ing|er)?|pest control|septic|l
 const safety=/\b(gas leak|smell gas|gas odor|carbon monoxide|smoke from|sparks|fire)\b|olor a gas|fuga de gas|mon[oó]xido/i;
 const msgPrice=/\b(price|prices|pricing|cost|how much|estimate|quote|discount)\b|precios?|cu[aá]nto cuesta|presupuesto/i;
 const msgBooking=/\b(book|appointment|reservation|available today|available tomorrow|schedule|24.?7)\b|reservar|cita|disponibilidad|hoy mismo/i;
-const msgGreeting=/\b(hi|hello|hey|help|what can you do|what can you tell me|who are you)\b|hola|qu[eé] puedes|qu[eé] haces|ayudarme|que puedes explicarme/i;
+const msgGreeting=/^(?:\s*(?:hi|hello|hey|hola)[!?.\s]*)$|\b(what can you do|what can you tell me|who are you)\b|qu[eé] puedes(?: explicarme| decirme| hacer)?|qu[eé] haces|que puedes explicarme/i;
 const msgCall=/\b(call|phone|speak to|talk to|contact|number|telephone)\b|llamar|marcar|tel[eé]fono|hablar con/i;
 const msgFollow=/\b(callback|call back|leave a message|send a message|follow up|contact me)\b|dejar (?:un )?mensaje|que me llamen|devuelvan la llamada|contacten/i;
 const list=[
@@ -164,7 +164,7 @@ quick.forEach(([name,key])=>{
 const callback=document.createElement('button');callback.type='button';callback.textContent='Request a call back';callback.addEventListener('click',openLead);options.append(callback);
 async function respond(q,signal){
  if(!endpoint)return localResponse(q,history);
- const safeHistory=history.slice(-6).map(m=>({role:m.role,content:m.content.slice(0,300)}));
+ const safeHistory=history.filter(m=>!pii.test(m.content)).slice(-6).map(m=>({role:m.role,content:m.content.slice(0,300)}));
  const res=await fetch(endpoint,{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},
   body:JSON.stringify({question:q,history:safeHistory}),signal});
  if(!res.ok)throw new Error('assistant unavailable');

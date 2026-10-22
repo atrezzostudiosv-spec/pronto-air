@@ -1,11 +1,12 @@
 name: One-off Ari FormSubmit smoke test
 
 on:
-  push:
-    branches:
-      - qa/ari-live-lead-smoke-20261022
+  pull_request:
+    branches: [main]
+    types: [opened]
     paths:
       - .github/workflows/qa-ari-live-once.yml
+      - tools/qa-ari-live-form-submit.cjs
 
 permissions:
   contents: read

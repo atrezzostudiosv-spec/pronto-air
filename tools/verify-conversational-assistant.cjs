@@ -83,6 +83,12 @@ const mkServer=dir=>new Promise(resolve=>{
     lastPayload=JSON.parse(route.request().postData());
     await route.fulfill({status:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},body:'{"success":"true"}'});
   });
+  // This segment verifies offline guidance and lead intake; it must never call live AI.
+  await page.route(after.url+'/index.html',async route=>{
+    const html=fs.readFileSync(path.join(root,'index.html'),'utf8')
+      .replace(/ data-ai-endpoint="[^"]*"/,'');
+    await route.fulfill({status:200,contentType:'text/html',body:html});
+  });
   await page.goto(after.url+'/index.html',{waitUntil:'domcontentloaded'});
   await page.getByRole('button',{name:'Ask Pronto Air'}).click();
   await page.locator('#pa-guide-question').fill('¿Qué puedes explicarme tú?');
@@ -120,7 +126,9 @@ const mkServer=dir=>new Promise(resolve=>{
   const ai=await browser.newContext({viewport:{width:375,height:900},reducedMotion:'reduce'});
   const p=await ai.newPage();let modelCount=0,sentQuestions=[],mode='answer';
   await p.route(after.url+'/index.html?assistant-ai-test',async route=>{
-   const html=fs.readFileSync(path.join(root,'index.html'),'utf8').replace('src="assets/js/pronto-assistant.js"','src="assets/js/pronto-assistant.js" data-ai-endpoint="https://ai.example.test/chat"');
+   const html=fs.readFileSync(path.join(root,'index.html'),'utf8')
+     .replace(/src="assets\/js\/pronto-assistant\.js"(?: data-ai-endpoint="[^"]*")?/,
+       'src="assets/js/pronto-assistant.js" data-ai-endpoint="https://ai.example.test/chat"');
    await route.fulfill({status:200,contentType:'text/html',body:html});
   });
   await p.route('https://ai.example.test/chat',async route=>{

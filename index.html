@@ -533,19 +533,15 @@
                             <textarea id="fieldMessage" name="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-prontoRed focus:border-prontoRed outline-none transition" placeholder="Tell us about your heating or cooling request..."></textarea>
                         </div>
 
-                        <!-- Preview disclosure: real third-party form relay, temporary recipient; email activation not yet verified. -->
-                        <div id="formNotice" class="bg-amber-50 border border-amber-200 text-amber-900 p-4 rounded-xl text-sm" role="status" aria-live="polite">
-                            <p class="font-semibold"><i class="fa-solid fa-circle-info mr-1" aria-hidden="true"></i> Preview form — delivery not yet verified</p>
-                            <p class="mt-1">This test form sends details through FormSubmit to a temporary Atrezzo project inbox. Email delivery requires one-time activation and is not yet confirmed. For service requests, contact Pronto Air directly at <a href="tel:+19403123081" class="font-semibold underline">(940) 312-3081</a> or <a href="mailto:prontoairdenton@hotmail.com" class="font-semibold underline">prontoairdenton@hotmail.com</a>.</p>
-                            <p class="mt-2">Your contact details and message are handled by a third-party form service. See the <a href="privacy-policy.html" class="font-semibold underline">draft privacy information</a>.</p>
-                        </div>
 
-                        <div id="homeFormStatus" class="hidden p-4 rounded-xl text-sm border" role="status" aria-live="polite"></div>
                         <div>
                             <button type="submit" class="w-full bg-prontoRed hover:bg-red-700 text-white font-bold py-4 rounded-xl transition shadow-lg text-base">
                                 Send Request
                             </button>
                         </div>
+
+                        <div id="homeFormStatus" class="hidden p-4 rounded-xl text-sm border" role="status" aria-live="polite"></div>
+                        <p class="text-xs text-gray-500 text-center">Your information is processed to handle your request. <a href="privacy-policy.html" class="underline hover:text-prontoRed">Privacy information</a>.</p>
 
                         
                     </form>

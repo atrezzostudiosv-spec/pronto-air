@@ -57,9 +57,9 @@
         throw new Error('Form service did not confirm acceptance');
       }
 
-      // "Accepted" is not proof an email reached the inbox or that a booking exists.
+      // Display success only when FormSubmit confirms acceptance.
       showStatus(statusElement, 'success',
-        'Your request was accepted by the form service. This does not confirm email delivery or an appointment. For urgent help, please call Pronto Air at (940) 312-3081.');
+        'Thank you! Your request has been submitted successfully.');
       form.reset();
     } catch (_error) {
       showStatus(statusElement, 'error',

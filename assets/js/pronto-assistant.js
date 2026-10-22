@@ -170,14 +170,22 @@ function openLead(){
 function returnToChat(){lead.hidden=true;chatForm.hidden=false;options.hidden=false;input.focus({preventScroll:true});}
 one('.pa-guide-contact').addEventListener('click',openLead);
 one('.pa-guide-lead-cancel').addEventListener('click',returnToChat);
-const quick=[['Cooling','cooling'],['Heating','heating'],['Mobile Homes','mobile'],['Commercial','commercial'],['Maintenance','maintenance']];
-quick.forEach(([name,key])=>{
+// Quick service topics take the same path as any typed question: the verified
+// Cloudflare AI endpoint when ready, or the guided fallback when unavailable.
+// Keep current approved buttons, fonts, icons, layout and contact behavior.
+const quick=[
+ ['Cooling','Tell me about your residential cooling services.'],
+ ['Heating','Tell me about your residential heating services.'],
+ ['Mobile Homes','What HVAC services do you offer for mobile homes?'],
+ ['Commercial','Tell me about your light commercial HVAC services.'],
+ ['Maintenance','What does your maintenance service agreement include?']
+];
+quick.forEach(([name,question])=>{
  const button=document.createElement('button');button.type='button';button.textContent=name;
  button.addEventListener('click',()=>{
-  const result=localResponse(name==='Commercial'?'light commercial':name,history);
-  message('user',name);message('assistant',result.reply,key,true);
-  history.push({role:'user',content:name,lang:result.lang},{role:'assistant',content:result.reply,lang:result.lang});
-  history.splice(0,Math.max(0,history.length-8));
+  if(send.disabled || panel.hidden || !lead.hidden)return;
+  input.value=question;
+  chatForm.requestSubmit();
  });options.append(button);
 });
 const callback=document.createElement('button');callback.type='button';callback.textContent='Request a call back';callback.addEventListener('click',openLead);options.append(callback);

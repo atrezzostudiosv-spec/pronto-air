@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- EJEMPLO PRODUCCION: rutas verificadas en el sitio oficial actual; revisar al migrar. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.prontoairdenton.com/</loc></url>
+  <url><loc>https://www.prontoairdenton.com/residential-cooling</loc></url>
+  <url><loc>https://www.prontoairdenton.com/residential-heating</loc></url>
+  <url><loc>https://www.prontoairdenton.com/mobile-homes</loc></url>
+  <url><loc>https://www.prontoairdenton.com/light-commercial</loc></url>
+  <url><loc>https://www.prontoairdenton.com/contact-us</loc></url>
+</urlset>

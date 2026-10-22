@@ -1,0 +1,30 @@
+{
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  "name": "Pronto Air",
+  "url": "https://www.prontoairdenton.com/",
+  "telephone": "+1-940-312-3081",
+  "email": "prontoairdenton@hotmail.com",
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "Denton, TX"
+    },
+    {
+      "@type": "Place",
+      "name": "Lewisville, TX"
+    },
+    {
+      "@type": "Place",
+      "name": "Flower Mound, TX"
+    },
+    {
+      "@type": "Place",
+      "name": "Gainesville, TX"
+    },
+    {
+      "@type": "Place",
+      "name": "Grapevine, TX"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# EJEMPLO PARA PRODUCCION. No colocar en la raiz de GitHub Pages.
+# Publicar solo despues de autorizacion del dominio oficial.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.prontoairdenton.com/sitemap.xml

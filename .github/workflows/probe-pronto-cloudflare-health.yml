@@ -35,3 +35,8 @@ jobs:
             }
           })();
           JS
+
+      - name: Verify one real English AI conversation without personal details
+        env:
+          WORKER_URL: https://pronto-air-assistant.atrezzostudiosv.workers.dev
+        run: node tools/verify-cloudflare-live.mjs

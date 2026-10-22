@@ -45,7 +45,23 @@ const list=[
  ['cooling',/\b(air conditioning|air conditioner|ac|a\/c|cool|cooling|cold air|ductless|summer)\b|aire acondicionado|enfri|refrigeraci[oó]n/i],
  ['faqs',/\b(faq|seer|efficiency|indoor air quality|lifespan)\b|preguntas frecuentes|eficiencia/i]
 ];
-function inSpanish(s){return /\b(hola|qué|que|cómo|como|puedes|tengo|quiero|necesito|aire acondicionado|calefacción|llamar|mensaje|cita|precio|mantenimiento|tienen|gracias|español)\b/i.test(s);}
+function detectLanguage(text,fallback='en'){
+ const value=String(text||'').trim().toLowerCase();
+ if(/\b(?:reply|respond|answer|speak|write)\b.{0,22}\benglish\b|\b(?:responde|contesta|habla|escribe)\b.{0,18}\bingl[eé]s\b/i.test(value))return 'en';
+ if(/\b(?:reply|respond|answer|speak|write)\b.{0,22}\bspanish\b|\b(?:responde|contesta|habla|escribe)\b.{0,18}\bespa[nñ]ol\b/i.test(value))return 'es';
+ const es=(value.match(/\b(?:hola|quiero|quisiera|necesito|puedo|puedes|podemos|tengo|tienes|estoy|est[aá]|funciona|funcionando|enfr[ií]a|calefacci[oó]n|cu[aá]nto|c[oó]mo|qu[eé]|por|para|nuestro|nuestra|nosotros|dejarnos|dejar|mensaje|equipo|hablar|llamar|gracias|ayuda|ayudar|con|los|las|una|tambi[eé]n|servicio|servicios|usted|quieres|podr[ií]a|espa[nñ]ol)\b/g)||[]).length+(/[¿¡áéíóúñ]/.test(value)?2:0);
+ const en=(value.match(/\b(?:hi|hello|hey|what|why|how|when|where|who|which|please|can|could|should|would|want|need|help|my|your|our|we|you|they|have|has|do|does|is|are|the|this|that|about|with|for|from|leave|send|message|call|contact|team|heating|cooling|furnace|repair|services|appointment|thanks|thank|english|broken|working|air|conditioner)\b/g)||[]).length;
+ if(es>en&&es>0)return 'es';
+ if(en>es&&en>0)return 'en';
+ return fallback;
+}
+function wrongLanguage(reply,expected){
+ const detected=detectLanguage(reply,null);
+ if(detected&&detected!==expected)return true;
+ return expected==='en'
+  ? /[¿¡]|\b(?:puedes|podemos|nuestro|nuestros|nuestra|necesitas|dejarnos|llamarnos|calefacci[oó]n|estamos|mensaje|solicitud)\b/i.test(reply)
+  : /\b(?:you|your|we|our|would|please|can|could|call us|leave a request|our team)\b/i.test(reply);
+}
 function availability(){
  const formatted=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
  const get=t=>formatted.find(x=>x.type===t)?.value;
@@ -57,7 +73,8 @@ function availability(){
    'Published weekend hours: by appointment only. Actual availability is not confirmed.'};
 }
 function localResponse(input,history){
- const es=inSpanish(input)||history.slice(-2).some(x=>x.lang==='es');const lang=es?'es':'en';
+ const lastUserLanguage=history.filter(x=>x.role==='user').slice(-1)[0]?.lang||'en';
+ const lang=detectLanguage(input,lastUserLanguage);const es=lang==='es';
  const av=availability();
  if(safety.test(input))return {reply:es?'Si hay peligro inmediato, por ejemplo posible fuga de gas, aléjate del área y llama a los servicios de emergencia o a la compañía de gas. Este chat no atiende emergencias.':'If there is immediate danger, such as a possible gas leak, leave the area and contact emergency services or the gas utility. This chat is not an emergency-response service.',topic:null,offerContact:true,lang};
  if(msgGreeting.test(input))return {reply:es?'Soy Ari, el asistente virtual de Pronto Air. Puedo orientarte sobre nuestros servicios de climatización y ayudarte a contactar con nuestro equipo. ¿En qué podemos ayudarte?':"I'm Ari, Pronto Air's virtual assistant. I can explain our heating and cooling services and help you contact our team. How can we help?",topic:null,offerContact:true,lang};
@@ -166,14 +183,18 @@ quick.forEach(([name,key])=>{
 const callback=document.createElement('button');callback.type='button';callback.textContent='Request a call back';callback.addEventListener('click',openLead);options.append(callback);
 async function respond(q,signal){
  if(!endpoint)return localResponse(q,history);
- const safeHistory=history.filter(m=>!pii.test(m.content)).slice(-6).map(m=>({role:m.role,content:m.content.slice(0,300)}));
+ const lastUserLanguage=history.filter(m=>m.role==='user').slice(-1)[0]?.lang||'en';
+ const lang=detectLanguage(q,lastUserLanguage);
+ const safeHistory=history.filter(m=>!pii.test(m.content)&&m.lang===lang).slice(-6).map(m=>({role:m.role,content:m.content.slice(0,300)}));
  const res=await fetch(endpoint,{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},
-  body:JSON.stringify({question:q,history:safeHistory}),signal});
+  body:JSON.stringify({question:q,history:safeHistory,language:lang}),signal});
  if(!res.ok)throw new Error('assistant unavailable');
  const obj=await res.json();
  if(typeof obj.reply!=='string'||obj.reply.length>1100)throw new Error('invalid response');
+ if((obj.lang==='en'||obj.lang==='es')&&obj.lang!==lang)throw new Error('wrong response locale');
+ if(wrongLanguage(obj.reply,lang))throw new Error('response in another language');
  const key=typeof obj.topic==='string'&&topics[obj.topic]?obj.topic:null;
- return {reply:obj.reply,topic:key,offerContact:obj.offerContact===true,lang:obj.lang==='es'?'es':'en'};
+ return {reply:obj.reply,topic:key,offerContact:obj.offerContact===true,lang};
 }
 chatForm.addEventListener('submit',async e=>{
  e.preventDefault();const q=input.value.trim();warning.textContent='';

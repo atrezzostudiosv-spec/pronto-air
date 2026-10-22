@@ -16,8 +16,8 @@
 2. Una vez servidas las nuevas páginas en el dominio oficial, poner `rel=canonical` hacia sus URLs definitivas y retirar `noindex` solo en producción. **Nunca** eliminar `noindex` del preview de GitHub Pages ni poner canonical que lo haga pasar por la web oficial.
 3. Publicar los dos archivos de ejemplo de este directorio como `/robots.txt` y `/sitemap.xml` **en la raíz del dominio oficial**, después de aprobar la lista de URLs. Son ejemplos, no archivos activos. robots.txt no sustituye noindex.
 4. Confirmar información para JSON-LD: tipo de negocio, dirección real si es pública, horarios vigentes, área de servicio y licencia. El JSON de este directorio es preliminar y no asegura rich results; no incluye dirección ni reseñas ficticias.
-5. Validar política de privacidad y entrega real de mensajes. En la demo los dos formularios son intencionalmente ilustrativos: **no envían datos**.
-6. Para rendimiento, compilar Tailwind a un CSS estático de producción y retirar `cdn.tailwindcss.com` SOLO después de comprobar visualmente 375, 768, 1024 y 1440 px. No se realizó en esta primera intervención porque el CDN monta el diseño actualmente y reemplazarlo sin esa verificación supone riesgo.
+5. **Formularios de prueba configurados, pero entrega NO VERIFICADA**: Home y Contact apuntan vía POST a FormSubmit, con destino temporal `atrezzostudiosv@gmail.com`, reCAPTCHA predeterminado y honeypot. El propietario del correo debe enviar una solicitud de prueba, abrir el mensaje de activación de FormSubmit y confirmar el destinatario. Después, verificar que una segunda solicitud de prueba llega al buzón (también revisar spam). En tanto no ocurra, **no comunicar que los formularios ya reciben mensajes**. Los formularios no son una reserva de cita. Antes del lanzamiento oficial: aprobar proveedor, política de privacidad, destinatario comercial, medidas antispam y procedimiento de gestión de leads.
+6. **Completado en la demo (2026-10-22):** Tailwind compilado en ocho archivos CSS estáticos con pruebas visuales en 375, 768, 1024 y 1440 px. Se mantienen fuentes e iconos aprobados. Revisar métricas PageSpeed y rendimiento de producción cuando se migre.
 7. Revisar SEO final con Google Search Console, prueba de resultados enriquecidos, PageSpeed Insights, HTTP/HTTPS, enlaces, formularios y redirecciones.
 
 ## Cambios seguros ya preparados en el HTML de esta fase
@@ -41,3 +41,10 @@
 - Prohibir al asistente inventar diagnósticos técnicos, precios, garantías, urgencias 24/7, servicios, zonas, tiempos de respuesta o citas confirmadas.
 - Antes de activar: definir proveedor, costos y límites, fuente de conocimiento verificada, privacidad y almacenamiento de datos, traspaso a una persona y pruebas de seguridad y funcionamiento en móvil.
 - Mantener el sitio actual como HTML/CSS/JS estático; un widget integrado **no exige Next.js**. No agregar scripts externos hasta confirmar que el negocio desea este servicio.
+
+## Configuración temporal de correo — pendiente de activación
+- Endpoint actual en los dos formularios: `https://formsubmit.co/atrezzostudiosv@gmail.com` (POST); no hay SMTP ni claves en GitHub.
+- Proveedor documentado: https://formsubmit.co/documentation y https://formsubmit.co/help . Requiere **correo de activación después del primer envío**. FormSubmit dice que los mensajes pueden mantenerse pendientes hasta la activación; no equivale a entrega verificada.
+- El email de Pronto Air en header, footer y llamadas a contacto directo permanece intacto: `prontoairdenton@hotmail.com`.
+- Para cambiar al correo empresarial **cuando el usuario lo autorice**, sustituir únicamente el email en ambos atributos `action`, repetir activación del nuevo destinatario y confirmar un envío real. Actualizar también los avisos de prueba y el borrador de privacidad. No cambiar destinatarios sin autorización.
+- No publicar la demo como la web oficial del negocio: conservar `noindex, nofollow` y avisos de prueba hasta aprobación de negocio y verificación de entrega.

@@ -115,3 +115,6 @@ color:#fff;font-weight:800;font-size:13px;padding:10px;}
 .pa-guide-scroll{scroll-behavior:smooth}
 .pa-guide-footer-links button{background:#fff}
 @media (max-width:360px){.pa-guide-footer-links{flex-direction:column}}
+
+/* Transparent disclosure shown only when the real Cloudflare AI endpoint is enabled. */
+.pa-guide-ai-disclosure {margin:10px 0 0; font-size:11px;line-height:1.45;color:#40566D;text-align:center;}

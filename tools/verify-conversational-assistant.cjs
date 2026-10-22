@@ -76,13 +76,25 @@ const mkServer=dir=>new Promise(resolve=>{
 
   const context=await browser.newContext({viewport:{width:375,height:900},reducedMotion:'reduce'});
   const page=await context.newPage();
-  let deliveryCount=0,lastPayload=null,deliveryMode='reject';
-  await page.route('https://formsubmit.co/ajax/**',async route=>{
-    if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'*','Access-Control-Allow-Methods':'POST,OPTIONS'}});
-    deliveryCount++;
-    lastPayload=JSON.parse(route.request().postData());
-    await route.fulfill({status:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},
-      body:deliveryMode==='reject'?'{"success":"false"}':'{"success":"true"}'});
+  let deliveryCount=0,lastPayload=null,deliveryMode='reject',preflightCount=0;
+  let directCount=0,directPayload=null;
+  await context.route('https://formsubmit.co/**',async route=>{
+    if(route.request().method()==='OPTIONS'){
+      preflightCount++;
+      return route.fulfill({status:204,headers:{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'*','Access-Control-Allow-Methods':'POST,OPTIONS'}});
+    }
+    if(route.request().url().includes('/ajax/')){
+      deliveryCount++;
+      assert.match(route.request().headers()['content-type'],/application\/x-www-form-urlencoded/i,
+        'Ari should use simple form encoding without an OPTIONS preflight');
+      lastPayload=Object.fromEntries(new URLSearchParams(route.request().postData()));
+      return route.fulfill({status:200,contentType:'application/json',headers:{'Access-Control-Allow-Origin':'*'},
+        body:deliveryMode==='reject'?'{"success":"false"}':'{"success":"true"}'});
+    }
+    directCount++;
+    assert.equal(route.request().method(),'POST','Native fallback must not place customer information in URL');
+    directPayload=Object.fromEntries(new URLSearchParams(route.request().postData()));
+    return route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><title>Simulated FormSubmit page (test only)</title>'});
   });
   // This segment verifies offline guidance and lead intake; it must never call live AI.
   await page.route(after.url+'/index.html',async route=>{
@@ -102,7 +114,7 @@ const mkServer=dir=>new Promise(resolve=>{
   assert.equal(await page.locator('.pa-guide-message').count(),n,'Personal info accepted into chat');
   await page.getByRole('button',{name:'Leave a Message'}).click();
   assert.equal(await page.locator('.pa-guide-lead').isVisible(),true);
-  await page.locator('.pa-guide-lead-send').click();
+  await page.locator('.pa-guide-lead-form button[type="submit"]').click();
   assert.equal(deliveryCount,0,'Empty lead submitted');
   await page.locator('.pa-guide-lead-form [name="name"]').fill('QA Visitor');
   await page.locator('.pa-guide-lead-form [name="phone"]').fill('9403123081');
@@ -111,20 +123,34 @@ const mkServer=dir=>new Promise(resolve=>{
   await page.locator('.pa-guide-lead-form [name="service"]').selectOption('Residential Cooling');
   await page.locator('.pa-guide-lead-form [name="consent"]').check();
   // Even HTTP 200 is NOT success if the relay's JSON says success:false.
-  await page.locator('.pa-guide-lead-send').click();
+  await page.locator('.pa-guide-lead-form button[type="submit"]').click();
   await page.waitForFunction(()=>document.querySelector('.pa-guide-lead-status')?.textContent?.includes('We could not verify the request.'));
   assert.equal(deliveryCount,1,'Rejection did not reach the mocked provider');
   assert.equal(await page.locator('.pa-guide-lead-form [name="message"]').inputValue(),'Test only, please do not call.',
     'Failed request should preserve visitor data for retry');
-  assert.equal(await page.locator('.pa-guide-lead-send').isEnabled(),true,
+  assert.equal(await page.locator('.pa-guide-lead-form button[type="submit"]').isEnabled(),true,
     'Failed request should release the submit button');
   assert.equal(await page.locator('.pa-guide-message.is-guide').count(),1,
     'Failed request displayed a false success message');
+  assert.equal(preflightCount,0,'URL-encoded AJAX still triggered a blocked CORS preflight');
+  const direct=page.locator('.pa-guide-lead-direct');
+  assert.equal(await direct.isVisible(),true,'Direct fallback missing after provider rejected AJAX');
+  const popupEvent=context.waitForEvent('page');
+  await direct.click();
+  const directPage=await popupEvent;
+  await directPage.waitForLoadState('domcontentloaded');
+  assert.equal(directCount,1,'Native fallback did not submit to FormSubmit');
+  assert.equal(directPayload.name,'QA Visitor');
+  assert.match(directPayload.message,/Test only/);
+  assert.equal(directPayload.phone,'9403123081');
+  assert.equal(await direct.isVisible(),false,'Direct fallback should hide after use');
+  await directPage.close();
   // Reattempt with a mocked positive FormSubmit response. No actual email is sent.
   deliveryMode='accept';
-  await page.locator('.pa-guide-lead-send').click();
+  await page.locator('.pa-guide-lead-form button[type="submit"]').click();
   await page.waitForFunction(()=>document.querySelector('.pa-guide-lead-status')?.textContent?.includes('accepted by the form service'));
   assert.equal(deliveryCount,2);
+  assert.equal(preflightCount,0,'Unexpected AJAX CORS preflight');
   assert.equal(lastPayload.name,'QA Visitor');
   assert.equal(lastPayload.phone,'9403123081');
   assert.equal(lastPayload.email,'qa@example.com');
@@ -133,7 +159,7 @@ const mkServer=dir=>new Promise(resolve=>{
   assert.equal(lastPayload.callbackRequested.startsWith('Yes'),true);
   assert.equal(lastPayload._subject.includes('Pronto Air'),true);
   assert.equal(page.url(),after.url+'/index.html');
-  console.log('PASS callback intake: rejection preserves data; simulated retry succeeds; no actual email sent');
+  console.log('PASS contact: no CORS preflight; native fallback POST; rejection preserves data; AJAX retry succeeds; no actual email sent');
   await context.close();
 
   const ai=await browser.newContext({viewport:{width:375,height:900},reducedMotion:'reduce'});

@@ -1,0 +1,39 @@
+name: Verify portable Pronto Air assistant
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'assets/js/pronto-assistant.js'
+      - 'assets/css/pronto-assistant.css'
+      - 'assistant-worker/**'
+      - 'tools/verify-assistant-*.cjs'
+      - '.github/workflows/verify-portable-assistant.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  assistant-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test packages
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1 @axe-core/playwright@4.10.2
+          npx playwright install chromium
+      - name: Prepare unchanged approved baseline
+        run: |
+          git fetch --depth=1 origin main
+          mkdir -p .assistant-qa-baseline
+          for p in index.html residential-cooling.html residential-heating.html mobile-homes.html light-commercial.html contact-us.html service-agreement-faqs.html privacy-policy.html; do
+            git show "origin/main:$p" > ".assistant-qa-baseline/$p"
+          done
+          ln -s "$GITHUB_WORKSPACE/assets" .assistant-qa-baseline/assets
+          ln -s "$GITHUB_WORKSPACE/images" .assistant-qa-baseline/images
+      - name: Test Cloudflare Worker without external inference
+        run: node tools/verify-assistant-worker.cjs
+      - name: Test all eight pages and four widths without external forms or AI
+        run: node tools/verify-assistant-prototype.cjs

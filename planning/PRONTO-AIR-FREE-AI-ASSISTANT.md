@@ -1,6 +1,6 @@
 # ATREZZO — Pronto Air: asistente IA gratuito antes de presentación
 
-**Estado:** propuesta técnica validada a nivel de documentación pública; **NO implementado / NO publicado**. Fecha 22 octubre 2026.
+**Estado al 22 octubre 2026:** prototipo de guía local implementado en las ocho páginas; backend Cloudflare Workers AI escrito y probado de forma simulada, **NO desplegado ni conectado a una cuenta real**. La clasificación mediante IA de Cloudflare sigue desactivada hasta su configuración.
 
 ## Decisión propuesta
 
@@ -101,11 +101,18 @@ Documentación oficial Cloudflare:
 8. Aviso transparente de asistencia IA, tratamiento de datos aprobado y transferencia al contacto real.
 9. Cliente debe autorizar antes del lanzamiento oficial.
 
+## Pruebas completadas en prototipo
+- **32/32:** ocho páginas en 375, 768, 1024 y 1440 px con launcher, panel, tecla Escape, ausencia de cambios de geometría del sitio y sin nuevos desbordamientos.
+- **16 análisis axe automatizados:** widget sin infracciones detectadas en 375 y 1440 px. No sustituye auditoría WCAG manual completa.
+- Consultas básicas, fuera de alcance, precios, citas, bloqueo de PII y CTA de contacto, todas probadas con respuestas locales.
+- Worker verificado **solo con IA simulada**, incluyendo whitelist de respuestas, CORS, rate limit, rechazo de datos personales y cuota agotada; no se ha probado el modelo externo con una cuenta Cloudflare.
+- Consulta el detalle técnico y la configuración en `assistant-worker/README.md`.
+
 ## Siguientes pasos técnicos
 
-1. Construir **prototipo local del widget** y la base JSON solo con información comprobada de cada página. No publicar el asistente con IA ficticia.
+1. **Completado:** integrar una guía local en las ocho páginas con información procedente de la web confirmada; no presentarla como IA generativa mientras no exista endpoint real.
 2. Crear endpoint Worker, protección de abuso y binding Workers AI en una cuenta Cloudflare Free conectada por su titular.
 3. Conectar únicamente al endpoint desplegado, auditar 20–30 preguntas, rendimiento/privacidad, presentar al cliente.
 4. Mantener FormSubmit con correo temporal hasta contrato y migración aprobados.
 
-**Este documento es estrategia y arquitectura, no una implementación de IA ni una prueba de costes en una cuenta real.**
+**El prototipo local sí está implementado. La IA generativa en Cloudflare todavía NO está desplegada ni se han medido costes/cuotas en una cuenta real.**

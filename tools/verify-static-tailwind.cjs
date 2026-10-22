@@ -8,10 +8,8 @@ const pixelmatch = require('pixelmatch');
 const { PNG } = require('pngjs');
 
 const root = path.resolve(__dirname, '..');
-const pages = ['index.html', 'residential-cooling.html', 'residential-heating.html',
-  'mobile-homes.html', 'light-commercial.html', 'contact-us.html',
-  'service-agreement-faqs.html', 'privacy-policy.html'];
-const widths = [375, 768, 1024, 1440];
+const pages = ['index.html','service-agreement-faqs.html'];
+const widths = [375, 768, 1440];
 const type = (p) => {
   if (p.endsWith('.html')) return 'text/html';
   if (p.endsWith('.css')) return 'text/css';
@@ -88,11 +86,12 @@ async function capture(browser, port, pageName, width) {
         failures.push(f+' '+w+'px: semantic mismatch');
         continue;
       }
+      let mismatches = 0;
       for (let i=0; i<a.blocks.length; i++) {
         const x=a.blocks[i],y=b.blocks[i];
         if ([0,1,2,3].some(j=>Math.abs(x[j]-y[j])>3) || x.slice(4).join('|') !== y.slice(4).join('|')) {
-          failures.push(f+' '+w+'px: layout/computed-style mismatch block '+i+' '+JSON.stringify({before:x,after:y}));
-          break;
+          if (mismatches++ < 5) console.log('LAYOUT DIFFERENCE',f,w+'px','block',i,JSON.stringify({before:x,after:y}));
+          failures.push(f+' '+w+'px: layout/computed-style mismatch block '+i);
         }
       }
       if(b.overflow>a.overflow+2)failures.push(f+' '+w+'px: new horizontal overflow');

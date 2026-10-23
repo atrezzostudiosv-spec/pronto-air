@@ -27,7 +27,7 @@ async function measure(browser,origin,width,label,noJS=false){
  const p=await context.newPage(),errors=[];
  p.on('pageerror',e=>errors.push(e.message));
  await p.goto(origin+'/'+label,{waitUntil:'networkidle',timeout:45000});
- if(!noJS)await p.waitForFunction(()=>Array.from(document.querySelectorAll('link[rel="preload"][as="style"]')).every(x=>x.rel==='stylesheet'),null,{timeout:15000});
+ if(!noJS)await p.waitForFunction(()=>Array.from(document.querySelectorAll('link[as="style"]')).filter(x=>matchMedia(x.media||'all').matches).every(x=>x.rel==='stylesheet'),null,{timeout:15000});
  await p.evaluate(()=>document.fonts.ready);
  const state=await p.evaluate(()=>{
   const box=q=>{const n=document.querySelector(q);if(!n)return null;const r=n.getBoundingClientRect();return [r.x,r.y,r.width,r.height].map(x=>+x.toFixed(1))};

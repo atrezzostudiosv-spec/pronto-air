@@ -36,6 +36,25 @@ const mkServer=dir=>new Promise(resolve=>{
    p2.on('pageerror',e=>jsErrors.push(e.message));
    await p1.goto(before.url+'/'+file,{waitUntil:'domcontentloaded'});
    await p2.goto(after.url+'/'+file,{waitUntil:'domcontentloaded'});
+   if(file==='index.html'){
+    const links=await p2.evaluate(()=>[...document.querySelectorAll('link[as="style"]')]
+      .filter(x=>/fonts\\.googleapis\\.com|font-awesome\\/6\\.4\\.0/.test(x.href))
+      .map(x=>({href:x.href,rel:x.rel})));
+    assert.equal(links.length,2,'Home should asynchronously load the two original external styles');
+    await p2.waitForFunction(()=>[...document.querySelectorAll('link[as="style"]')]
+      .filter(x=>/fonts\\.googleapis\\.com|font-awesome\\/6\\.4\\.0/.test(x.href))
+      .every(x=>x.rel==='stylesheet'),null,{timeout:20000});
+    await p2.evaluate(()=>document.fonts.ready);
+    const styleProof=await p2.evaluate(()=>{
+      const mark=document.querySelector('.pronto-site-utility .fa-shield-halved');
+      const face=getComputedStyle(mark,'::before');
+      return {inter:document.fonts.check('700 16px Inter'),
+        iconFont:face.fontFamily,iconContent:face.content};
+    });
+    assert.equal(styleProof.inter,true,'Inter failed to load');
+    assert.match(styleProof.iconFont,/Font Awesome 6 Free/,'Font Awesome face missing');
+    assert.ok(styleProof.iconContent && styleProof.iconContent!=='none','Header icon glyph missing');
+   }
    await p1.evaluate(()=>document.fonts.ready);await p2.evaluate(()=>document.fonts.ready);
    await p1.waitForTimeout(200);await p2.waitForTimeout(200);
    if(file==='index.html'){

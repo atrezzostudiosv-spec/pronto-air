@@ -25,11 +25,27 @@ const auditInfo=(lhr,key)=>{
   return item?.numericValue == null ? null : +item.numericValue.toFixed(0);
 };
 (async()=>{
+ // Verify the public GitHub Pages deployment includes PR #27 before measuring it.
+ // A successful source commit alone does not prove the published website was updated.
+ const expected=['fonts.googleapis.com/css2?family=Inter','font-awesome/6.4.0/css/all.min.css'];
+ let published=false;
+ for(let attempt=0;attempt<12;attempt++){
+  const res=await fetch(root+'index.html?atest='+Date.now(),{headers:{'Cache-Control':'no-cache'}});
+  if(res.ok){
+   const html=await res.text();
+   const found=(html.match(/rel="preload" as="style" href="https:\/\//g)||[]).length;
+   if(found>=2 && expected.every(x=>html.includes(x))){published=true;break;}
+  }
+  if(attempt<11) await new Promise(resolve=>setTimeout(resolve,5000));
+ }
+ if(!published) throw new Error('The live Home is not showing the two non-blocking CSS links yet; do not report metrics from stale publication');
+ console.log('LIVE_DEPLOY_VERIFIED Home has the two approved non-blocking external styles');
  const lighthouse=(await import('lighthouse')).default;
  const chrome=await launch({chromeFlags:['--headless','--no-sandbox','--disable-dev-shm-usage','--disable-gpu']});
  const results=[],issues=[];
  try{
-  for(const page of urls){
+  // Measure Home a second time to estimate ordinary run-to-run variability.
+  for(const page of [...urls,'index.html']){
    const url=root+page;
    try{
     const {lhr}=await lighthouse(url,{
@@ -69,6 +85,6 @@ const auditInfo=(lhr,key)=>{
  }finally{await chrome.kill()}
  const target=path.join(process.cwd(),'mobile-performance-audit.json');
  fs.writeFileSync(target,JSON.stringify({auditedAt:new Date().toISOString(),source:'GitHub Actions Lighthouse 12 mobile simulated laboratory; not PageSpeed Insights infrastructure',results,issues},null,2));
- console.log('AUDIT_SUMMARY '+results.length+'/8 pages, errors='+issues.length);
+ console.log('AUDIT_SUMMARY '+results.length+'/9 measurements (8 unique pages; Home twice), errors='+issues.length);
  if(issues.length)process.exitCode=1;
 })().catch(e=>{console.error(e);process.exitCode=1});

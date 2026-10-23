@@ -1,0 +1,24 @@
+name: Verify live Contact mobile CSS release
+
+on:
+  pull_request:
+    paths:
+      - 'tools/verify-contact-public-temp.cjs'
+      - '.github/workflows/verify-contact-public-temp.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --no-package-lock --ignore-scripts playwright@1.56.1
+      - run: npx playwright install chromium
+      - name: Verify public Contact at 375 and 1440 without submitting forms
+        run: node tools/verify-contact-public-temp.cjs

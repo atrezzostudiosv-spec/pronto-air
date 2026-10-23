@@ -1,0 +1,30 @@
+name: A/B Contact mobile stylesheet loading
+
+on:
+  pull_request:
+    paths:
+      - 'tools/compare-contact-mobile-render.cjs'
+      - '.github/workflows/compare-contact-mobile-render.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  ab-contact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser measurement dependencies
+        run: npm install --no-save --no-package-lock --ignore-scripts lighthouse@12.8.2 chrome-launcher@1.2.1 playwright@1.56.1
+      - name: Compare baseline and nonblocking CSS in isolated local copies
+        run: node tools/compare-contact-mobile-render.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contact-mobile-css-ab
+          path: contact-mobile-ab.json
+          if-no-files-found: warn

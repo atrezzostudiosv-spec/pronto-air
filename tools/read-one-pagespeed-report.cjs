@@ -12,7 +12,26 @@ const url='https://pagespeed.web.dev/analysis/https-atrezzostudiosv-spec-github-
   console.log('REPORT_HTTP',response?.status(),'FINAL_URL',page.url());
   try{await page.getByText('Diagnostica problemas de rendimiento').first().waitFor({timeout:40000})}catch(e){console.log('REPORT_WAIT_DIAGNOSTICS_UNAVAILABLE',String(e).slice(0,200))}
   await page.waitForTimeout(3500);
-  const title=await page.title();
+  // Expand the actual detailed PageSpeed opportunities to identify specific files.
+  const panels=[
+    'Usar tiempos de vida de caché eficientes',
+    'Mejorar la entrega de imágenes',
+    'Solicitudes que bloquean el renderizado',
+    'Reduce el contenido CSS que no se use',
+    'Visualización de fuentes',
+    'Desglose de LCP',
+    'Árbol de dependencia de red',
+    'Terceros'
+  ];
+  for(const label of panels){
+   try{
+    const item=page.getByText(label,{exact:false}).first();
+    await item.click({timeout:4500});
+    console.log('EXPANDED',label);
+   }catch(e){console.log('EXPAND_FAILED',label,String(e).slice(0,150))}
+  }
+  await page.waitForTimeout(1100);
+    const title=await page.title();
   const body=await page.locator('body').innerText({timeout:20000});
   console.log('REPORT_TITLE',title);
   console.log('REPORT_CHARS',body.length);

@@ -32,8 +32,9 @@ const mkServer=dir=>new Promise(resolve=>{
   for(const file of pages)for(const width of widths){
    const c1=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
    const c2=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
-   const p1=await c1.newPage(),p2=await c2.newPage();const jsErrors=[];
+   const p1=await c1.newPage(),p2=await c2.newPage();const jsErrors=[],unsplashRequests=[];
    p2.on('pageerror',e=>jsErrors.push(e.message));
+   p2.on('request',r=>{if(r.url().includes('images.unsplash.com/photo-1513694203232-719a280e022f'))unsplashRequests.push(r.url());});
    await p1.goto(before.url+'/'+file,{waitUntil:'domcontentloaded'});
    await p2.goto(after.url+'/'+file,{waitUntil:'domcontentloaded'});
    if(file==='index.html'){
@@ -95,10 +96,14 @@ const mkServer=dir=>new Promise(resolve=>{
      const imageBefore=await backdrop.evaluate(x=>getComputedStyle(x).backgroundImage);
      if(width===375){
        assert.equal(imageBefore,'none','Unsplash below-fold image must not fetch during initial mobile render');
+       assert.equal(unsplashRequests.length,0,'Unsplash fetched too early, before mobile scroll');
        await backdrop.scrollIntoViewIfNeeded();
        await p2.waitForFunction(()=>document.querySelector('.pronto-maintenance-backdrop')
          ?.classList.contains('pronto-backdrop-in-view'),null,{timeout:10000});
        const imageAfter=await backdrop.evaluate(x=>getComputedStyle(x).backgroundImage);
+       await p2.waitForFunction(()=>performance.getEntriesByType('resource')
+         .some(r=>r.name.includes('images.unsplash.com/photo-1513694203232-719a280e022f')),null,{timeout:12000}).catch(()=>{});
+       assert.equal(unsplashRequests.length,1,'Unsplash should fetch exactly once near Maintenance');
        assert.ok(imageAfter.includes('images.unsplash.com/photo-1513694203232-719a280e022f'),
          'Approved existing background must appear when Maintenance becomes visible');
      }else{

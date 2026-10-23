@@ -38,6 +38,29 @@ const mkServer=dir=>new Promise(resolve=>{
    await p2.goto(after.url+'/'+file,{waitUntil:'domcontentloaded'});
    await p1.evaluate(()=>document.fonts.ready);await p2.evaluate(()=>document.fonts.ready);
    await p1.waitForTimeout(200);await p2.waitForTimeout(200);
+   if(file==='index.html'){
+    const preload=await p2.evaluate(()=>{
+     const link=document.querySelector('link[rel="preload"][imagesrcset]');
+     const hero=document.querySelector('img[src*="home-hero-mobile"]');
+     return {found:!!link,correctAsset:link?.imageSrcset===hero?.srcset,
+       correctSizes:link?.imageSizes===hero?.sizes,
+       active:link?matchMedia(link.media).matches:null};
+    });
+    assert.equal(preload.found,true,'Home missing mobile hero preload');
+    assert.equal(preload.correctAsset,true,'Preload asset differs from approved hero srcset');
+    assert.equal(preload.correctSizes,true,'Preload uses different responsive sizes');
+    assert.equal(preload.active,width<768,'Mobile hero preload media condition incorrect');
+    if(width===375){
+     await p2.waitForFunction(()=>{
+      const img=document.querySelector('img[src*="home-hero-mobile"]');
+      return img?.complete && img.naturalWidth>0;
+     });
+     const mobileResources=await p2.evaluate(()=>performance.getEntriesByType('resource')
+      .filter(entry=>/\/images\/home-hero-mobile(?:-640|-820)?\.webp(?:\?|$)/.test(entry.name))
+      .map(entry=>entry.name));
+     assert.equal(mobileResources.length,1,'Mobile hero downloaded more than once: '+mobileResources.join(','));
+    }
+   }
    const a=await geom(p1),b=await geom(p2);
    assert.equal(JSON.stringify(a.h1),JSON.stringify(b.h1),'H1 changed: '+file);
    assert.equal(a.robots,'noindex, nofollow');assert.equal(b.robots,a.robots);

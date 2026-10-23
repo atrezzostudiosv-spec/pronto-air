@@ -80,6 +80,21 @@ const mkServer=dir=>new Promise(resolve=>{
      assert.equal(mobileResources.length,1,'Mobile hero downloaded more than once: '+mobileResources.join(','));
     }
    }
+   if(file==='index.html'){
+    const mobileCss=await p2.evaluate(()=>{
+      const link=document.querySelector('link[href="assets/css/pronto-assistant.css"]');
+      const inline=[...document.querySelectorAll('style[media]')]
+       .find(x=>x.media==='(max-width: 767px)' && x.textContent.includes('.pa-guide-launcher'));
+      const launcher=document.querySelector('.pa-guide-launcher');
+      const c=getComputedStyle(launcher);
+      return {linkMedia:link?.media,inline:!!inline,
+       launcherPosition:c.position,launcherBackground:c.backgroundColor};
+    });
+    assert.equal(mobileCss.linkMedia,'(min-width: 768px)','Desktop-only sheet must retain old desktop styling');
+    assert.equal(mobileCss.inline,true,'Home mobile should have immediate assistant CSS');
+    assert.equal(mobileCss.launcherPosition,'fixed','Ari launcher lost fixed placement');
+    assert.equal(mobileCss.launcherBackground,'rgb(11, 37, 69)','Ari launcher lost original navy color');
+   }
    const a=await geom(p1),b=await geom(p2);
    assert.equal(JSON.stringify(a.h1),JSON.stringify(b.h1),'H1 changed: '+file);
    assert.equal(a.robots,'noindex, nofollow');assert.equal(b.robots,a.robots);

@@ -19,5 +19,6 @@ jobs:
         with:
           node-version: '22'
       - run: npm install --no-save --no-package-lock --ignore-scripts lighthouse@12.8.2 chrome-launcher@1.2.1 playwright@1.56.1
+      - run: npx playwright install chromium
       - name: Verify public URL, desktop preservation, mobile network and Lighthouse
         run: node tools/verify-home-lazy-bg-live.cjs

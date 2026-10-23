@@ -38,11 +38,11 @@ const mkServer=dir=>new Promise(resolve=>{
    await p2.goto(after.url+'/'+file,{waitUntil:'domcontentloaded'});
    if(file==='index.html'){
     const links=await p2.evaluate(()=>[...document.querySelectorAll('link[as="style"]')]
-      .filter(x=>/fonts\\.googleapis\\.com|font-awesome\\/6\\.4\\.0/.test(x.href))
+      .filter(x=>x.href.includes('fonts.googleapis.com') || x.href.includes('font-awesome/6.4.0'))
       .map(x=>({href:x.href,rel:x.rel})));
     assert.equal(links.length,2,'Home should asynchronously load the two original external styles');
     await p2.waitForFunction(()=>[...document.querySelectorAll('link[as="style"]')]
-      .filter(x=>/fonts\\.googleapis\\.com|font-awesome\\/6\\.4\\.0/.test(x.href))
+      .filter(x=>x.href.includes('fonts.googleapis.com') || x.href.includes('font-awesome/6.4.0'))
       .every(x=>x.rel==='stylesheet'),null,{timeout:20000});
     await p2.evaluate(()=>document.fonts.ready);
     const styleProof=await p2.evaluate(()=>{

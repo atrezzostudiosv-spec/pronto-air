@@ -1,0 +1,23 @@
+name: Verify live Home mobile background release
+
+on:
+  pull_request:
+    paths:
+      - 'tools/verify-home-lazy-bg-live.cjs'
+      - '.github/workflows/verify-home-lazy-bg-live.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --no-package-lock --ignore-scripts lighthouse@12.8.2 chrome-launcher@1.2.1 playwright@1.56.1
+      - name: Verify public URL, desktop preservation, mobile network and Lighthouse
+        run: node tools/verify-home-lazy-bg-live.cjs

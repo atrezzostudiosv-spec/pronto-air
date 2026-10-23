@@ -1,0 +1,40 @@
+name: Generate quality-checked Home responsive images
+
+on:
+  pull_request:
+    paths:
+      - tools/generate-home-responsive-images.cjs
+      - .github/workflows/generate-home-responsive-images.yml
+
+permissions:
+  contents: write
+
+jobs:
+  image-derivatives:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install image encoder
+        run: npm install --no-save --no-package-lock sharp@0.34.4
+      - name: Generate non-destructive derivatives and compare decoded pixels
+        run: node tools/generate-home-responsive-images.cjs
+      - name: Add only new derivative files to this review branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/pronto-home-family-team-840-optimized.webp images/home-service-cooling-640.webp
+          git diff --cached --quiet || git commit -m "Add validated optimized Home WebP derivatives"
+          git push origin HEAD:refs/heads/${{ github.event.pull_request.head.ref }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: home-image-optimization-metrics
+          path: home-image-optimization.json
+          if-no-files-found: ignore

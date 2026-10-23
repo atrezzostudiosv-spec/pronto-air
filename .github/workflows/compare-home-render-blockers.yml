@@ -1,0 +1,30 @@
+name: A/B Home render-blocking stylesheet trial
+
+on:
+  pull_request:
+    paths:
+      - 'tools/compare-home-render-blockers.cjs'
+      - '.github/workflows/compare-home-render-blockers.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  ab-render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install read-only Lighthouse and browser tools
+        run: npm install --no-save --no-package-lock --ignore-scripts lighthouse@12.8.2 chrome-launcher@1.2.1 playwright@1.56.1
+      - name: Compare same-site variants on same runner
+        run: node tools/compare-home-render-blockers.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: home-render-blocking-ab
+          path: home-render-ab.json
+          if-no-files-found: warn

@@ -86,6 +86,12 @@
         .pronto-skip-link { position: absolute; top: -7rem; left: 1rem; z-index: 9999; padding: .75rem 1rem; background: #fff; color: #0B2545; border: 2px solid #D90429; border-radius: .625rem; font-weight: 700; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
         .pronto-skip-link:focus { top: 1rem; }
         @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto !important; } }
+        /* Mobile only: keep the existing Maintenance photograph off the initial network path. */
+        @media (max-width: 767px) {
+            .pronto-maintenance-backdrop:not(.pronto-backdrop-in-view) {
+                background-image: none !important;
+            }
+        }
     </style>
     <!-- Preview SEO/resource hints. Keep noindex until client-approved launch. -->
     <meta name="theme-color" content="#0B2545">
@@ -378,7 +384,7 @@
 
     <!-- SECCIÓN 04 — MAINTENANCE AGREEMENTS -->
     <section class="py-20 bg-prontoNavy text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1920');"></div>
+        <div class="pronto-maintenance-backdrop absolute inset-0 opacity-10 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1920');"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="bg-prontoBlue/40 border border-white/10 rounded-3xl p-8 lg:p-12 shadow-2xl backdrop-blur-md grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6">
@@ -801,6 +807,24 @@
             if (!form.reportValidity()) return;
             await window.prontoSubmitInline(form, document.getElementById('homeFormStatus'));
         }
+    </script>
+    <script>
+        // Home mobile only. The same approved backdrop is requested when
+        // Maintenance is near the viewport, not while the hero is loading.
+        (() => {
+            if (!window.matchMedia('(max-width: 767px)').matches) return;
+            const backdrop = document.querySelector('.pronto-maintenance-backdrop');
+            if (!backdrop) return;
+            const reveal = () => backdrop.classList.add('pronto-backdrop-in-view');
+            if (!('IntersectionObserver' in window)) { reveal(); return; }
+            const observer = new IntersectionObserver(entries => {
+                if (entries.some(entry => entry.isIntersecting)) {
+                    reveal();
+                    observer.disconnect();
+                }
+            }, { rootMargin: '500px 0px' });
+            observer.observe(backdrop.closest('section'));
+        })();
     </script>
     <script src="assets/js/pronto-assistant.js" data-ai-endpoint="https://pronto-air-assistant.atrezzostudiosv.workers.dev/chat"></script>
 </body>

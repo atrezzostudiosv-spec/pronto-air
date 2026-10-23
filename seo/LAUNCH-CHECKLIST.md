@@ -36,7 +36,7 @@
 ## Asistente Ari — implementado en la demo, no autorizado para producción
 - **Completado en código:** IA conversacional real con Cloudflare Workers AI, nombre Ari, voz de Pronto Air, idioma según pregunta, orientación de servicios auditados y opciones de llamada/formulario.
 - **Completado y validado en CI:** acceso rápido de 5 categorías a través del flujo de IA (PR #17), 32 comprobaciones en cuatro anchos por ocho páginas, 16 análisis automatizados de accesibilidad del widget y pruebas simuladas de formulario. Las comprobaciones no equivalen a auditoría manual WCAG completa.
-- **Pendiente:** prueba real de entrega y recepción del formulario integrado de Ari, 20–30 preguntas de IA más exigentes, aprobación de privacidad y tratamientos con Cloudflare/FormSubmit y revisión comercial del cliente.
+- **Comprobado por el usuario el 23 oct 2026:** el formulario integrado de Ari mostró aceptación y el mensaje correspondiente de FormSubmit llegó al correo temporal de Atrezzo, inicialmente clasificado como Spam por Gmail. El flujo AJAX de Ari usa POST urlencoded sin preflight tras PR #22. Esta prueba demuestra una entrega puntual, no confiabilidad futura. **Pendiente:** reducir riesgo de spam, repetir envío tras migración al buzón comercial, 20–30 preguntas más exigentes, aprobación de privacidad y revisión comercial del cliente.
 - **Regla comercial:** no presentar al asistente como técnico humano ni confirmar precios, garantías, urgencias, citas o tiempos de respuesta sin datos acreditados.
 
 ## Configuración temporal de correo — pendiente de activación
@@ -49,7 +49,7 @@
 - **Estado AJAX:** mensaje de confirmación breve debajo del botón únicamente cuando FormSubmit responde con éxito; este estado no reserva una cita. Si hay fallo, aviso dentro de la página con el contacto directo de la empresa. El usuario confirmó funcionamiento, sin acceso independiente al buzón para verificar entrega.
 
 ## Asistente IA Cloudflare — estado de demo (22 oct 2026)
-- Worker Free verificado: `https://pronto-air-assistant.atrezzostudiosv.workers.dev/chat`, health/CORS/IA real OK; siete preguntas seguras EN/ES superadas. La conexión de ocho páginas y las acciones rápidas de Ari ya están integradas en main tras pasar QA automatizada; faltan pruebas reales de correo del asistente y revisión legal/comercial.
+- Worker Free verificado: `https://pronto-air-assistant.atrezzostudiosv.workers.dev/chat`, health/CORS/IA real OK; siete preguntas seguras EN/ES superadas. La conexión de ocho páginas y las acciones rápidas de Ari ya están integradas en main tras pasar QA automatizada; entrega real al correo provisional confirmada el 23 oct 2026 (Spam); quedan aprobación legal/comercial y verificación futura con destinatario definitivo.
 - El chat declara que las preguntas se procesan mediante Cloudflare Workers AI y recomienda no compartir datos personales. Los datos del formulario de seguimiento van directamente a FormSubmit, no al modelo.
 - **Pendiente antes de entregar oficialmente:** aprobación empresarial y jurídica de la información de privacidad, test exhaustivo 20–30 prompts, revisión manual WCAG y correo definitivo para Home, Contact y el formulario del asistente.
 - Al migrar dominio/hosting: actualizar `ALLOWED_ORIGINS` en Cloudflare, URLs del frontend si cambian, el correo FormSubmit **en las tres entradas** y sus activaciones; repetir pruebas.

@@ -12,8 +12,11 @@
 
 - **Home, corrección 01 incorporada:** PR #24, commit `fe6b5b507db956c80d2fbadc503e8bad18e67f71`. Precarga de la imagen mobile del hero con imágenes y tamaños actuales; conserva precarga desktop y apariencia.
 - **Validación de código:** GitHub Actions run `39916714792` superada (regresión de layout 8 páginas × 375/768/1024/1440, comprobaciones automatizadas de accesibilidad, preload responsive y ausencia de doble descarga en prueba).
-- **PENDIENTE:** una medición móvil PageSpeed posterior al cambio; comparar con informe anterior de Home (22 octubre 2026: rendimiento 84, LCP 3,5 s). **No declarar mejoras de puntuación o de LCP sin nueva medición.**
-- **Después:** revisar resultados y optimizar únicamente los cuellos de botella acreditados, incluidos los de otras páginas si se comprueban.
+- **VERIFICADO el 23 oct 2026:** Lighthouse móvil en navegador real del runner CI, en las ocho URLs públicas (run [39921717840](https://github.com/atrezzostudiosv-spec/pronto-air/actions/runs/39921717840), PR #25). Ejecutado dos veces; 8/8 URLs con resultado, sin errores. `tools/audit-mobile-performance.cjs` deja una forma reproducible de medir sin intervenir en la web.
+- **Rangos observados en las dos ejecuciones de Lighthouse CI (laboratorio propio, no PSI):** Home 79/100 y LCP 4,0–4,2 s; Cooling 96–98; Heating 95–98; Mobile Homes 90–97; Light Commercial 94–98; Contact 91; Agreement FAQs 99; Privacy 99.
+- **Diagnóstico específico:** Home LCP es la imagen principal móvil; están identificados como bloqueantes Google Fonts Inter y la hoja de estilos de Font Awesome externa. También se identificaron CSS locales, con menor impacto. No retirar, sustituir ni retrasar tipografía/iconos sin validar previamente identidad visual y ausencia de flash. La métrica TBT de Home varió entre 325 y 0 ms en dos ejecuciones: no tratarla como regresión estable.
+- **NO COMPROBADO:** una nueva medición de **Google PageSpeed Insights** con idénticas condiciones al informe anterior (22 oct 2026: Home 84/100; LCP 3,5 s). Las puntuaciones CI y PSI no son equivalentes. No afirmar aceleración debida a PR #24 basándose en esta prueba.
+- **Siguiente acción técnica única:** evaluar una solución medible para el bloqueo de recursos en Home que conserve exactamente Inter, Font Awesome y el diseño; comprobar antes/después en mismo entorno y aprobar solo si mejora sin impacto visual. Una vez resuelto Home, priorizar Contact/Mobile Homes, no las páginas que ya rinden bien.
 
 ## Fases cerradas: NO replantear sin incidencia nueva
 | Fase | Estado | Evidencia y límite |

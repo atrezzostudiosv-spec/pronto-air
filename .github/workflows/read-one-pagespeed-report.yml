@@ -1,0 +1,26 @@
+name: Read specified PageSpeed report (read-only)
+
+on:
+  pull_request:
+    paths:
+      - 'tools/read-one-pagespeed-report.cjs'
+      - '.github/workflows/read-one-pagespeed-report.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  read:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser only for temporary diagnostic
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Read user's exact report without changing website
+        run: node tools/read-one-pagespeed-report.cjs

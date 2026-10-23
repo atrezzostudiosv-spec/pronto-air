@@ -1,0 +1,29 @@
+name: Verify deployed Home images and mobile metric
+
+on:
+  pull_request:
+    paths:
+      - 'tools/verify-home-image-publication.cjs'
+      - '.github/workflows/verify-home-image-publication.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  home-images-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-save --no-package-lock --ignore-scripts lighthouse@12.8.2 chrome-launcher@1.2.1
+      - name: Check deployed assets and twice-measured mobile lab results
+        run: node tools/verify-home-image-publication.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: home-image-live-verification
+          path: home-image-live-verify.json
+          if-no-files-found: ignore

@@ -16,12 +16,14 @@ function lazy(link){
  const href=link.match(/href="([^"]+)"/)[1];
  return '<link rel="preload" as="style" href="'+href+'" onload="this.onload=null;this.rel=\'stylesheet\'"><noscript>'+link+'</noscript>';
 }
-const versions={
+const variants={
  base:home,
  iconsAsync:home.replace(icons,lazy(icons)),
  interAsync:home.replace(font,lazy(font)),
  bothAsync:home.replace(font,lazy(font)).replace(icons,lazy(icons))
 };
+// The HTML under /__trial/* must resolve all project assets against /.
+const versions=Object.fromEntries(Object.entries(variants).map(([name,html])=>[name,html.replace('<head>','<head><base href="/">')]));
 const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.png':'image/png','.webp':'image/webp','.woff2':'font/woff2','.svg':'image/svg+xml'};
 const server=http.createServer((req,res)=>{
  const pathname=decodeURIComponent(new URL(req.url,'http://127.0.0.1').pathname);

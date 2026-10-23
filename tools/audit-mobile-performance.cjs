@@ -42,8 +42,16 @@ const auditInfo=(lhr,key)=>{
       a?.details?.type==='opportunity' && a.details.overallSavingsMs>100)
       .sort((a,b)=>b[1].details.overallSavingsMs-a[1].details.overallSavingsMs)
       .slice(0,5).map(([id,a])=>({id,title:a.title,savingsMs:Math.round(a.details.overallSavingsMs)}));
+    const blockers=(lhr.audits['render-blocking-resources']?.details?.items||[])
+      .slice(0,10).map(x=>({url:x.url,transferSize:x.transferSize,wastedMs:x.wastedMs}));
+    const longTasks=(lhr.audits['long-tasks']?.details?.items||[])
+      .sort((a,b)=>(b.duration||0)-(a.duration||0)).slice(0,5)
+      .map(x=>({durationMs:Math.round(x.duration||0),url:x.url||null}));
+    const lcpElement=lhr.audits['largest-contentful-paint-element']?.details?.items?.[0]?.items?.[0]?.node?.snippet
+      ||lhr.audits['largest-contentful-paint-element']?.details?.items?.[0]?.node?.snippet||null;
     const item={
       page,requestedUrl:url,finalUrl:lhr.finalDisplayedUrl,
+      blockers,longTasks,lcpElement,
       fetchTime:lhr.fetchTime,performanceScore:Math.round(lhr.categories.performance.score*100),
       fcpMs:auditInfo(lhr,'first-contentful-paint'),
       lcpMs:auditInfo(lhr,'largest-contentful-paint'),

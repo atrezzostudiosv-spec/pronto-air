@@ -1,0 +1,32 @@
+name: Compare Home mobile CSS render performance
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'tools/compare-home-mobile-css.cjs'
+      - '.github/workflows/compare-home-mobile-css.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated test tools
+        run: npm install --no-save --no-package-lock --ignore-scripts lighthouse@12.8.2 chrome-launcher@1.2.1 playwright@1.56.1
+      - name: Compare baseline and candidate in the same mobile lab
+        run: node tools/compare-home-mobile-css.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: home-mobile-css-comparison
+          path: home-css-render-comparison.json
+          if-no-files-found: warn

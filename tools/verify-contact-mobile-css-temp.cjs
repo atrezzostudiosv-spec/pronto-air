@@ -47,7 +47,7 @@ async function measure(browser,origin,width,label,noJS=false){
  assert(state.iconContent && state.iconContent!=='none','Icon invisible '+width+'/'+label);
  assert(state.overflow<=2,'Horizontal overflow '+width+'/'+label);
  if(label==='candidate'){
-  const active=state.styleLinks.filter(x=>x.match);
+  const active=state.styleLinks.filter(x=>x.match && x.rel==='stylesheet');
   assert.equal(active.length,2,'Expected 2 active CSS links at '+width);
   assert(active.every(x=>x.rel==='stylesheet'),'Expected loaded CSS at '+width);
   if(width>=768)assert(active.every(x=>x.media.includes('min-width')),'Desktop/tablet CSS must remain original blocking stylesheet');

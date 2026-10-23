@@ -90,6 +90,22 @@ const mkServer=dir=>new Promise(resolve=>{
    for(let i=0;i<a.sections.length;i++)for(let j=0;j<4;j++){
      assert.ok(Math.abs(a.sections[i][j]-b.sections[i][j])<=1,'Layout modified: '+file+'/'+width+' section '+i+' coordinate '+j+' baseline '+a.sections[i][j]+' new '+b.sections[i][j]);
    }
+   if(file==='index.html' && (width===375 || width===1440)){
+     const backdrop=p2.locator('.pronto-maintenance-backdrop');
+     const imageBefore=await backdrop.evaluate(x=>getComputedStyle(x).backgroundImage);
+     if(width===375){
+       assert.equal(imageBefore,'none','Unsplash below-fold image must not fetch during initial mobile render');
+       await backdrop.scrollIntoViewIfNeeded();
+       await p2.waitForFunction(()=>document.querySelector('.pronto-maintenance-backdrop')
+         ?.classList.contains('pronto-backdrop-in-view'),null,{timeout:10000});
+       const imageAfter=await backdrop.evaluate(x=>getComputedStyle(x).backgroundImage);
+       assert.ok(imageAfter.includes('images.unsplash.com/photo-1513694203232-719a280e022f'),
+         'Approved existing background must appear when Maintenance becomes visible');
+     }else{
+       assert.ok(imageBefore.includes('images.unsplash.com/photo-1513694203232-719a280e022f'),
+         'Desktop Maintenance image must remain unchanged');
+     }
+   }
    if(file==='index.html' && (width===375||width===1440)){
      const imageRefs=await p2.evaluate(()=>{
        const team=document.querySelector('img[src*="pronto-home-family-team.webp"]');

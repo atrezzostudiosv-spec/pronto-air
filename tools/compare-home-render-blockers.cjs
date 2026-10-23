@@ -44,12 +44,14 @@ async function start(){return new Promise(resolve=>server.listen(0,'127.0.0.1',r
  const results=[];
  try{
   for(let iteration=0;iteration<2;iteration++){
-   for(const variant of Object.keys(versions)){
+   // Alternate test order to avoid systematic cold/warm bias.
+   const order=iteration===0?Object.keys(versions):Object.keys(versions).reverse();
+   for(const variant of order){
     const {lhr}=await lighthouse(baseUrl+'/__trial/'+variant,{
      port:chrome.port,onlyCategories:['performance'],
      formFactor:'mobile',throttlingMethod:'simulate',
      screenEmulation:{mobile:true,width:375,height:812,deviceScaleFactor:2,disabled:false},
-     maxWaitForLoad:45000,disableStorageReset:true,logLevel:'error'
+     maxWaitForLoad:45000,disableStorageReset:false,logLevel:'error'
     });
     const r={variant,iteration,score:Math.round(lhr.categories.performance.score*100),
      fcp:Math.round(lhr.audits['first-contentful-paint'].numericValue),

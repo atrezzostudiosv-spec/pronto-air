@@ -90,6 +90,25 @@ const mkServer=dir=>new Promise(resolve=>{
    for(let i=0;i<a.sections.length;i++)for(let j=0;j<4;j++){
      assert.ok(Math.abs(a.sections[i][j]-b.sections[i][j])<=1,'Layout modified: '+file+'/'+width+' section '+i+' coordinate '+j+' baseline '+a.sections[i][j]+' new '+b.sections[i][j]);
    }
+   if(file==='index.html' && (width===375||width===1440)){
+     const imageRefs=await p2.evaluate(()=>{
+       const team=document.querySelector('img[src*="pronto-home-family-team.webp"]');
+       const cooling=document.getElementById('detail-img');
+       return {teamSrcset:team?.srcset,coolingSrcset:cooling?.srcset};
+     });
+     assert.ok(imageRefs.teamSrcset.includes('pronto-home-family-team-840-optimized.webp'));
+     assert.ok(imageRefs.coolingSrcset.includes('home-service-cooling-640.webp'));
+     await p2.evaluate(()=>selectService('heating'));
+     assert.ok((await p2.locator('#detail-img').getAttribute('src')).endsWith('residential-heating-hero.webp'));
+     assert.equal(await p2.locator('#detail-img').getAttribute('srcset'),null,
+       'Heating service must not use cooling srcset');
+     await p2.evaluate(()=>selectService('commercial'));
+     assert.ok((await p2.locator('#detail-img').getAttribute('src')).endsWith('light-commercial-hero.webp'));
+     assert.equal(await p2.locator('#detail-img').getAttribute('srcset'),null);
+     await p2.evaluate(()=>selectService('cooling'));
+     assert.ok((await p2.locator('#detail-img').getAttribute('srcset')).includes('home-service-cooling-640.webp'));
+     assert.ok((await p2.locator('#detail-img').getAttribute('src')).endsWith('home-service-cooling.webp'));
+   }
    const launcher=p2.getByRole('button',{name:'Chat with Ari'});
    assert.equal(await launcher.isVisible(),true);
    await launcher.click();

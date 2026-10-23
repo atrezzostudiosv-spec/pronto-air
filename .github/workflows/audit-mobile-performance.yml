@@ -1,0 +1,32 @@
+name: Audit Pronto Air live mobile performance
+
+on:
+  pull_request:
+    paths:
+      - 'tools/audit-mobile-performance.cjs'
+      - '.github/workflows/audit-mobile-performance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Measure live mobile Lighthouse on all eight pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install audit-only dependencies
+        run: npm install --no-save --no-package-lock --ignore-scripts lighthouse@12.8.2 chrome-launcher@1.2.1
+      - name: Measure live pages without submitting forms
+        run: node tools/audit-mobile-performance.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mobile-performance-audit
+          path: mobile-performance-audit.json
+          if-no-files-found: warn
